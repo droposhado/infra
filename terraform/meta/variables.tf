@@ -41,3 +41,7 @@ variable "github_token" {
 variable "github_app_installation_id" {
   type = string
 }
+
+variable "tfe_personal_token" {
+  type = string
+}
