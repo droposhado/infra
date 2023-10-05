@@ -1,0 +1,30 @@
+name: terraform droposhado[triggers] push
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/terraform-droposhado-triggers-push.yml'
+      - 'terraform/triggers/**'
+
+  workflow_dispatch:
+
+jobs:
+  checks:
+    uses: droposhado/workflows/.github/workflows/terraform-best-practices.yml@main
+    with:
+      dir: 'terraform/triggers'
+    secrets:
+      tf_api_token: ${{ secrets.TF_API_TOKEN }}
+
+  apply:
+    needs:
+      - checks
+    uses: droposhado/workflows/.github/workflows/terraform-apply.yml@main
+    with:
+      dir: 'terraform/triggers'
+      organization: 'droposhado-org'
+      workspace: 'triggers'
+    secrets:
+      tf_api_token: ${{ secrets.TF_API_TOKEN }}
