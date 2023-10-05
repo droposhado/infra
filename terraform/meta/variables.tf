@@ -37,3 +37,8 @@ variable "github_infra_user" {
   type        = string
   description = "Username or organization slug"
 }
+
+variable "github_token" {
+  type        = string
+  description = "Token to manages infra reo"
+}

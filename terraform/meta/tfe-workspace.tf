@@ -14,10 +14,10 @@ resource "tfe_workspace" "seeds" {
   ]
   terraform_version = "~>1.5.4"
   vcs_repo {
-    identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
-    branch                     = "main"
-    ingress_submodules         = false
-    github_app_installation_id = var.github_app_instalation_id
+    identifier         = "${var.github_infra_user}/${var.github_infra_repo}"
+    branch             = "main"
+    ingress_submodules = false
+    oauth_token_id     = tfe_oauth_client.github.id
   }
 }
 
