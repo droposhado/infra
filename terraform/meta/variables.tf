@@ -23,11 +23,6 @@ variable "environment" {
   description = "Environment used in organization"
 }
 
-variable "github_app_instalation_id" {
-  type        = string
-  description = "ID obtained from settings"
-}
-
 variable "github_infra_repo" {
   type        = string
   description = "Name of repository that host project with Terraform files"

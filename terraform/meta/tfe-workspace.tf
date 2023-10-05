@@ -1,11 +1,12 @@
 resource "tfe_workspace" "seeds" {
-  name           = "seeds"
-  organization   = tfe_organization.main.name
-  auto_apply     = true
-  execution_mode = "remote"
-  force_delete   = false
-  project_id     = tfe_project.infra.id
-  queue_all_runs = false
+  name               = "seeds"
+  organization       = tfe_organization.main.name
+  allow_destroy_plan = false
+  auto_apply         = true
+  execution_mode     = "remote"
+  force_delete       = false
+  project_id         = tfe_project.infra.id
+  queue_all_runs     = false
   remote_state_consumer_ids = [
     tfe_workspace.buckets.id,
     tfe_workspace.databases.id,
@@ -14,10 +15,16 @@ resource "tfe_workspace" "seeds" {
   ]
   terraform_version = "~>1.5.4"
   vcs_repo {
-    identifier         = "${var.github_infra_user}/${var.github_infra_repo}"
-    branch             = "main"
+    identifier = "${var.github_infra_user}/${var.github_infra_repo}"
+    #branch             = "main"
     ingress_submodules = false
     oauth_token_id     = tfe_oauth_client.github.oauth_token_id
+    working_directory  = "terraform/seeds"
+    trigger_prefixes   = distinct(["terraform/seeds/**", "terraform/seeds/**/*"])
+  }
+
+  lifecycle {
+    prevent_destroy = true
   }
 }
 
