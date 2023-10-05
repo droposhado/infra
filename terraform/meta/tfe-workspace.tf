@@ -20,7 +20,8 @@ resource "tfe_workspace" "seeds" {
     identifier         = "${var.github_infra_user}/${var.github_infra_repo}"
     branch             = "default"
     ingress_submodules = false
-    oauth_token_id     = tfe_oauth_client.github.oauth_token_id
+    #oauth_token_id     = tfe_oauth_client.github.oauth_token_id
+    github_app_installation_id = var.github_app_installation_id
   }
 
   lifecycle {
