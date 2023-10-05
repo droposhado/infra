@@ -17,3 +17,8 @@ provider "github" {
 }
 
 provider "tfe" {}
+
+provider "tfe" {
+  alias = "personal"
+  token = var.tfe_personal_token
+}
