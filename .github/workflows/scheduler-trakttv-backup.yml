@@ -1,0 +1,56 @@
+name: scheduler trakttv backup
+on:
+
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/scheduler-trakttv-backup.yml'
+
+  schedule:
+    - cron: '00 04 * * *'
+
+  workflow_dispatch:
+
+jobs:
+
+  daily:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: schedulers/trakttv
+    env:
+      TRAKTTV_TOKEN: ${{ secrets.TRAKTTV_TOKEN }}
+      TRAKTTV_CLIENT_ID: ${{ secrets.TRAKTTV_CLIENT_ID }}
+      TRAKTTV_DATA_PATH: ${{ secrets.TRAKTTV_DATA_PATH }}
+
+    steps:
+
+      - name: checkout repo
+        uses: actions/checkout@v3
+
+      - name: install dependencies
+        run: pip install -r requirements.txt
+
+      - name: execute script
+        run: python main.py
+
+      - name: Push backups to S3 Bucket
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --follow-symlinks
+        env:
+          AWS_S3_ENDPOINT: ${{ secrets.TRAKTTV_BUCKET_ENDPOINT }}
+          AWS_S3_BUCKET: ${{ secrets.TRAKTTV_BUCKET_NAME }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.TRAKTTV_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.TRAKTTV_AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.TRAKTTV_BUCKET_REGION }}
+          SOURCE_DIR: 'schedulers/trakttv/backup'
+
+      - name: push to kuma - success
+        if: ${{ success() }}
+        run: curl "${{ secrets.TRAKTTV_UPTIME_PUSH_URL }}?status=up&msg=OK&ping="
+
+      - name: push to kuma - failure or cancelled
+        if: ${{ always() && (failure() || cancelled()) }}
+        run: curl "${{ secrets.TRAKTTV_UPTIME_PUSH_URL }}?status=down&msg=OK&ping="

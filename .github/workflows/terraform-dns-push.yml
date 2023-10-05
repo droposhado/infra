@@ -1,0 +1,30 @@
+name: terraform droposhado[dns] push
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/terraform-droposhado-dns-push.yml'
+      - 'terraform/dns/**'
+
+  workflow_dispatch:
+
+jobs:
+  checks:
+    uses: droposhado/workflows/.github/workflows/terraform-best-practices.yml@main
+    with:
+      dir: 'terraform/dns'
+    secrets:
+      tf_api_token: ${{ secrets.TF_API_TOKEN }}
+
+  apply:
+    needs:
+      - checks
+    uses: droposhado/workflows/.github/workflows/terraform-apply.yml@main
+    with:
+      dir: 'terraform/dns'
+      organization: 'droposhado-org'
+      workspace: 'dns'
+    secrets:
+      tf_api_token: ${{ secrets.TF_API_TOKEN }}

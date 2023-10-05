@@ -1,0 +1,51 @@
+output "k8s_cluster" {
+  value       = local.k8s_cluster
+  description = "kubernetes cluster data"
+}
+
+output "domain" {
+  value       = var.domain
+  description = "Export domain to use in another workspaces"
+}
+
+output "environment" {
+  value       = var.environment
+  description = "Default environment to workspaces"
+}
+
+output "pg_cluster" {
+  value       = local.pg_cluster
+  description = "PostgreSQL cluster data"
+  sensitive   = true
+}
+
+output "sabedoria" {
+  value       = local.sabedoria
+  description = "Generated name to project"
+  sensitive   = true
+}
+
+output "seed" {
+  value       = local.seed
+  description = "Seed generated to all workspaces sync"
+}
+
+output "team" {
+  value       = local.team
+  description = "Generated name to teams in projects"
+}
+
+output "trakttv" {
+  value       = local.trakttv
+  description = "Generated name to project"
+}
+
+output "uptime_kuma" {
+  value       = local.uptime_kuma
+  description = "Generated name to project"
+}
+
+output "wooka" {
+  value       = local.wooka
+  description = "Generated name to project"
+}
