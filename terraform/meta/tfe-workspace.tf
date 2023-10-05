@@ -1,3 +1,8 @@
+data "tfe_workspace" "meta" {
+  name         = "meta"
+  organization = tfe_organization.main.name
+}
+
 resource "tfe_workspace" "seeds" {
   name               = "seeds"
   organization       = tfe_organization.main.name
