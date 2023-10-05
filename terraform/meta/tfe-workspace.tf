@@ -7,6 +7,8 @@ resource "tfe_workspace" "seeds" {
   force_delete       = false
   project_id         = tfe_project.infra.id
   queue_all_runs     = false
+  working_directory  = "terraform/seeds"
+  trigger_prefixes   = distinct(["terraform/seeds/**", "terraform/seeds/**/*"])
   remote_state_consumer_ids = [
     tfe_workspace.buckets.id,
     tfe_workspace.databases.id,
@@ -19,8 +21,6 @@ resource "tfe_workspace" "seeds" {
     #branch             = "main"
     ingress_submodules = false
     oauth_token_id     = tfe_oauth_client.github.oauth_token_id
-    working_directory  = "terraform/seeds"
-    trigger_prefixes   = distinct(["terraform/seeds/**", "terraform/seeds/**/*"])
   }
 
   lifecycle {
