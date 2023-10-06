@@ -8,11 +8,6 @@ resource "tfe_project" "compute" {
   name         = "compute"
 }
 
-resource "tfe_project" "infra" {
-  organization = tfe_organization.main.name
-  name         = "infra"
-}
-
 resource "tfe_project" "network" {
   organization = tfe_organization.main.name
   name         = "network"
