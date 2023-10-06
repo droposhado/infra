@@ -23,6 +23,7 @@ locals {
     env = {
       NAME : var.redmine_name
       DATABASE_URL : "host=localhost port=5432 user=gotify dbname=gotifydb password=secret"
+      PORT : 80
     }
   }
 
