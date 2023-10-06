@@ -1,3 +1,8 @@
+resource "tfe_run_trigger" "meta_seeds" {
+  workspace_id  = tfe_workspace.seeds.id
+  sourceable_id = data.tfe_workspace.meta.id
+}
+
 resource "tfe_run_trigger" "seeds_vpc" {
   workspace_id  = tfe_workspace.vpc.id
   sourceable_id = tfe_workspace.seeds.id
