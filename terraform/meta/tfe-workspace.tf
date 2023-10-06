@@ -10,7 +10,7 @@ resource "tfe_workspace" "seeds" {
   auto_apply         = true
   execution_mode     = "remote"
   force_delete       = false
-  project_id         = tfe_project.infra.id
+  project_id         = tfe_project.bootstrap.id
   queue_all_runs     = false
   working_directory  = "terraform/seeds"
   trigger_patterns   = distinct(["terraform/seeds/**/*", "terraform/seeds/**"])
@@ -39,7 +39,7 @@ resource "tfe_workspace" "vpc" {
   auto_apply        = true
   execution_mode    = "remote"
   force_delete      = false
-  project_id        = tfe_project.infra.id
+  project_id        = tfe_project.network.id
   queue_all_runs    = false
   working_directory = "terraform/vpc"
   trigger_patterns  = distinct(["terraform/vpc/**/*", "terraform/vpc/**"])
@@ -67,7 +67,7 @@ resource "tfe_workspace" "buckets" {
   auto_apply        = true
   execution_mode    = "remote"
   force_delete      = false
-  project_id        = tfe_project.infra.id
+  project_id        = tfe_project.storage.id
   queue_all_runs    = false
   working_directory = "terraform/buckets"
   trigger_patterns  = distinct(["terraform/buckets/**", "terraform/buckets/**/*"])
@@ -93,7 +93,7 @@ resource "tfe_workspace" "databases" {
   auto_apply        = true
   execution_mode    = "remote"
   force_delete      = false
-  project_id        = tfe_project.infra.id
+  project_id        = tfe_project.storage.id
   queue_all_runs    = false
   working_directory = "terraform/databases"
   trigger_patterns  = distinct(["terraform/databases/**", "terraform/databases/**/*"])
@@ -119,7 +119,7 @@ resource "tfe_workspace" "secrets" {
   auto_apply        = true
   execution_mode    = "remote"
   force_delete      = false
-  project_id        = tfe_project.infra.id
+  project_id        = tfe_project.vault.id
   queue_all_runs    = false
   working_directory = "terraform/secrets"
   trigger_patterns  = distinct(["terraform/secrets/**", "terraform/secrets/**/*"])
@@ -142,7 +142,7 @@ resource "tfe_workspace" "apps" {
   auto_apply        = true
   execution_mode    = "remote"
   force_delete      = false
-  project_id        = tfe_project.infra.id
+  project_id        = tfe_project.compute.id
   queue_all_runs    = false
   working_directory = "terraform/apps"
   trigger_patterns  = distinct(["terraform/apps/**", "terraform/apps/**/*"])
@@ -168,7 +168,7 @@ resource "tfe_workspace" "k8s" {
   auto_apply        = true
   execution_mode    = "remote"
   force_delete      = false
-  project_id        = tfe_project.infra.id
+  project_id        = tfe_project.compute.id
   queue_all_runs    = false
   working_directory = "terraform/k8s"
   trigger_patterns  = distinct(["terraform/k8s/**", "terraform/k8s/**/*"])
@@ -194,7 +194,7 @@ resource "tfe_workspace" "dns" {
   auto_apply        = true
   execution_mode    = "remote"
   force_delete      = false
-  project_id        = tfe_project.infra.id
+  project_id        = tfe_project.network.id
   queue_all_runs    = false
   working_directory = "terraform/dns"
   trigger_patterns  = distinct(["terraform/dns/**", "terraform/dns/**/*"])
