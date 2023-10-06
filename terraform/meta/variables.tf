@@ -13,11 +13,6 @@ variable "aws_region_default" {
   description = "Default AWS region to create resources"
 }
 
-variable "aws_regions" {
-  type        = string
-  description = "Comma separated list with regions"
-}
-
 variable "cloudflare_account_id" {
   type        = string
   description = "Acc ID for CF use"

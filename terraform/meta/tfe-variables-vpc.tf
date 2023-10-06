@@ -19,13 +19,6 @@ resource "tfe_variable" "vpc_aws_secret_access_key" {
   workspace_id = tfe_workspace.vpc.id
 }
 
-resource "tfe_variable" "vpc_aws_regions" {
-  key          = "aws_regions"
-  value        = var.aws_regions
-  category     = "terraform"
-  workspace_id = tfe_workspace.vpc.id
-}
-
 resource "tfe_variable" "vpc_environment" {
   key          = "environment"
   value        = var.environment
