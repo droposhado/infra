@@ -4,7 +4,7 @@ locals {
   tags = {
     workspace   = "vpc"
     environment = var.environment
-    region      = provider.aws.region
+    region      = var.aws_region_default
     regions     = var.aws_regions
   }
 }
