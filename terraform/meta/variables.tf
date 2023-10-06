@@ -34,9 +34,16 @@ variable "github_infra_user" {
 }
 
 variable "github_app_installation_id" {
-  type = string
+  type        = string
+  description = "This ID not is the ID in URL is internal TFE ID, needs use data"
 }
 
 variable "tfe_personal_token" {
-  type = string
+  type        = string
+  description = "Personal token, because organization token dont can used"
+}
+
+variable "webhook_url" {
+  type        = string
+  description = "URL to notification"
 }
