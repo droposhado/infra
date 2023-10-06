@@ -20,7 +20,7 @@ resource "tfe_workspace" "seeds" {
     tfe_workspace.secrets.id,
     tfe_workspace.vpc.id
   ]
-  terraform_version = "~>1.5.4"
+  terraform_version = "1.5.4"
   vcs_repo {
     identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
     branch                     = "main"
@@ -48,7 +48,7 @@ resource "tfe_workspace" "vpc" {
     tfe_workspace.databases.id,
     tfe_workspace.dns.id
   ]
-  terraform_version = "~>1.5.4"
+  terraform_version = "1.5.4"
   vcs_repo {
     identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
     branch                     = "main"
@@ -74,7 +74,7 @@ resource "tfe_workspace" "buckets" {
   remote_state_consumer_ids = [
     tfe_workspace.databases.id
   ]
-  terraform_version = "~>1.5.4"
+  terraform_version = "1.5.4"
   vcs_repo {
     identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
     branch                     = "main"
@@ -100,7 +100,7 @@ resource "tfe_workspace" "databases" {
   remote_state_consumer_ids = [
     tfe_workspace.secrets.id
   ]
-  terraform_version = "~>1.5.4"
+  terraform_version = "1.5.4"
   vcs_repo {
     identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
     branch                     = "main"
@@ -123,7 +123,7 @@ resource "tfe_workspace" "secrets" {
   queue_all_runs    = false
   working_directory = "terraform/secrets"
   trigger_patterns  = distinct(["terraform/secrets/**", "terraform/secrets/**/*"])
-  terraform_version = "~>1.5.4"
+  terraform_version = "1.5.4"
   vcs_repo {
     identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
     branch                     = "main"
@@ -149,7 +149,7 @@ resource "tfe_workspace" "apps" {
   remote_state_consumer_ids = [
     tfe_workspace.secrets.id
   ]
-  terraform_version = "~>1.5.4"
+  terraform_version = "1.5.4"
   vcs_repo {
     identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
     branch                     = "main"
@@ -175,7 +175,7 @@ resource "tfe_workspace" "k8s" {
   remote_state_consumer_ids = [
     tfe_workspace.secrets.id
   ]
-  terraform_version = "~>1.5.4"
+  terraform_version = "1.5.4"
   vcs_repo {
     identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
     branch                     = "main"
@@ -202,7 +202,7 @@ resource "tfe_workspace" "dns" {
     tfe_workspace.apps.id,
     tfe_workspace.k8s.id
   ]
-  terraform_version = "~>1.5.4"
+  terraform_version = "1.5.4"
   vcs_repo {
     identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
     branch                     = "main"
