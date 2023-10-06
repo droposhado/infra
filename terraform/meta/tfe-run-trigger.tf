@@ -1,7 +1,7 @@
 # only 1 trigger exists, this or manually entered
 resource "tfe_run_trigger" "meta_seeds" {
-  workspace_id  = tfe_workspace.seeds.id
-  sourceable_id = data.tfe_workspace.meta.id
+  workspace_id  = data.tfe_workspace.meta.id
+  sourceable_id = tfe_workspace.seeds.id
 }
 
 resource "tfe_run_trigger" "seeds_vpc" {
