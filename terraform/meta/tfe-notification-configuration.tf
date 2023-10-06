@@ -1,4 +1,4 @@
-resource "tfe_notification_configuration" "test" {
+resource "tfe_notification_configuration" "main" {
   for_each = toset(local.notifications)
 
   workspace_id     = each.value
