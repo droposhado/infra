@@ -6,9 +6,9 @@ resource "tfe_variable" "vpc_aws_access_key_id" {
 }
 
 resource "tfe_variable" "vpc_aws_region_default" {
-  key          = "AWS_DEFAULT_REGION"
+  key          = "aws_region_default"
   value        = var.aws_region_default
-  category     = "env"
+  category     = "terraform"
   workspace_id = tfe_workspace.vpc.id
 }
 
