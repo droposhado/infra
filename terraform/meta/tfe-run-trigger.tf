@@ -30,8 +30,8 @@ resource "tfe_run_trigger" "secrets_k8s" {
 }
 
 resource "tfe_run_trigger" "secrets_apps" {
-  workspace_id  = tfe_workspace.k8s.id
-  sourceable_id = tfe_workspace.apps.id
+  workspace_id  = tfe_workspace.apps.id
+  sourceable_id = tfe_workspace.secrets.id
 }
 
 resource "tfe_run_trigger" "k8s_dns" {
