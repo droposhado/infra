@@ -13,7 +13,7 @@ resource "tfe_workspace" "seeds" {
   project_id         = tfe_project.infra.id
   queue_all_runs     = false
   working_directory  = "terraform/seeds"
-  trigger_prefixes   = distinct(["terraform/seeds/**/*", "terraform/seeds/**"])
+  trigger_patterns   = distinct(["terraform/seeds/**/*", "terraform/seeds/**"])
   remote_state_consumer_ids = [
     tfe_workspace.buckets.id,
     tfe_workspace.databases.id,
@@ -42,7 +42,7 @@ resource "tfe_workspace" "vpc" {
   project_id        = tfe_project.infra.id
   queue_all_runs    = false
   working_directory = "terraform/vpc"
-  trigger_prefixes  = distinct(["terraform/vpc/**/*", "terraform/vpc/**"])
+  trigger_patterns  = distinct(["terraform/vpc/**/*", "terraform/vpc/**"])
   remote_state_consumer_ids = [
     tfe_workspace.buckets.id,
     tfe_workspace.databases.id,
@@ -70,7 +70,7 @@ resource "tfe_workspace" "buckets" {
   project_id        = tfe_project.infra.id
   queue_all_runs    = false
   working_directory = "terraform/buckets"
-  trigger_prefixes  = distinct(["terraform/buckets/**", "terraform/buckets/**/*"])
+  trigger_patterns  = distinct(["terraform/buckets/**", "terraform/buckets/**/*"])
   remote_state_consumer_ids = [
     tfe_workspace.databases.id
   ]
@@ -96,7 +96,7 @@ resource "tfe_workspace" "databases" {
   project_id        = tfe_project.infra.id
   queue_all_runs    = false
   working_directory = "terraform/databases"
-  trigger_prefixes  = distinct(["terraform/databases/**", "terraform/databases/**/*"])
+  trigger_patterns  = distinct(["terraform/databases/**", "terraform/databases/**/*"])
   remote_state_consumer_ids = [
     tfe_workspace.secrets.id
   ]
@@ -122,7 +122,7 @@ resource "tfe_workspace" "secrets" {
   project_id        = tfe_project.infra.id
   queue_all_runs    = false
   working_directory = "terraform/secrets"
-  trigger_prefixes  = distinct(["terraform/secrets/**", "terraform/secrets/**/*"])
+  trigger_patterns  = distinct(["terraform/secrets/**", "terraform/secrets/**/*"])
   terraform_version = "~>1.5.4"
   vcs_repo {
     identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
@@ -145,7 +145,7 @@ resource "tfe_workspace" "apps" {
   project_id        = tfe_project.infra.id
   queue_all_runs    = false
   working_directory = "terraform/apps"
-  trigger_prefixes  = distinct(["terraform/apps/**", "terraform/apps/**/*"])
+  trigger_patterns  = distinct(["terraform/apps/**", "terraform/apps/**/*"])
   remote_state_consumer_ids = [
     tfe_workspace.secrets.id
   ]
@@ -171,7 +171,7 @@ resource "tfe_workspace" "k8s" {
   project_id        = tfe_project.infra.id
   queue_all_runs    = false
   working_directory = "terraform/k8s"
-  trigger_prefixes  = distinct(["terraform/k8s/**", "terraform/k8s/**/*"])
+  trigger_patterns  = distinct(["terraform/k8s/**", "terraform/k8s/**/*"])
   remote_state_consumer_ids = [
     tfe_workspace.secrets.id
   ]
@@ -197,7 +197,7 @@ resource "tfe_workspace" "dns" {
   project_id        = tfe_project.infra.id
   queue_all_runs    = false
   working_directory = "terraform/dns"
-  trigger_prefixes  = distinct(["terraform/dns/**", "terraform/dns/**/*"])
+  trigger_patterns  = distinct(["terraform/dns/**", "terraform/dns/**/*"])
   remote_state_consumer_ids = [
     tfe_workspace.apps.id,
     tfe_workspace.k8s.id

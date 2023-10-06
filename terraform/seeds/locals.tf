@@ -18,15 +18,15 @@ locals {
     }
   }
   redmine = {
-    name = "redmine-${random_string.redmine.result}"
+    name       = "redmine-${random_string.redmine.result}"
+    secret_key = random_password.redmine_secret_key.result
     admin = {
       username = "redmine-${random_string.redmine.result}"
       password = random_password.redmine.result
     }
   }
   sabedoria = {
-    name       = "sabedoria-${random_string.sabedoria.result}"
-    secret_key = random_password.sabedoria_secret_key.result
+    name = "sabedoria-${random_string.sabedoria.result}"
     admin = {
       username = "sabedoria-${random_string.sabedoria.result}"
       password = random_password.sabedoria.result
