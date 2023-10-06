@@ -1,6 +1,6 @@
-resource "kubernetes_deployment_v1" "sabedoria" {
+resource "kubernetes_deployment_v1" "gotify" {
   metadata {
-    name      = local.sabedoria.name
+    name      = local.gotify.name
     namespace = var.cluster_default_namespace
   }
 
@@ -9,23 +9,23 @@ resource "kubernetes_deployment_v1" "sabedoria" {
 
     selector {
       match_labels = {
-        app = local.sabedoria.name
+        app = local.gotify.name
       }
     }
 
     template {
       metadata {
         labels = {
-          app = local.sabedoria.name
+          app = local.gotify.name
         }
       }
 
       spec {
         container {
-          name  = local.sabedoria.name
-          image = "quay.io/droposhado/sabedoria:latest"
+          name  = local.gotify
+          image = "gotify/server:2.4.0"
           dynamic "env" {
-            for_each = tomap(local.sabedoria.env)
+            for_each = tomap(local.gotify.env)
             content {
               name  = env.key
               value = env.value

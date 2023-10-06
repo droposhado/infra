@@ -6,7 +6,7 @@ resource "kubernetes_service_v1" "sabedoria" {
 
   spec {
     port {
-      name = local.sabedoria
+      name = local.sabedoria.name
       port = local.sabedoria.env.PORT
     }
 

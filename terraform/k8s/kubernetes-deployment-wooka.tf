@@ -1,6 +1,6 @@
 resource "kubernetes_deployment_v1" "wooka" {
   metadata {
-    name      = local.wooka
+    name      = local.wooka.name
     namespace = var.cluster_default_namespace
   }
 
@@ -9,23 +9,23 @@ resource "kubernetes_deployment_v1" "wooka" {
 
     selector {
       match_labels = {
-        app = local.wooka
+        app = local.wooka.name
       }
     }
 
     template {
       metadata {
         labels = {
-          app = local.wooka
+          app = local.wooka.name
         }
       }
 
       spec {
         container {
-          name  = local.wooka
+          name  = local.wooka.name
           image = "quay.io/droposhado/wooka:latest"
           dynamic "env" {
-            for_each = tomap(local.wooka_secrets)
+            for_each = tomap(local.wooka.env)
             content {
               name  = env.key
               value = env.value

@@ -1,10 +1,10 @@
-data "terraform_remote_state" "names" {
+data "terraform_remote_state" "seeds" {
   backend = "remote"
 
   config = {
     organization = "droposhado-org"
     workspaces = {
-      name = "names"
+      name = "seeds"
     }
   }
 }
