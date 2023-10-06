@@ -1,14 +1,3 @@
-data "terraform_remote_state" "databases" {
-  backend = "remote"
-
-  config = {
-    organization = "droposhado-org"
-    workspaces = {
-      name = "databases"
-    }
-  }
-}
-
 data "terraform_remote_state" "names" {
   backend = "remote"
 

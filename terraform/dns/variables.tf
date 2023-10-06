@@ -3,6 +3,5 @@ variable "account_id" {
 }
 
 variable "domain" {
-  type    = string
-  default = "droposhado.org"
+  type = string
 }

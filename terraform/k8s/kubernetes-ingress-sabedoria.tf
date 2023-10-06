@@ -1,16 +1,16 @@
 resource "kubernetes_ingress_v1" "sabedoria" {
   metadata {
-    name      = local.sabedoria
+    name      = local.sabedoria.name
     namespace = var.cluster_default_namespace
 
     annotations = {
-      "dev.okteto.com/generate-host" = local.sabedoria
+      "dev.okteto.com/generate-host" = local.sabedoria.name
     }
   }
 
   spec {
     rule {
-      host = "${local.sabedoria}-${var.cluster_default_namespace}.cloud.okteto.net"
+      host = "${local.sabedoria.name}-${var.cluster_default_namespace}.cloud.okteto.net"
       http {
         path {
           path      = "/"
@@ -18,10 +18,10 @@ resource "kubernetes_ingress_v1" "sabedoria" {
 
           backend {
             service {
-              name = local.sabedoria
+              name = local.sabedoria.name
 
               port {
-                number = local.sabedoria_secrets.PORT
+                number = local.sabedoria.env.PORT
               }
             }
           }
@@ -30,7 +30,7 @@ resource "kubernetes_ingress_v1" "sabedoria" {
     }
     tls {
       hosts = [
-        "${local.sabedoria}-${var.cluster_default_namespace}.cloud.okteto.net",
+        "${local.sabedoria.name}-${var.cluster_default_namespace}.cloud.okteto.net",
       ]
     }
   }

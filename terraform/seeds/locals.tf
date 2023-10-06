@@ -10,7 +10,6 @@ locals {
       password = random_password.pg_cluster.result
     }
   }
-
   gotify = {
     name = "gotify-${random_string.gotify.result}"
     admin = {
@@ -18,8 +17,16 @@ locals {
       password = random_password.gotify.result
     }
   }
+  redmine = {
+    name = "redmine-${random_string.redmine.result}"
+    admin = {
+      username = "redmine-${random_string.redmine.result}"
+      password = random_password.redmine.result
+    }
+  }
   sabedoria = {
-    name = "sabedoria-${random_string.sabedoria.result}"
+    name       = "sabedoria-${random_string.sabedoria.result}"
+    secret_key = random_password.sabedoria_secret_key.result
     admin = {
       username = "sabedoria-${random_string.sabedoria.result}"
       password = random_password.sabedoria.result

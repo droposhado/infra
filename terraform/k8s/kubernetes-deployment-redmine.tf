@@ -1,6 +1,6 @@
-resource "kubernetes_deployment_v1" "sabedoria" {
+resource "kubernetes_deployment_v1" "redmine" {
   metadata {
-    name      = local.sabedoria.name
+    name      = local.redmine.name
     namespace = var.cluster_default_namespace
   }
 
@@ -9,23 +9,23 @@ resource "kubernetes_deployment_v1" "sabedoria" {
 
     selector {
       match_labels = {
-        app = local.sabedoria.name
+        app = local.redmine.name
       }
     }
 
     template {
       metadata {
         labels = {
-          app = local.sabedoria.name
+          app = local.redmine.name
         }
       }
 
       spec {
         container {
-          name  = local.sabedoria.name
-          image = "quay.io/droposhado/sabedoria:latest"
+          name  = local.redmine.name
+          image = "redmine:5.0.6-alpine3.18"
           dynamic "env" {
-            for_each = tomap(local.sabedoria.env)
+            for_each = tomap(local.redmine.env)
             content {
               name  = env.key
               value = env.value

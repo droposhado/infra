@@ -12,43 +12,41 @@ Backup actions normally for PostgreSQL databases:
 
 Schedulers are Github actions that are triggered by time, push, or manually:
 
-- [baserow](.github/workflows/scheduler-baserow-backup.yml): dump api responses and store in s3 compatible
 - [bem-te-vi](.github/workflows/scheduler-bem-te-vi-alert.yml): [dropshado/bem-te-vi](https://github.com/dropshado/bem-te-vi)
 - [mirror](.github/workflows/scheduler-mirror-multi.yml): mirror private repository to public in same account
-- [trakttv](.github/workflows/scheduler-trakttv-backup.yml): dump api responses and store in s3 compatible storage
 
 ## Scripts
 
 Reusable scripts to manage some resources (webhooks for now) in services.
 
+## Bootstrap
+
+**Note*: o meta workspace não é incluido nele e se precisar de dado dele ter que ser via data
+
+- cria o repo
+- commit files
+- loga na cli local
+- inicia o workspace
+- importa o repositório
+- faz o plan
+- configura variaveis na cloud da hashicorp
+- aplica
+- tudo é criado
+
 ## Terraform
 
-Contains configurations to infrastruture about domains.
+Contains configurations to infrastruture.
 
 Terraform apply needs be in this order:
 
-- [names](.github/workflows/terraform-droposhado.org-names-push.yml)
-- buckets **
-- databases **
-- [secrets](.github/workflows/terraform-droposhado.org-secrets-push.yml) *
+- seeds
 - vpc
-- application level (same priority)
-  - k8s *** (shutdown by apps, better choice based on price)
-  - apps
+- buckets
+- databases
+- secrets
+- k8s
+- apps
 - dns
-
-\* Create projects with names generated on names, with seed and keeper (variable)
-
-\*\* Creates resources (secrets) in the private infrastructure repository,
-which must already exist, resources (secrets) do not need to be
-created beforehand
-
-\*\*\* Inject created service token obtained from secrets of doppler service,
-to use with external secret
-
-\*\*\* For now it will remain in the background and a migration will take place until it is possible by code and I have money to pay for the cluster
-
-\*\*\*\* It is expected that in some situations it generates finite circular dependencies by the workflow triggers, which must reach the end
 
 ## Inspiration
 

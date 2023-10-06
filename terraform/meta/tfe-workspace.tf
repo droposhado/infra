@@ -13,7 +13,7 @@ resource "tfe_workspace" "seeds" {
   project_id         = tfe_project.infra.id
   queue_all_runs     = false
   working_directory  = "terraform/seeds"
-  trigger_prefixes   = distinct(["terraform/seeds/**", "terraform/seeds/**/*"])
+  trigger_prefixes   = distinct(["terraform/seeds/**/*", "terraform/seeds/**"])
   remote_state_consumer_ids = [
     tfe_workspace.buckets.id,
     tfe_workspace.databases.id,
@@ -22,10 +22,9 @@ resource "tfe_workspace" "seeds" {
   ]
   terraform_version = "~>1.5.4"
   vcs_repo {
-    identifier         = "${var.github_infra_user}/${var.github_infra_repo}"
-    branch             = "main"
-    ingress_submodules = false
-    #oauth_token_id     = tfe_oauth_client.github.oauth_token_id
+    identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
+    branch                     = "main"
+    ingress_submodules         = false
     github_app_installation_id = data.tfe_github_app_installation.gha_installation.id
   }
 
@@ -35,47 +34,83 @@ resource "tfe_workspace" "seeds" {
 }
 
 resource "tfe_workspace" "vpc" {
-  name           = "vpc"
-  organization   = tfe_organization.main.name
-  auto_apply     = true
-  execution_mode = "remote"
-  force_delete   = false
-  project_id     = tfe_project.infra.id
-  queue_all_runs = false
+  name              = "vpc"
+  organization      = tfe_organization.main.name
+  auto_apply        = true
+  execution_mode    = "remote"
+  force_delete      = false
+  project_id        = tfe_project.infra.id
+  queue_all_runs    = false
+  working_directory = "terraform/vpc"
+  trigger_prefixes  = distinct(["terraform/vpc/**/*", "terraform/vpc/**"])
   remote_state_consumer_ids = [
     tfe_workspace.buckets.id,
     tfe_workspace.databases.id,
     tfe_workspace.dns.id
   ]
   terraform_version = "~>1.5.4"
+  vcs_repo {
+    identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
+    branch                     = "main"
+    ingress_submodules         = false
+    github_app_installation_id = data.tfe_github_app_installation.gha_installation.id
+  }
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "tfe_workspace" "buckets" {
-  name           = "buckets"
-  organization   = tfe_organization.main.name
-  auto_apply     = true
-  execution_mode = "remote"
-  force_delete   = false
-  project_id     = tfe_project.infra.id
-  queue_all_runs = false
+  name              = "buckets"
+  organization      = tfe_organization.main.name
+  auto_apply        = true
+  execution_mode    = "remote"
+  force_delete      = false
+  project_id        = tfe_project.infra.id
+  queue_all_runs    = false
+  working_directory = "terraform/buckets"
+  trigger_prefixes  = distinct(["terraform/buckets/**", "terraform/buckets/**/*"])
   remote_state_consumer_ids = [
     tfe_workspace.databases.id
   ]
   terraform_version = "~>1.5.4"
+  vcs_repo {
+    identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
+    branch                     = "main"
+    ingress_submodules         = false
+    github_app_installation_id = data.tfe_github_app_installation.gha_installation.id
+  }
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "tfe_workspace" "databases" {
-  name           = "databases"
-  organization   = tfe_organization.main.name
-  auto_apply     = true
-  execution_mode = "remote"
-  force_delete   = false
-  project_id     = tfe_project.infra.id
-  queue_all_runs = false
+  name              = "databases"
+  organization      = tfe_organization.main.name
+  auto_apply        = true
+  execution_mode    = "remote"
+  force_delete      = false
+  project_id        = tfe_project.infra.id
+  queue_all_runs    = false
+  working_directory = "terraform/databases"
+  trigger_prefixes  = distinct(["terraform/databases/**", "terraform/databases/**/*"])
   remote_state_consumer_ids = [
     tfe_workspace.secrets.id
   ]
   terraform_version = "~>1.5.4"
+  vcs_repo {
+    identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
+    branch                     = "main"
+    ingress_submodules         = false
+    github_app_installation_id = data.tfe_github_app_installation.gha_installation.id
+  }
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "tfe_workspace" "secrets" {
@@ -86,48 +121,96 @@ resource "tfe_workspace" "secrets" {
   force_delete      = false
   project_id        = tfe_project.infra.id
   queue_all_runs    = false
+  working_directory = "terraform/secrets"
+  trigger_prefixes  = distinct(["terraform/secrets/**", "terraform/secrets/**/*"])
   terraform_version = "~>1.5.4"
+  vcs_repo {
+    identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
+    branch                     = "main"
+    ingress_submodules         = false
+    github_app_installation_id = data.tfe_github_app_installation.gha_installation.id
+  }
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "tfe_workspace" "apps" {
-  name           = "apps"
-  organization   = tfe_organization.main.name
-  auto_apply     = true
-  execution_mode = "remote"
-  force_delete   = false
-  project_id     = tfe_project.infra.id
-  queue_all_runs = false
+  name              = "apps"
+  organization      = tfe_organization.main.name
+  auto_apply        = true
+  execution_mode    = "remote"
+  force_delete      = false
+  project_id        = tfe_project.infra.id
+  queue_all_runs    = false
+  working_directory = "terraform/apps"
+  trigger_prefixes  = distinct(["terraform/apps/**", "terraform/apps/**/*"])
   remote_state_consumer_ids = [
     tfe_workspace.secrets.id
   ]
   terraform_version = "~>1.5.4"
+  vcs_repo {
+    identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
+    branch                     = "main"
+    ingress_submodules         = false
+    github_app_installation_id = data.tfe_github_app_installation.gha_installation.id
+  }
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "tfe_workspace" "k8s" {
-  name           = "k8s"
-  organization   = tfe_organization.main.name
-  auto_apply     = true
-  execution_mode = "remote"
-  force_delete   = false
-  project_id     = tfe_project.infra.id
-  queue_all_runs = false
+  name              = "k8s"
+  organization      = tfe_organization.main.name
+  auto_apply        = true
+  execution_mode    = "remote"
+  force_delete      = false
+  project_id        = tfe_project.infra.id
+  queue_all_runs    = false
+  working_directory = "terraform/k8s"
+  trigger_prefixes  = distinct(["terraform/k8s/**", "terraform/k8s/**/*"])
   remote_state_consumer_ids = [
     tfe_workspace.secrets.id
   ]
   terraform_version = "~>1.5.4"
+  vcs_repo {
+    identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
+    branch                     = "main"
+    ingress_submodules         = false
+    github_app_installation_id = data.tfe_github_app_installation.gha_installation.id
+  }
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "tfe_workspace" "dns" {
-  name           = "dns"
-  organization   = tfe_organization.main.name
-  auto_apply     = true
-  execution_mode = "remote"
-  force_delete   = false
-  project_id     = tfe_project.infra.id
-  queue_all_runs = false
+  name              = "dns"
+  organization      = tfe_organization.main.name
+  auto_apply        = true
+  execution_mode    = "remote"
+  force_delete      = false
+  project_id        = tfe_project.infra.id
+  queue_all_runs    = false
+  working_directory = "terraform/dns"
+  trigger_prefixes  = distinct(["terraform/dns/**", "terraform/dns/**/*"])
   remote_state_consumer_ids = [
     tfe_workspace.apps.id,
     tfe_workspace.k8s.id
   ]
   terraform_version = "~>1.5.4"
+  vcs_repo {
+    identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
+    branch                     = "main"
+    ingress_submodules         = false
+    github_app_installation_id = data.tfe_github_app_installation.gha_installation.id
+  }
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }

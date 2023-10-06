@@ -19,6 +19,12 @@ output "pg_cluster" {
   sensitive   = true
 }
 
+output "redmine" {
+  value       = local.redmine
+  description = "Generated name to project"
+  sensitive   = true
+}
+
 output "sabedoria" {
   value       = local.sabedoria
   description = "Generated name to project"

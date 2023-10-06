@@ -13,6 +13,21 @@ resource "random_string" "gotify" {
   }
 }
 
+resource "random_string" "redmine" {
+  keepers = {
+    domain      = var.domain
+    environment = var.environment
+  }
+
+  length  = 8
+  upper   = false
+  special = false
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
 resource "random_string" "sabedoria" {
   keepers = {
     domain      = var.domain

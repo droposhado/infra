@@ -33,11 +33,6 @@ variable "github_infra_user" {
   description = "Username or organization slug"
 }
 
-variable "github_token" {
-  type        = string
-  description = "Token to manages infra reo"
-}
-
 variable "github_app_installation_id" {
   type = string
 }
