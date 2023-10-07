@@ -43,6 +43,11 @@ variable "fly_api_token" {
   description = "fly.io token to deploy and manage resources via tf"
 }
 
+variable "github_furgao_repo" {
+  type        = string
+  description = "Name of repository that storage furgao"
+}
+
 variable "github_infra_repo" {
   type        = string
   description = "Name of repository that host project with Terraform files"
