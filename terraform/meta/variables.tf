@@ -43,6 +43,11 @@ variable "fly_api_token" {
   description = "fly.io token to deploy and manage resources via tf"
 }
 
+variable "github_app_installation_id" {
+  type        = string
+  description = "This ID not is the ID in URL is internal TFE ID, needs use data"
+}
+
 variable "github_furgao_repo" {
   type        = string
   description = "Name of repository that storage furgao"
@@ -58,9 +63,14 @@ variable "github_infra_user" {
   description = "Username or organization slug"
 }
 
-variable "github_app_installation_id" {
+variable "github_token" {
   type        = string
-  description = "This ID not is the ID in URL is internal TFE ID, needs use data"
+  description = "Token to insert vars in action and insert webhooks"
+}
+
+variable "github_verification_secret" {
+  type        = string
+  description = "Secret used to verify webhooks"
 }
 
 variable "tfe_personal_token" {
@@ -68,7 +78,7 @@ variable "tfe_personal_token" {
   description = "Personal token, because organization token dont can used"
 }
 
-variable "webhook_url" {
+variable "tfe_verification_secret" {
   type        = string
-  description = "URL to notification"
+  description = "Secret used to verify webhooks"
 }

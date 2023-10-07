@@ -5,7 +5,8 @@ resource "tfe_notification_configuration" "main" {
   name             = "default serverless notification"
   enabled          = false
   destination_type = "generic"
-  url              = var.webhook_url
+  url              = "https://webhook.${var.domain}/tfe"
+  token            = var.tfe_verification_secret
   triggers = [
     "run:created",
     "run:planning",
