@@ -22,3 +22,8 @@ resource "tfe_project" "vault" {
   organization = tfe_organization.main.name
   name         = "vault"
 }
+
+resource "tfe_project" "vpc" {
+  organization = tfe_organization.main.name
+  name         = "vpc"
+}
