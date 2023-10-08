@@ -12,10 +12,18 @@ resource "tfe_variable" "dns_cloudflare_api_token" {
   workspace_id = tfe_workspace.dns.id
 }
 
+resource "tfe_variable" "dns_default_ttl" {
+  key          = "default_ttl"
+  value        = var.default_ttl
+  category     = "terraform"
+  workspace_id = tfe_workspace.dns.id
+}
+
 resource "tfe_variable" "dns_domain" {
   key          = "domain"
   value        = var.domain
   category     = "terraform"
   workspace_id = tfe_workspace.dns.id
 }
+
 

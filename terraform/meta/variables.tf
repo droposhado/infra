@@ -23,6 +23,11 @@ variable "cloudflare_api_token" {
   description = "Token with permissions defined in workspace to deploy dns, pages"
 }
 
+variable "default_ttl" {
+  type    = string
+  default = 3600
+}
+
 variable "domain" {
   type        = string
   description = "Domain used in organization"
