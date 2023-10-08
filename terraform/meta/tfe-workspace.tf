@@ -147,7 +147,7 @@ resource "tfe_workspace" "apps" {
   working_directory = "terraform/apps"
   trigger_patterns  = distinct(["terraform/apps/**", "terraform/apps/**/*"])
   remote_state_consumer_ids = [
-    tfe_workspace.secrets.id
+    tfe_workspace.dns.id
   ]
   terraform_version = "1.5.4"
   vcs_repo {
@@ -173,7 +173,7 @@ resource "tfe_workspace" "k8s" {
   working_directory = "terraform/k8s"
   trigger_patterns  = distinct(["terraform/k8s/**", "terraform/k8s/**/*"])
   remote_state_consumer_ids = [
-    tfe_workspace.secrets.id
+    tfe_workspace.dns.id
   ]
   terraform_version = "1.5.4"
   vcs_repo {
@@ -198,10 +198,6 @@ resource "tfe_workspace" "dns" {
   queue_all_runs    = false
   working_directory = "terraform/dns"
   trigger_patterns  = distinct(["terraform/dns/**", "terraform/dns/**/*"])
-  remote_state_consumer_ids = [
-    tfe_workspace.apps.id,
-    tfe_workspace.k8s.id
-  ]
   terraform_version = "1.5.4"
   vcs_repo {
     identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
