@@ -4,14 +4,14 @@ resource "tfe_run_trigger" "meta_seeds" {
   sourceable_id = data.tfe_workspace.meta.id
 }
 
-resource "tfe_run_trigger" "seeds_vpc" {
-  workspace_id  = tfe_workspace.vpc.id
+resource "tfe_run_trigger" "seeds_network" {
+  workspace_id  = tfe_workspace.network.id
   sourceable_id = tfe_workspace.seeds.id
 }
 
-resource "tfe_run_trigger" "vpc_buckets" {
+resource "tfe_run_trigger" "network_buckets" {
   workspace_id  = tfe_workspace.buckets.id
-  sourceable_id = tfe_workspace.vpc.id
+  sourceable_id = tfe_workspace.network.id
 }
 
 resource "tfe_run_trigger" "buckets_databases" {
