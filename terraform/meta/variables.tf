@@ -78,6 +78,16 @@ variable "github_verification_secret" {
   description = "Secret used to verify webhooks"
 }
 
+variable "snyk_hmac_key" {
+  type        = string
+  description = "Secret to check integration with HMAC"
+}
+
+variable "snyk_url" {
+  type        = string
+  description = "Webhook URL to Snyk integration"
+}
+
 variable "tfe_personal_token" {
   type        = string
   description = "Personal token, because organization token dont can used"
