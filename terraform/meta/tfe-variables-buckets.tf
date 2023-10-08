@@ -4,3 +4,10 @@ resource "tfe_variable" "buckets_domain" {
   category     = "terraform"
   workspace_id = tfe_workspace.buckets.id
 }
+
+resource "tfe_variable" "buckets_environment" {
+  key          = "environment"
+  value        = var.environment
+  category     = "terraform"
+  workspace_id = tfe_workspace.seeds.id
+}
