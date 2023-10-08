@@ -3,7 +3,7 @@ resource "b2_bucket" "sabedoria" {
   bucket_type = "allPrivate"
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 }
 
@@ -12,6 +12,6 @@ resource "b2_bucket" "trakttv" {
   bucket_type = "allPrivate"
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 }
