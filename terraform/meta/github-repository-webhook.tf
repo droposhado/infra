@@ -1,4 +1,4 @@
-resource "github_repository_webhook" "all" {
+resource "github_repository_webhook" "furgao" {
   for_each = toset(data.github_repositories.droposhado.names)
 
   repository = each.value
