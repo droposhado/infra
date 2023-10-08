@@ -1,3 +1,8 @@
+variable "domain" {
+  type        = string
+  description = "Default domain to use in another workspaces"
+}
+
 variable "github_infra_repo" {
   type        = string
   description = "Private repository with code"
