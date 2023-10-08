@@ -6,6 +6,5 @@ output "hostnames" {
     deb          = cloudflare_record.deb.hostname
     pypi         = cloudflare_record.pypi.hostname
     sabedoria    = cloudflare_record.sabedoria.hostname
-    status       = cloudflare_record.a_status.hostname
   }
 }

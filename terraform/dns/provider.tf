@@ -12,7 +12,9 @@ terraform {
   }
 }
 
-provider "aws" {}
+provider "aws" {
+  region = var.aws_region_default
+}
 
 provider "aws" {
   # Cloudfront distribution needs a certificate generated or imported

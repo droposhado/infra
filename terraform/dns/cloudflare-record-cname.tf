@@ -20,15 +20,6 @@ resource "cloudflare_record" "cdn" {
   proxied = true
 }
 
-resource "cloudflare_record" "acme_status" {
-  zone_id = cloudflare_zone.droposhado_org.id
-  name    = replace(data.terraform_remote_state.apps.outputs.uptime_kuma.cert.droposhado_org.challenge, ".${var.domain}", "")
-  value   = data.terraform_remote_state.apps.outputs.uptime_kuma.cert.droposhado_org.target
-  type    = "CNAME"
-  ttl     = 3600
-  proxied = false
-}
-
 resource "cloudflare_record" "deb" {
   zone_id = cloudflare_zone.droposhado_org.id
   name    = "deb"
