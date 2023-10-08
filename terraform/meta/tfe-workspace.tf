@@ -18,7 +18,7 @@ resource "tfe_workspace" "seeds" {
     tfe_workspace.buckets.id,
     tfe_workspace.databases.id,
     tfe_workspace.secrets.id,
-    tfe_workspace.vpc.id
+    tfe_workspace.network.id
   ]
   terraform_version = "1.5.4"
   vcs_repo {
@@ -33,16 +33,16 @@ resource "tfe_workspace" "seeds" {
   }
 }
 
-resource "tfe_workspace" "vpc" {
-  name              = "vpc"
+resource "tfe_workspace" "network" {
+  name              = "network"
   organization      = tfe_organization.main.name
   auto_apply        = true
   execution_mode    = "remote"
   force_delete      = false
   project_id        = tfe_project.network.id
   queue_all_runs    = false
-  working_directory = "terraform/vpc"
-  trigger_patterns  = distinct(["terraform/vpc/**/*", "terraform/vpc/**"])
+  working_directory = "terraform/network"
+  trigger_patterns  = distinct(["terraform/network/**/*", "terraform/network/**"])
   remote_state_consumer_ids = [
     tfe_workspace.buckets.id,
     tfe_workspace.databases.id,

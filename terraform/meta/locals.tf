@@ -7,7 +7,6 @@ locals {
     tfe_workspace.dns.id,
     tfe_workspace.k8s.id,
     tfe_workspace.secrets.id,
-    tfe_workspace.seeds.id,
-    tfe_workspace.vpc.id
+    tfe_workspace.seeds.id
   ]
 }
