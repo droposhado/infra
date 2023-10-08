@@ -214,33 +214,3 @@ resource "tfe_workspace" "dns" {
     prevent_destroy = true
   }
 }
-
-
-
-resource "tfe_workspace" "vpc" {
-  name              = "vpc"
-  organization      = tfe_organization.main.name
-  auto_apply        = true
-  execution_mode    = "remote"
-  force_delete      = true
-  project_id        = tfe_project.vpc.id
-  queue_all_runs    = false
-  working_directory = "terraform/vpc"
-  trigger_patterns  = distinct(["terraform/vpc/**/*", "terraform/vpc/**"])
-  remote_state_consumer_ids = [
-    tfe_workspace.buckets.id,
-    tfe_workspace.databases.id,
-    tfe_workspace.dns.id
-  ]
-  terraform_version = "1.5.4"
-  vcs_repo {
-    identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
-    branch                     = "main"
-    ingress_submodules         = false
-    github_app_installation_id = data.tfe_github_app_installation.gha_installation.id
-  }
-
-  lifecycle {
-    prevent_destroy = false
-  }
-}
