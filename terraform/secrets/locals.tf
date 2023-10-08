@@ -16,6 +16,9 @@ locals {
     var.sabedoria_skill_table_id,
     var.sabedoria_week_study_table_id
   ]
+
+  domain_slug = replace(var.domain, ".", "-")
+
   environment = data.terraform_remote_state.seeds.outputs.environment
 
   gotify = {
