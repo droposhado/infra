@@ -4,3 +4,9 @@ module "cloudflare" {
   domain     = var.domain
   records    = local.cloudflare_records
 }
+
+module "aws_route53" {
+  source  = "./modules/aws"
+  domain  = var.domain
+  records = local.aws_records
+}

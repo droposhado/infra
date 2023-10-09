@@ -37,4 +37,26 @@ locals {
 
     }
   ]
+
+  aws_records = [
+    {
+      name   = "deb"
+      values = ["deb.droposhado.org.furyns.com"]
+      type   = "CNAME"
+      ttl    = var.default_ttl
+    },
+    {
+      name   = "pypi"
+      values = ["pypi.droposhado.org.furyns.com"]
+      type   = "CNAME"
+      ttl    = var.default_ttl
+    },
+    {
+      name   = "i.am"
+      values = [var.domain]
+      type   = "CNAME"
+      ttl    = var.default_ttl
+
+    }
+  ]
 }
