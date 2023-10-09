@@ -4,9 +4,9 @@ module "aws_route53" {
   records = local.aws_records
 }
 
-module "cloudflare" {
-  source     = "./modules/cloudflare-ns"
-  account_id = var.account_id
-  domain     = var.domain
-  ns         = module.aws_route53.ns
-}
+#module "cloudflare" {
+#  source     = "./modules/cloudflare-ns"
+#  account_id = var.account_id
+#  domain     = var.domain
+#  ns         = module.aws_route53.ns
+#}
