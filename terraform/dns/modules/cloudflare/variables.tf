@@ -15,3 +15,7 @@ variable "records" {
     proxied = bool
   }))
 }
+
+variable "ns" {
+  type = list(string)
+}
