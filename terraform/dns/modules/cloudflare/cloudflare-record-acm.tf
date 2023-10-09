@@ -7,7 +7,7 @@ resource "cloudflare_record" "sabedoria_proxy" {
     }
   }
 
-  zone_id = cloudflare_zone.droposhado_org.id
+  zone_id = cloudflare_zone.main.id
   name    = each.value.name
   value   = each.value.record
   type    = each.value.type
