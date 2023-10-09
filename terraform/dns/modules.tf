@@ -1,9 +1,7 @@
 module "cloudflare" {
-  source     = "./modules/cloudflare"
+  source     = "./modules/cloudflare-ns"
   account_id = var.account_id
   domain     = var.domain
-  records    = local.cloudflare_records
-  soa        = module.aws_route53.soa
   ns         = module.aws_route53.ns
 }
 
