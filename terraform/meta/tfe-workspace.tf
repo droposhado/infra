@@ -199,12 +199,12 @@ resource "tfe_workspace" "dns" {
   working_directory = "terraform/dns"
   trigger_patterns  = distinct(["terraform/dns/**", "terraform/dns/**/*"])
   terraform_version = "1.5.4"
-  # vcs_repo {
-  #   identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
-  #   branch                     = "main"
-  #   ingress_submodules         = false
-  #   github_app_installation_id = data.tfe_github_app_installation.gha_installation.id
-  # }
+  vcs_repo {
+    identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
+    branch                     = "main"
+    ingress_submodules         = false
+    github_app_installation_id = data.tfe_github_app_installation.gha_installation.id
+  }
 
   lifecycle {
     prevent_destroy = true
