@@ -47,4 +47,9 @@ resource "tfe_variable" "dns_domain" {
   workspace_id = tfe_workspace.dns.id
 }
 
-
+resource "tfe_variable" "dns_environment" {
+  key          = "environment"
+  value        = var.environment
+  category     = "terraform"
+  workspace_id = tfe_workspace.dns.id
+}
