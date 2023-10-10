@@ -14,3 +14,7 @@ variable "default_ttl" {
 variable "domain" {
   type = string
 }
+
+variable "environment" {
+  type = string
+}

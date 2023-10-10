@@ -1,5 +1,11 @@
+variable "environment" {
+  type        = string
+  description = "Default environment to workspaces"
+}
+
 variable "domain" {
-  type = string
+  type        = string
+  description = "Default domain to use in another workspaces"
 }
 
 variable "records" {
