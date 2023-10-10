@@ -6,6 +6,10 @@ variable "domain" {
   type = string
 }
 
+variable "environment" {
+  type = string
+}
+
 variable "records" {
   type = list(object({
     name    = string

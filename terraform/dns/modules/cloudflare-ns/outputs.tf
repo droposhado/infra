@@ -1,3 +1,3 @@
 output "zone_id" {
-  value = cloudflare_zone.main.id
+  value = data.cloudflare_zone.main.id
 }
