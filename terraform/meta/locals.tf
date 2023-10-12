@@ -1,7 +1,6 @@
 locals {
   notifications = [
     data.tfe_workspace.meta.id,
-    tfe_workspace.apps.id,
     tfe_workspace.buckets.id,
     tfe_workspace.databases.id,
     tfe_workspace.dns.id,
