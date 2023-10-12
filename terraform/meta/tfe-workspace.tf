@@ -136,32 +136,6 @@ resource "tfe_workspace" "secrets" {
   }
 }
 
-resource "tfe_workspace" "apps" {
-  name              = "apps"
-  organization      = tfe_organization.main.name
-  auto_apply        = true
-  execution_mode    = "remote"
-  force_delete      = false
-  project_id        = tfe_project.compute.id
-  queue_all_runs    = false
-  working_directory = "terraform/apps"
-  trigger_patterns  = distinct(["terraform/apps/**", "terraform/apps/**/*"])
-  remote_state_consumer_ids = [
-    tfe_workspace.dns.id
-  ]
-  terraform_version = "1.5.4"
-  vcs_repo {
-    identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
-    branch                     = "main"
-    ingress_submodules         = false
-    github_app_installation_id = data.tfe_github_app_installation.gha_installation.id
-  }
-
-  lifecycle {
-    prevent_destroy = true
-  }
-}
-
 resource "tfe_workspace" "k8s" {
   name              = "k8s"
   organization      = tfe_organization.main.name

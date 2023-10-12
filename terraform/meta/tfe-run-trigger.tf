@@ -29,17 +29,8 @@ resource "tfe_run_trigger" "secrets_k8s" {
   sourceable_id = tfe_workspace.secrets.id
 }
 
-resource "tfe_run_trigger" "secrets_apps" {
-  workspace_id  = tfe_workspace.apps.id
-  sourceable_id = tfe_workspace.secrets.id
-}
 
 resource "tfe_run_trigger" "k8s_dns" {
   workspace_id  = tfe_workspace.dns.id
   sourceable_id = tfe_workspace.k8s.id
-}
-
-resource "tfe_run_trigger" "apps_dns" {
-  workspace_id  = tfe_workspace.dns.id
-  sourceable_id = tfe_workspace.apps.id
 }
