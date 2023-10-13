@@ -1,11 +1,11 @@
 locals {
-  notifications = [
-    data.tfe_workspace.meta.id,
-    tfe_workspace.buckets.id,
-    tfe_workspace.databases.id,
-    tfe_workspace.dns.id,
-    tfe_workspace.k8s.id,
-    tfe_workspace.secrets.id,
-    tfe_workspace.seeds.id
-  ]
+  notifications = {
+    meta      = data.tfe_workspace.meta.id
+    storage   = tfe_workspace.storage.id
+    databases = tfe_workspace.databases.id
+    dns       = tfe_workspace.dns.id
+    k8s       = tfe_workspace.k8s.id
+    secrets   = tfe_workspace.secrets.id
+    seeds     = tfe_workspace.seeds.id
+  }
 }

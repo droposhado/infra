@@ -9,14 +9,14 @@ resource "tfe_run_trigger" "seeds_network" {
   sourceable_id = tfe_workspace.seeds.id
 }
 
-resource "tfe_run_trigger" "network_buckets" {
-  workspace_id  = tfe_workspace.buckets.id
+resource "tfe_run_trigger" "network_storage" {
+  workspace_id  = tfe_workspace.storage.id
   sourceable_id = tfe_workspace.network.id
 }
 
-resource "tfe_run_trigger" "buckets_databases" {
+resource "tfe_run_trigger" "storage_databases" {
   workspace_id  = tfe_workspace.databases.id
-  sourceable_id = tfe_workspace.buckets.id
+  sourceable_id = tfe_workspace.storage.id
 }
 
 resource "tfe_run_trigger" "databases_secrets" {
