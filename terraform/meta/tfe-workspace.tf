@@ -15,7 +15,7 @@ resource "tfe_workspace" "seeds" {
   working_directory  = "terraform/seeds"
   trigger_patterns   = distinct(["terraform/seeds/**/*", "terraform/seeds/**"])
   remote_state_consumer_ids = [
-    tfe_workspace.buckets.id,
+    tfe_workspace.storage.id,
     tfe_workspace.databases.id,
     tfe_workspace.secrets.id,
     tfe_workspace.network.id
@@ -44,7 +44,7 @@ resource "tfe_workspace" "network" {
   working_directory = "terraform/network"
   trigger_patterns  = distinct(["terraform/network/**/*", "terraform/network/**"])
   remote_state_consumer_ids = [
-    tfe_workspace.buckets.id,
+    tfe_workspace.storage.id,
     tfe_workspace.databases.id,
     tfe_workspace.dns.id
   ]
@@ -61,16 +61,16 @@ resource "tfe_workspace" "network" {
   }
 }
 
-resource "tfe_workspace" "buckets" {
-  name              = "buckets"
+resource "tfe_workspace" "storage" {
+  name              = "storage"
   organization      = tfe_organization.main.name
   auto_apply        = true
   execution_mode    = "remote"
   force_delete      = false
   project_id        = tfe_project.storage.id
   queue_all_runs    = false
-  working_directory = "terraform/buckets"
-  trigger_patterns  = distinct(["terraform/buckets/**", "terraform/buckets/**/*"])
+  working_directory = "terraform/storage"
+  trigger_patterns  = distinct(["terraform/storage/**", "terraform/storage/**/*"])
   remote_state_consumer_ids = [
     tfe_workspace.databases.id
   ]

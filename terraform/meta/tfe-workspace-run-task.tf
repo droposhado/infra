@@ -5,8 +5,8 @@ resource "tfe_workspace_run_task" "network" {
   stage             = "post_plan"
 }
 
-resource "tfe_workspace_run_task" "buckets" {
-  workspace_id      = tfe_workspace.buckets.id
+resource "tfe_workspace_run_task" "storage" {
+  workspace_id      = tfe_workspace.storage.id
   task_id           = tfe_organization_run_task.snyk.id
   enforcement_level = "advisory"
   stage             = "post_plan"
