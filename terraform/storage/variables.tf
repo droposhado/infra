@@ -12,3 +12,13 @@ variable "domain" {
   type        = string
   description = "Default domain to use in another workspaces"
 }
+
+variable "tags" {
+  type        = map(string)
+  description = "Default tags for this resource"
+  default = {
+    workspace   = "buckets"
+    environment = var.environment
+    region      = var.aws_region_default
+  }
+}

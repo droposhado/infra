@@ -3,7 +3,7 @@ terraform {
     organization = "droposhado-org"
 
     workspaces {
-      name = "buckets"
+      name = "storage"
     }
   }
 }
