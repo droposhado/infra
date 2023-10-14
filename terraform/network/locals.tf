@@ -1,6 +1,5 @@
 locals {
   azs = data.aws_availability_zones.available.names
-
   tags = {
     workspace   = "vpc"
     environment = var.environment
