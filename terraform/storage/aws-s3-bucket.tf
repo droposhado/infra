@@ -16,6 +16,12 @@ resource "aws_s3_bucket" "maps" {
   tags = local.tags
 }
 
+resource "aws_s3_bucket" "sabedoria" {
+  bucket = local.sabedoria.name
+
+  tags = local.tags
+}
+
 resource "aws_s3_bucket" "wiki" {
   bucket = local.wiki_name
 
