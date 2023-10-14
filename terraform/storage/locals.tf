@@ -3,9 +3,8 @@ locals {
   sabedoria   = data.terraform_remote_state.seeds.outputs.sabedoria
   trakttv     = data.terraform_remote_state.seeds.outputs.trakttv
 
-  tags = {
-    workspace   = "buckets"
-    environment = var.environment
-    region      = var.aws_region_default
-  }
+  blog_name = "blog-${var.domain_slug}"
+  cdn_name  = "cdn-${var.domain_slug}"
+  maps_name = "maps-${var.domain_slug}"
+
 }

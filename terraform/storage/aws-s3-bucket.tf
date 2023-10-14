@@ -1,17 +1,23 @@
 resource "aws_s3_bucket" "cdn" {
-  bucket = "cdn.${var.domain}"
+  bucket = local.cdn_name
 
   tags = local.tags
 }
 
 resource "aws_s3_bucket" "blog" {
-  bucket = "blog.${var.domain}"
+  bucket = local.blog_name
 
   tags = local.tags
 }
 
 resource "aws_s3_bucket" "maps" {
-  bucket = "maps.${var.domain}"
+  bucket = local.maps_name
+
+  tags = local.tags
+}
+
+resource "aws_s3_bucket" "wiki" {
+  bucket = local.wiki_name
 
   tags = local.tags
 }
