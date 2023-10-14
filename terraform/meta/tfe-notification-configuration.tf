@@ -19,13 +19,4 @@ resource "tfe_notification_configuration" "furgao" {
     "assessment:failed"
   ]
 
-  # depends_on = [
-  #   data.tfe_workspace.meta,
-  #   tfe_workspace.storage,
-  #   tfe_workspace.databases,
-  #   tfe_workspace.dns,
-  #   tfe_workspace.k8s,
-  #   tfe_workspace.secrets,
-  #   tfe_workspace.seeds
-  # ]
 }
