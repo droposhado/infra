@@ -1,17 +1,17 @@
-resource "kubernetes_service_v1" "sabedoria" {
+resource "kubernetes_service_v1" "redmine" {
   metadata {
-    name      = local.sabedoria.name
+    name      = local.redmine.name
     namespace = var.cluster_default_namespace
   }
 
   spec {
     port {
-      name = local.sabedoria.name
-      port = local.sabedoria.env.PORT
+      name = local.redmine.name
+      port = local.redmine.env.PORT
     }
 
     selector = {
-      app = local.sabedoria.name
+      app = local.redmine.name
     }
 
     type = "ClusterIP"
