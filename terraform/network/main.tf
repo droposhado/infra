@@ -2,12 +2,14 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.1.2"
 
-  name                 = "cigarra"
-  cidr                 = "10.0.0.0/16"
-  azs                  = local.azs
-  public_subnets       = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
-  enable_dns_hostnames = true
-  enable_dns_support   = true
+  name                        = "cigarra"
+  cidr                        = "10.0.0.0/16"
+  azs                         = local.azs
+  public_subnets              = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
+  enable_dns_hostnames        = true
+  enable_dns_support          = true
+  default_network_acl_egress  = []
+  default_network_acl_ingress = []
 
   tags = local.tags
 }
@@ -26,3 +28,18 @@ resource "aws_security_group" "cigarra" {
   tags = local.tags
 }
 
+
+
+
+
+
+# [
+#     {
+#       rule_number = 100
+#       rule_action = "allow"
+#       from_port   = 0
+#       to_port     = 0
+#       protocol    = "-1"
+#       cidr_block  = "0.0.0.0/0"
+#     },
+#   ]
