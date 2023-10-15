@@ -8,3 +8,14 @@ data "terraform_remote_state" "seeds" {
     }
   }
 }
+
+data "terraform_remote_state" "network" {
+  backend = "remote"
+
+  config = {
+    organization = "droposhado-org"
+    workspaces = {
+      name = "network"
+    }
+  }
+}

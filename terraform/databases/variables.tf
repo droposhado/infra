@@ -1,14 +1,21 @@
-variable "aiven_cloud_name" {
-  type = string
-  # ohio
-  # default = "aws-us-east-2"
-  # france
-  default = "aws-eu-west-3"
+variable "allocated_storage" {
+  type    = number
+  default = 20
 }
 
-variable "default_db" {
-  type    = string
-  default = "defaultdb"
+variable "aws_region_default" {
+  type        = string
+  description = "Default AWS region to create resources"
+}
+
+variable "domain" {
+  type        = string
+  description = "Default domain to use in another workspaces"
+}
+
+variable "environment" {
+  type        = string
+  description = "Default environment to workspaces"
 }
 
 variable "maintenance_window_dow" {
@@ -19,23 +26,4 @@ variable "maintenance_window_dow" {
 variable "maintenance_window_time" {
   type    = string
   default = "06:00:00"
-}
-
-variable "aiven_plan" {
-  type    = string
-  default = "free-1-5gb"
-}
-
-variable "aiven_pg_version" {
-  type    = number
-  default = 15
-}
-
-variable "aiven_project_name" {
-  type = string
-}
-
-variable "termination_protection" {
-  type    = bool
-  default = false
 }

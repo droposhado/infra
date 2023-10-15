@@ -1,10 +1,10 @@
 output "sabedoria" {
   sensitive = true
   value = {
-    host     = module.aiven_pg.host
-    port     = module.aiven_pg.port
+    host     = module.aws_rds_pg.address
+    port     = module.aws_rds_pg.port
     db       = postgresql_database.sabedoria.name
-    username = module.aiven_pg.username
-    password = module.aiven_pg.password
+    username = module.aws_rds_pg.username
+    password = module.aws_rds_pg.password
   }
 }
