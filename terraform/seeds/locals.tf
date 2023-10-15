@@ -4,7 +4,7 @@ locals {
     name = "${random_pet.k8s.id}-${random_uuid.k8s.result}"
   }
   pg_cluster = {
-    name = "${random_pet.pg.id}${random_uuid.pg.result}"
+    name = replace("${random_pet.pg.id}${random_uuid.pg.result}", "-", "")
     admin = {
       username = local.sabedoria.name
       password = random_password.pg_cluster.result
