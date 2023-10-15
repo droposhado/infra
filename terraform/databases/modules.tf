@@ -25,7 +25,7 @@ module "aws_rds_pg" {
   vpc_id = local.vpc.vpc_id
 
 
-  tags = merge(local.tags, { type = "postgresql" })
+  tags = merge(local.tags, { engine = "postgresql" })
 }
 
 # module "aws_dynamodb_maya" {
