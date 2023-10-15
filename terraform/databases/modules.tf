@@ -20,7 +20,7 @@ module "aws_rds_pg" {
   allocated_storage  = var.allocated_storage
   aws_region_default = var.aws_region_default
   vpc_security_group_ids = [
-    local.sec_group.id
+    local.vpc.default_security_group_id
   ]
   vpc_id = local.vpc.vpc_id
 
