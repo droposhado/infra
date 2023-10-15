@@ -2,16 +2,23 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.1.2"
 
-  name                        = "cigarra"
-  cidr                        = "10.0.0.0/16"
-  azs                         = local.azs
-  public_subnets              = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
-  enable_dns_hostnames        = true
-  enable_dns_support          = true
-  default_network_acl_egress  = []
-  default_network_acl_ingress = []
+  name                         = "cigarra"
+  cidr                         = "10.0.0.0/16"
+  azs                          = local.azs
+  public_subnets               = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
+  create_vpc                   = true
+  enable_dns_hostnames         = true
+  enable_dns_support           = true
+  default_network_acl_egress   = []
+  default_network_acl_ingress  = []
+  create_database_subnet_group = true
+  tags                         = local.tags
 
-  tags = local.tags
+
+  manage_default_network_acl    = false
+  manage_default_route_table    = false
+  manage_default_security_group = false
+
 }
 
 resource "aws_db_subnet_group" "cigarra" {
