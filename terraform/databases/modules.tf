@@ -13,12 +13,13 @@
 
 
 module "aws_rds_pg" {
-  source             = "./modules/aws-rds"
-  db_name            = local.pg_cluster.name
-  username           = local.pg_cluster.admin.username
-  password           = local.pg_cluster.admin.password
-  allocated_storage  = var.allocated_storage
-  aws_region_default = var.aws_region_default
+  source               = "./modules/aws-rds"
+  db_name              = local.pg_cluster.name
+  username             = local.pg_cluster.admin.username
+  password             = local.pg_cluster.admin.password
+  allocated_storage    = var.allocated_storage
+  aws_region_default   = var.aws_region_default
+  db_subnet_group_name = local.vpc.database_subnet_group_name
   vpc_security_group_ids = [
     local.vpc.default_security_group_id
   ]

@@ -21,6 +21,10 @@ variable "db_name" {
   type = string
 }
 
+variable "db_subnet_group_name" {
+  type = string
+}
+
 variable "deletion_protection" {
   type    = bool
   default = true
