@@ -1,52 +1,46 @@
 module "vpc" {
-  source  = "terraform-aws-modules/vpc/aws"
-  version = "5.1.2"
+  source     = "terraform-aws-modules/vpc/aws"
+  version    = "5.1.2"
+  create_vpc = true
 
-  name                         = "cigarra"
-  cidr                         = "10.0.0.0/16"
-  azs                          = local.azs
-  public_subnets               = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
-  create_vpc                   = true
-  enable_dns_hostnames         = true
-  enable_dns_support           = true
-  default_network_acl_egress   = []
-  default_network_acl_ingress  = []
-  create_database_subnet_group = true
-  tags                         = local.tags
+  name             = "cigarra"
+  cidr             = local.vpc_cidr
+  azs              = local.azs
+  private_subnets  = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 8, k)]
+  public_subnets   = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 8, k + 4)]
+  database_subnets = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 8, k + 8)]
 
+  private_subnet_names = ["Private Subnet One", "Private Subnet Two"]
+  # public_subnet_names omitted to show default name generation for all three subnets
+  database_subnet_names = ["DB Subnet One"]
 
+  create_database_subnet_group  = false
   manage_default_network_acl    = false
   manage_default_route_table    = false
   manage_default_security_group = false
 
-}
+  enable_dns_hostnames = true
+  enable_dns_support   = true
 
-resource "aws_db_subnet_group" "cigarra" {
-  name       = "cigarra"
-  subnet_ids = module.vpc.public_subnets
+  enable_nat_gateway = true
+  single_nat_gateway = true
+
 
   tags = local.tags
 }
 
-resource "aws_security_group" "cigarra" {
-  name   = "cigarra"
-  vpc_id = module.vpc.vpc_id
+# resource "aws_security_group" "rds" {
+#   name_prefix = "${local.name}-rds"
+#   description = "Allow PostgreSQL inbound traffic"
+#   vpc_id      = module.vpc.vpc_id
 
-  tags = local.tags
-}
+#   ingress {
+#     description = "TLS from VPC"
+#     from_port   = 5432
+#     to_port     = 5432
+#     protocol    = "tcp"
+#     cidr_blocks = [module.vpc.vpc_cidr_block]
+#   }
 
-
-
-
-
-
-# [
-#     {
-#       rule_number = 100
-#       rule_action = "allow"
-#       from_port   = 0
-#       to_port     = 0
-#       protocol    = "-1"
-#       cidr_block  = "0.0.0.0/0"
-#     },
-#   ]
+#   tags = local.tags
+# }
