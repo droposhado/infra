@@ -2,8 +2,7 @@ locals {
 
   pg_cluster = data.terraform_remote_state.seeds.outputs.pg_cluster
 
-  vpc       = data.terraform_remote_state.network.outputs.vpc
-  sec_group = data.terraform_remote_state.network.outputs.security_group
+  vpc = data.terraform_remote_state.network.outputs.vpc
 
   sabedoria = data.terraform_remote_state.seeds.outputs.sabedoria
 
