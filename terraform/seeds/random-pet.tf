@@ -11,7 +11,6 @@ resource "random_pet" "k8s" {
   }
 }
 
-
 resource "random_pet" "pg" {
   keepers = {
     domain      = var.domain

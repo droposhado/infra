@@ -28,6 +28,21 @@ resource "random_password" "pg_cluster" {
   }
 }
 
+resource "random_password" "maya" {
+  keepers = {
+    domain      = var.domain
+    environment = var.environment
+  }
+
+  length           = 128
+  special          = true
+  override_special = "-_"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
 resource "random_password" "redmine" {
   keepers = {
     domain      = var.domain
