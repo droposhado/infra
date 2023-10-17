@@ -30,12 +30,13 @@ locals {
     }
   }
 
-  name = "sabedoria-${random_string.sabedoria.result}"
-  admin = {
-    username = "sabedoria-${random_string.sabedoria.result}"
-    password = random_password.sabedoria.result
+  maya = {
+    name = "maya-${random_string.maya.result}"
+    admin = {
+      username = "maya-${random_string.maya.result}"
+      password = random_password.maya.result
+    }
   }
-
 
   redmine = {
     name = data.terraform_remote_state.seeds.outputs.redmine.name
