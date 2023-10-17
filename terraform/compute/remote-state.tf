@@ -1,14 +1,3 @@
-data "terraform_remote_state" "names" {
-  backend = "remote"
-
-  config = {
-    organization = "droposhado-org"
-    workspaces = {
-      name = "names"
-    }
-  }
-}
-
 data "terraform_remote_state" "secrets" {
   backend = "remote"
 
@@ -20,3 +9,13 @@ data "terraform_remote_state" "secrets" {
   }
 }
 
+data "terraform_remote_state" "seeds" {
+  backend = "remote"
+
+  config = {
+    organization = "droposhado-org"
+    workspaces = {
+      name = "seeds"
+    }
+  }
+}
