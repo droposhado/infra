@@ -13,7 +13,3 @@ variable "cluster_endpoint" {
 variable "cluster_token" {
   type = string
 }
-
-variable "okteto_default_namespace" {
-  type = string
-}
