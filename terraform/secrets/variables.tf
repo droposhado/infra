@@ -137,3 +137,13 @@ variable "sabedoria_web_bind" {
 variable "sabedoria_week_study_table_id" {
   type = string
 }
+
+variable "tags" {
+  type        = map(string)
+  description = "Default tags for this resource"
+  default = {
+    workspace   = "secrets"
+    environment = var.environment
+    region      = var.aws_region_default
+  }
+}
