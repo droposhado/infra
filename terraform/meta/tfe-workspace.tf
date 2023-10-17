@@ -16,6 +16,7 @@ resource "tfe_workspace" "seeds" {
   trigger_patterns   = distinct(["terraform/seeds/**/*", "terraform/seeds/**"])
   remote_state_consumer_ids = [
     tfe_workspace.storage.id,
+    tfe_workspace.compute.id,
     tfe_workspace.databases.id,
     tfe_workspace.secrets.id,
     tfe_workspace.network.id
@@ -123,6 +124,9 @@ resource "tfe_workspace" "secrets" {
   queue_all_runs    = false
   working_directory = "terraform/secrets"
   trigger_patterns  = distinct(["terraform/secrets/**", "terraform/secrets/**/*"])
+  remote_state_consumer_ids = [
+    tfe_workspace.compute.id
+  ]
   terraform_version = "1.5.4"
   vcs_repo {
     identifier                 = "${var.github_infra_user}/${var.github_infra_repo}"
