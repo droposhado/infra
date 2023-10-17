@@ -24,13 +24,13 @@ resource "tfe_run_trigger" "databases_secrets" {
   sourceable_id = tfe_workspace.databases.id
 }
 
-resource "tfe_run_trigger" "secrets_k8s" {
-  workspace_id  = tfe_workspace.k8s.id
+resource "tfe_run_trigger" "secrets_compute" {
+  workspace_id  = tfe_workspace.compute.id
   sourceable_id = tfe_workspace.secrets.id
 }
 
 
-resource "tfe_run_trigger" "k8s_dns" {
+resource "tfe_run_trigger" "compute_dns" {
   workspace_id  = tfe_workspace.dns.id
-  sourceable_id = tfe_workspace.k8s.id
+  sourceable_id = tfe_workspace.compute.id
 }
