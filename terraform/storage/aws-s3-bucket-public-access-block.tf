@@ -4,7 +4,7 @@ resource "aws_s3_bucket_public_access_block" "blog" {
   block_public_acls       = true
   block_public_policy     = true
   ignore_public_acls      = true
-  restrict_public_buckets = false
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_public_access_block" "cdn" {
@@ -13,7 +13,7 @@ resource "aws_s3_bucket_public_access_block" "cdn" {
   block_public_acls       = true
   block_public_policy     = true
   ignore_public_acls      = true
-  restrict_public_buckets = false
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_public_access_block" "maps" {
@@ -22,7 +22,7 @@ resource "aws_s3_bucket_public_access_block" "maps" {
   block_public_acls       = true
   block_public_policy     = true
   ignore_public_acls      = true
-  restrict_public_buckets = false
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_public_access_block" "wiki" {
@@ -31,5 +31,5 @@ resource "aws_s3_bucket_public_access_block" "wiki" {
   block_public_acls       = true
   block_public_policy     = true
   ignore_public_acls      = true
-  restrict_public_buckets = false
+  restrict_public_buckets = true
 }
