@@ -23,6 +23,22 @@ variable "cloudflare_api_token" {
   description = "Token with permissions defined in workspace to deploy dns, pages"
 }
 
+variable "cluster_ca_cert" {
+  type = string
+}
+
+variable "cluster_default_namespace" {
+  type = string
+}
+
+variable "cluster_endpoint" {
+  type = string
+}
+
+variable "cluster_token" {
+  type = string
+}
+
 variable "default_ttl" {
   type    = string
   default = 3600
