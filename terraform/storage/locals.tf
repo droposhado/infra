@@ -1,5 +1,6 @@
 locals {
   domain_slug = replace(var.domain, ".", "-")
+  maya        = data.terraform_remote_state.seeds.outputs.maya
   sabedoria   = data.terraform_remote_state.seeds.outputs.sabedoria
 
   blog_name = "blog-${local.domain_slug}"

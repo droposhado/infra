@@ -6,6 +6,10 @@ output "cdn" {
   value = aws_s3_bucket.cdn
 }
 
+output "maya" {
+  value = aws_s3_bucket.maya
+}
+
 output "maps" {
   value = aws_s3_bucket.maps
 }
