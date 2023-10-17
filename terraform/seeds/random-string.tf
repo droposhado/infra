@@ -13,6 +13,21 @@ resource "random_string" "gotify" {
   }
 }
 
+resource "random_string" "maya" {
+  keepers = {
+    domain      = var.domain
+    environment = var.environment
+  }
+
+  length  = 8
+  upper   = false
+  special = false
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
 resource "random_string" "redmine" {
   keepers = {
     domain      = var.domain
@@ -74,21 +89,6 @@ resource "random_string" "team" {
 }
 
 resource "random_string" "trakttv" {
-  keepers = {
-    domain      = var.domain
-    environment = var.environment
-  }
-
-  length  = 8
-  upper   = false
-  special = false
-
-  lifecycle {
-    prevent_destroy = true
-  }
-}
-
-resource "random_string" "uptime_kuma" {
   keepers = {
     domain      = var.domain
     environment = var.environment

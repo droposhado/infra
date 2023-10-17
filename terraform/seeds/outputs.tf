@@ -1,8 +1,3 @@
-output "k8s_cluster" {
-  value       = local.k8s_cluster
-  description = "kubernetes cluster data"
-}
-
 output "domain" {
   value       = var.domain
   description = "Export domain to use in another workspaces"
@@ -11,6 +6,17 @@ output "domain" {
 output "environment" {
   value       = var.environment
   description = "Default environment to workspaces"
+}
+
+output "k8s_cluster" {
+  value       = local.k8s_cluster
+  description = "kubernetes cluster data"
+}
+
+output "maya" {
+  value       = local.maya
+  description = "Generated name to project"
+  sensitive   = true
 }
 
 output "pg_cluster" {
@@ -43,11 +49,6 @@ output "team" {
 
 output "trakttv" {
   value       = local.trakttv
-  description = "Generated name to project"
-}
-
-output "uptime_kuma" {
-  value       = local.uptime_kuma
   description = "Generated name to project"
 }
 

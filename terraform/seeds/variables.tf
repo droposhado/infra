@@ -7,4 +7,3 @@ variable "environment" {
   type        = string
   description = "Default environment to workspaces"
 }
-

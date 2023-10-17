@@ -17,6 +17,13 @@ locals {
       password = random_password.gotify.result
     }
   }
+  maya = {
+    name = "maya${random_string.maya.result}"
+    admin = {
+      username = "maya${random_string.maya.result}"
+      password = random_password.maya.result
+    }
+  }
   redmine = {
     name       = "redmine${random_string.redmine.result}"
     secret_key = random_password.redmine_secret_key.result
@@ -40,9 +47,6 @@ locals {
   }
   trakttv = {
     name = "trakttv-${random_string.trakttv.result}"
-  }
-  uptime_kuma = {
-    name = "uptime-kuma-${random_string.uptime_kuma.result}"
   }
   wooka = {
     name = "wooka-${random_string.wooka.result}"
