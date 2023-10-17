@@ -1,7 +1,10 @@
 data "aws_iam_policy_document" "cdn" {
   statement {
-    actions   = ["s3:GetObject"]
-    resources = ["${aws_s3_bucket.cdn.arn}/*"]
+    actions = ["s3:GetObject"]
+    resources = [
+      "${aws_s3_bucket.cdn.arn}/",
+      "${aws_s3_bucket.cdn.arn}/*"
+    ]
 
     principals {
       type        = "AWS"
@@ -22,8 +25,11 @@ data "aws_iam_policy_document" "cdn" {
 
 data "aws_iam_policy_document" "blog" {
   statement {
-    actions   = ["s3:GetObject"]
-    resources = ["${aws_s3_bucket.blog.arn}/*"]
+    actions = ["s3:GetObject"]
+    resources = [
+      "${aws_s3_bucket.blog.arn}/",
+      "${aws_s3_bucket.blog.arn}/*"
+    ]
 
     principals {
       type        = "AWS"
@@ -44,8 +50,11 @@ data "aws_iam_policy_document" "blog" {
 
 data "aws_iam_policy_document" "maps" {
   statement {
-    actions   = ["s3:GetObject"]
-    resources = ["${aws_s3_bucket.maps.arn}/*"]
+    actions = ["s3:GetObject"]
+    resources = [
+      "${aws_s3_bucket.maps.arn}/",
+      "${aws_s3_bucket.maps.arn}/*"
+    ]
 
     principals {
       type        = "AWS"
@@ -66,8 +75,11 @@ data "aws_iam_policy_document" "maps" {
 
 data "aws_iam_policy_document" "wiki" {
   statement {
-    actions   = ["s3:GetObject"]
-    resources = ["${aws_s3_bucket.wiki.arn}/*"]
+    actions = ["s3:GetObject"]
+    resources = [
+      "${aws_s3_bucket.wiki.arn}/",
+      "${aws_s3_bucket.wiki.arn}/*"
+    ]
 
     principals {
       type        = "AWS"
