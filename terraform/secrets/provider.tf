@@ -5,10 +5,6 @@ terraform {
       source  = "hashicorp/aws"
       version = "5.15.0"
     }
-    b2 = {
-      source  = "Backblaze/b2"
-      version = "0.8.4"
-    }
     github = {
       source  = "integrations/github"
       version = "5.33.0"
@@ -20,7 +16,9 @@ terraform {
   }
 }
 
-provider "b2" {}
+provider "aws" {
+  region = var.aws_region_default
+}
 
 provider "github" {}
 

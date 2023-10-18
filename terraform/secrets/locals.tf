@@ -21,20 +21,31 @@ locals {
 
   environment = data.terraform_remote_state.seeds.outputs.environment
 
+  tags = {
+    description = "Default tags for this resource"
+    default = {
+      provider    = "aws"
+      workspace   = "secrets"
+      environment = var.environment
+      region      = var.aws_region_default
+    }
+  }
+
   gotify = {
-    name = data.terraform_remote_state.seeds.outputs.gotify
+    name = data.terraform_remote_state.seeds.outputs.gotify.name
     env = {
-      NAME : var.redmine_name
+      NAME : data.terraform_remote_state.seeds.outputs.gotify.name
       DATABASE_URL : "host=localhost port=5432 user=gotify dbname=gotifydb password=secret"
       PORT : 80
     }
   }
 
   maya = {
-    name = "maya-${random_string.maya.result}"
-    admin = {
-      username = "maya-${random_string.maya.result}"
-      password = random_password.maya.result
+    name : data.terraform_remote_state.seeds.outputs.maya.name
+    bucket : data.terraform_remote_state.storage.outputs.maya
+    admin : {
+      username : data.terraform_remote_state.seeds.outputs.maya.admin.username
+      password : data.terraform_remote_state.seeds.outputs.maya.admin.password
     }
   }
 
@@ -44,19 +55,24 @@ locals {
       REDMINE_DB_POSTGRES : "host"
       REDMINE_DB_PORT : 5432
       REDMINE_DB_DATABASE : data.terraform_remote_state.seeds.outputs.redmine.name
-      REDMINE_DB_USERNAME : data.terraform_remote_state.seeds.outputs.redmine.name
+      REDMINE_DB_USERNAME : data.terraform_remote_state.seeds.outputs.redmine.admin.username
       REDMINE_DB_PASSWORD : data.terraform_remote_state.seeds.outputs.redmine.admin.password
       REDMINE_PLUGINS_MIGRATE : 1
       REDMINE_SECRET_KEY_BASE : data.terraform_remote_state.seeds.outputs.redmine.secret_key
     }
   }
   sabedoria = {
-    name = data.terraform_remote_state.seeds.outputs.sabedoria
+    name   = data.terraform_remote_state.seeds.outputs.sabedoria.name
+    bucket = data.terraform_remote_state.storage.outputs.sabedoria
+    admin : {
+      username : data.terraform_remote_state.seeds.outputs.sabedoria.admin.username
+      password : data.terraform_remote_state.seeds.outputs.sabedoria.admin.password
+    }
     env = {
       BASEROW_TOKEN : var.sabedoria_baserow_token
       BASEROW_URL : var.sabedoria_baserow_url
       COURSE_TABLE_ID : var.sabedoria_course_table_id
-      DATABASE_URL : data.terraform_remote_state.databases.outputs.sabedoria
+      DATABASE_URL : ""
       DESCRIPTION_TABLE_ID : var.sabedoria_description_table_id
       EMAIL : var.sabedoria_email
       FLASK_APP : var.sabedoria_flask_app

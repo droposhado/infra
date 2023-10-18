@@ -1,8 +1,8 @@
-resource "github_actions_secret" "trakttv_aws_secret_access_key" {
-  repository      = var.domain
-  secret_name     = "DOMAIN"
-  plaintext_value = b2_application_key.trakttv.application_key
-}
+# resource "github_actions_secret" "trakttv_aws_secret_access_key" {
+#   repository      = var.domain
+#   secret_name     = "DOMAIN"
+#   plaintext_value = b2_application_key.trakttv.application_key
+# }
 
 
 
