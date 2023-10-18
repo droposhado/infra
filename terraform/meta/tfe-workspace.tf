@@ -73,7 +73,8 @@ resource "tfe_workspace" "storage" {
   working_directory = "terraform/storage"
   trigger_patterns  = distinct(["terraform/storage/**", "terraform/storage/**/*"])
   remote_state_consumer_ids = [
-    tfe_workspace.databases.id
+    tfe_workspace.databases.id,
+    tfe_workspace.storage.id
   ]
   terraform_version = "1.5.4"
   vcs_repo {
