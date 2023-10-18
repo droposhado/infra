@@ -1,6 +1,16 @@
+variable "aws_region_default" {
+  type        = string
+  description = "Default AWS region to create resources"
+}
+
 variable "domain" {
   type        = string
   description = "Default domain to use in another workspaces"
+}
+
+variable "environment" {
+  type        = string
+  description = "Environment used in organization"
 }
 
 variable "github_infra_repo" {
@@ -136,14 +146,4 @@ variable "sabedoria_web_bind" {
 # tflint-ignore: terraform_documented_variables
 variable "sabedoria_week_study_table_id" {
   type = string
-}
-
-variable "tags" {
-  type        = map(string)
-  description = "Default tags for this resource"
-  default = {
-    workspace   = "secrets"
-    environment = var.environment
-    region      = var.aws_region_default
-  }
 }

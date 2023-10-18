@@ -1,6 +1,6 @@
 resource "sentry_organization" "droposhado_org" {
-  name = "droposhado-org-${var.github_infra_repo}"
-  slug = "droposhado-org-${var.github_infra_repo}"
+  name = "${local.domain_slug}-${var.github_infra_repo}"
+  slug = "${local.domain_slug}-${var.github_infra_repo}"
 
   agree_terms = true
 }
