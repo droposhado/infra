@@ -1,6 +1,6 @@
-resource "tfe_variable" "compute_cluster_ca_cert" {
-  key          = "cluster_ca_cert"
-  value        = var.cluster_ca_cert
+resource "tfe_variable" "compute_cluster_ca_certificate" {
+  key          = "cluster_ca_certificate"
+  value        = var.cluster_ca_certificate
   category     = "terraform"
   workspace_id = tfe_workspace.compute.id
 }

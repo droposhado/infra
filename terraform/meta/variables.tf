@@ -23,7 +23,7 @@ variable "cloudflare_api_token" {
   description = "Token with permissions defined in workspace to deploy dns, pages"
 }
 
-variable "cluster_ca_cert" {
+variable "cluster_ca_certificate" {
   type = string
 }
 
