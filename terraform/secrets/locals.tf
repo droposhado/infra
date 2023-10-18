@@ -32,8 +32,9 @@ locals {
   }
 
   gotify = {
-    name = data.terraform_remote_state.seeds.outputs.gotify.name
-    env = {
+    name : data.terraform_remote_state.seeds.outputs.gotify.name
+    image : "gotify/server:2.4.0"
+    env : {
       NAME : data.terraform_remote_state.seeds.outputs.gotify.name
       DATABASE_URL : "host=localhost port=5432 user=gotify dbname=gotifydb password=secret"
       PORT : 80
@@ -43,15 +44,27 @@ locals {
   maya = {
     name : data.terraform_remote_state.seeds.outputs.maya.name
     bucket : data.terraform_remote_state.storage.outputs.maya
+    image : "quay.io/droposhado/maya"
     admin : {
       username : data.terraform_remote_state.seeds.outputs.maya.admin.username
       password : data.terraform_remote_state.seeds.outputs.maya.admin.password
     }
+    env = {
+      DATABASE_URL : ""
+      FLASK_APP : var.maya_flask_app
+      #GUNICORN_ACCESS_LOG_FORMAT : var.sabedoria_gunicorn_access_log_format
+      HOST : split(":", var.sabedoria_web_bind)[0]
+      PORT : split(":", var.sabedoria_web_bind)[1]
+      SENTRY_DSN : sentry_key.sabedoria.dsn_public
+      TOKEN : var.sabedoria_token
+      WEB_BIND : var.sabedoria_web_bind
+    }
   }
 
   redmine = {
-    name = data.terraform_remote_state.seeds.outputs.redmine.name
-    env = {
+    name : data.terraform_remote_state.seeds.outputs.redmine.name
+    image : "redmine:5.0.6-alpine3.18"
+    env : {
       REDMINE_DB_POSTGRES : "host"
       REDMINE_DB_PORT : 5432
       REDMINE_DB_DATABASE : data.terraform_remote_state.seeds.outputs.redmine.name
@@ -62,8 +75,9 @@ locals {
     }
   }
   sabedoria = {
-    name   = data.terraform_remote_state.seeds.outputs.sabedoria.name
-    bucket = data.terraform_remote_state.storage.outputs.sabedoria
+    name : data.terraform_remote_state.seeds.outputs.sabedoria.name
+    bucket : data.terraform_remote_state.storage.outputs.sabedoria
+    image : "quay.io/droposhado/sabedoria"
     admin : {
       username : data.terraform_remote_state.seeds.outputs.sabedoria.admin.username
       password : data.terraform_remote_state.seeds.outputs.sabedoria.admin.password
@@ -77,7 +91,7 @@ locals {
       EMAIL : var.sabedoria_email
       FLASK_APP : var.sabedoria_flask_app
       GITHUB : var.sabedoria_github
-      GUNICORN_ACCESS_LOG_FORMAT : var.sabedoria_gunicorn_access_log_format
+      #GUNICORN_ACCESS_LOG_FORMAT : var.sabedoria_gunicorn_access_log_format
       INTEREST_TABLE_ID : var.sabedoria_interest_table_id
       HOST : split(":", var.sabedoria_web_bind)[0]
       JOB_TABLE_ID : var.sabedoria_job_table_id
@@ -93,7 +107,7 @@ locals {
     }
   }
   wooka = {
-    name = data.terraform_remote_state.seeds.outputs.wooka
+    name : data.terraform_remote_state.seeds.outputs.wooka
     env = {
       SENTRY_DSN : sentry_key.wooka.dsn_public
     }
