@@ -15,4 +15,3 @@ provider "kubernetes" {
   ignore_annotations     = var.provider_ignore_annotations
   ignore_labels          = var.provider_ignore_labels
 }
-

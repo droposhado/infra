@@ -1,4 +1,4 @@
-resource "kubernetes_deployment_v1" "gotify" {
+resource "kubernetes_deployment_v1" "main" {
   metadata {
     name      = var.app_name
     namespace = var.cluster_default_namespace
