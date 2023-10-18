@@ -1,6 +1,20 @@
+resource "tfe_variable" "secrets_aws_region_default" {
+  key          = "aws_region_default"
+  value        = var.aws_region_default
+  category     = "terraform"
+  workspace_id = tfe_workspace.secrets.id
+}
+
 resource "tfe_variable" "secrets_domain" {
   key          = "domain"
   value        = var.domain
+  category     = "terraform"
+  workspace_id = tfe_workspace.secrets.id
+}
+
+resource "tfe_variable" "secrets_environment" {
+  key          = "environment"
+  value        = var.environment
   category     = "terraform"
   workspace_id = tfe_workspace.secrets.id
 }
