@@ -1,16 +1,14 @@
 resource "kubernetes_ingress_v1" "gotify" {
   metadata {
-    name      = local.gotify.name
+    name      = var.app_name
     namespace = var.cluster_default_namespace
 
-    annotations = {
-      "dev.okteto.com/generate-host" = local.gotify.name
-    }
+    annotations = var.ingress_annotation
   }
 
   spec {
     rule {
-      host = "${local.gotify.name}-${var.cluster_default_namespace}.cloud.okteto.net"
+      host = "${var.app_name}-${var.cluster_default_namespace}.cloud.okteto.net"
       http {
         path {
           path      = "/"
@@ -18,10 +16,10 @@ resource "kubernetes_ingress_v1" "gotify" {
 
           backend {
             service {
-              name = local.gotify.name
+              name = var.app_name
 
               port {
-                number = local.gotify.env.PORT
+                number = var.port
               }
             }
           }
@@ -30,7 +28,7 @@ resource "kubernetes_ingress_v1" "gotify" {
     }
     tls {
       hosts = [
-        "${local.gotify.name}-${var.cluster_default_namespace}.cloud.okteto.net",
+        "${var.app_name}-${var.cluster_default_namespace}.cloud.okteto.net",
       ]
     }
   }

@@ -1,4 +1,4 @@
-variable "cluster_ca_cert" {
+variable "cluster_ca_certificate" {
   type = string
 }
 
