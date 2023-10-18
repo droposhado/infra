@@ -55,7 +55,7 @@ locals {
       #GUNICORN_ACCESS_LOG_FORMAT : var.sabedoria_gunicorn_access_log_format
       HOST : split(":", var.sabedoria_web_bind)[0]
       PORT : split(":", var.sabedoria_web_bind)[1]
-      SENTRY_DSN : sentry_key.sabedoria.dsn_public
+      SENTRY_DSN : sentry_key.maya.dsn_public
       TOKEN : var.sabedoria_token
       WEB_BIND : var.sabedoria_web_bind
     }
@@ -72,6 +72,7 @@ locals {
       REDMINE_DB_PASSWORD : data.terraform_remote_state.seeds.outputs.redmine.admin.password
       REDMINE_PLUGINS_MIGRATE : 1
       REDMINE_SECRET_KEY_BASE : data.terraform_remote_state.seeds.outputs.redmine.secret_key
+      PORT : 5000
     }
   }
   sabedoria = {
