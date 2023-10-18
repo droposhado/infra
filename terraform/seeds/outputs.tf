@@ -8,6 +8,12 @@ output "environment" {
   description = "Default environment to workspaces"
 }
 
+output "gotify" {
+  value       = local.gotify
+  description = "Generated name to project"
+  sensitive   = true
+}
+
 output "k8s_cluster" {
   value       = local.k8s_cluster
   description = "kubernetes cluster data"
