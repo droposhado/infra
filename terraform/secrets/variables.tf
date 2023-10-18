@@ -18,6 +18,33 @@ variable "github_infra_repo" {
   description = "Private repository with code"
 }
 
+variable "github_verification_secret" {
+  type        = string
+  description = "Secret used to verify webhooks"
+}
+
+variable "maya_flask_app" {
+  type        = string
+  default     = "maya:create('maya.config.ProductionConfig')"
+  description = "Flask app to use in production"
+}
+
+variable "maya_gunicorn_access_log_format" {
+  type        = string
+  description = "Gunicorn format, default value is in gunicorn.py in app"
+}
+
+variable "maya_token" {
+  type        = string
+  description = "Token used in headers to connect on maya"
+}
+
+variable "maya_web_bind" {
+  type        = string
+  default     = "0.0.0.0:5000"
+  description = "Used by gunicorn with 0.0.0.0 to allow all external connections and a port number"
+}
+
 variable "sabedoria_baserow_token" {
   type        = string
   description = "Token generated in baserow with read permission"
@@ -146,4 +173,9 @@ variable "sabedoria_web_bind" {
 # tflint-ignore: terraform_documented_variables
 variable "sabedoria_week_study_table_id" {
   type = string
+}
+
+variable "tfe_verification_secret" {
+  type        = string
+  description = "Secret used to verify webhooks"
 }
