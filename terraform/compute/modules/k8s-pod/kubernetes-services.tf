@@ -1,17 +1,17 @@
 resource "kubernetes_service_v1" "gotify" {
   metadata {
-    name      = local.gotify.name
+    name      = var.app_name
     namespace = var.cluster_default_namespace
   }
 
   spec {
     port {
-      name = local.gotify.name
-      port = local.gotify.env.PORT
+      name = var.app_name
+      port = var.port
     }
 
     selector = {
-      app = local.gotify.name
+      app = var.app_name
     }
 
     type = "ClusterIP"
