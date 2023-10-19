@@ -3,6 +3,6 @@ resource "tfe_organization_run_task" "snyk" {
   url          = var.snyk_url
   hmac_key     = var.snyk_hmac_key
   name         = "snyk-sec"
-  enabled      = true
+  enabled      = false
   description  = "An security task running on Snyk"
 }
