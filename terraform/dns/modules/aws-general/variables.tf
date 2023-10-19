@@ -9,5 +9,10 @@ variable "domain" {
 }
 
 variable "records" {
-  type = list(map(string))
+  type = list(object({
+    name   = string,
+    values = list(string),
+    type   = string,
+    ttl    = number
+  }))
 }
