@@ -19,16 +19,13 @@ locals {
       ttl    = var.default_ttl
     },
     {
-      name   = var.domain
-      values = ["v=spf1 include:spf.migadu.com -all"]
-      type   = "TXT"
-      ttl    = var.default_ttl
-    },
-    {
-      name   = var.domain
-      values = ["hosted-email-verify=vfxufmw7"]
-      type   = "TXT"
-      ttl    = var.default_ttl
+      name = var.domain
+      values = [
+        "v=spf1 include:spf.migadu.com -all",
+        "hosted-email-verify=vfxufmw7"
+      ]
+      type = "TXT"
+      ttl  = var.default_ttl
     },
     {
       name   = "key1._domainkey"
