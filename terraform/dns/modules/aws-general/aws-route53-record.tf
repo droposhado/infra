@@ -5,5 +5,5 @@ resource "aws_route53_record" "main" {
   name    = each.value.name
   type    = each.value.type
   ttl     = each.value.ttl
-  records = each.value.values
+  records = [each.value.values]
 }

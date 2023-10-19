@@ -1,15 +1,15 @@
 module "aws_route53" {
-  source      = "./modules/aws"
+  source      = "./modules/aws-general"
   environment = var.environment
   domain      = var.domain
-  records     = local.aws_records
+  records     = local.records
 }
 
 module "cloudflare" {
-  source     = "./modules/cloudflare-ns"
+  source     = "./modules/cloudflare-general"
   account_id = var.account_id
   domain     = var.domain
-  ns         = module.aws_route53.ns
+  records    = local.records
 }
 
 # module "aws-route53" {
