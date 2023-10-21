@@ -1,11 +1,10 @@
 resource "aws_cloudfront_distribution" "main" {
   enabled             = true
   default_root_object = "index.html"
-  aliases             = [local.bucket.bucket]
-
+  aliases             = [var.fqdn]
 
   default_cache_behavior {
-    allowed_methods        = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
+    allowed_methods        = ["GET", "HEAD"]
     cached_methods         = ["GET", "HEAD"]
     target_origin_id       = local.bucket.bucket
     viewer_protocol_policy = "redirect-to-https"
