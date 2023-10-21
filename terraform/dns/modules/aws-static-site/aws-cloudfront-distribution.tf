@@ -11,7 +11,7 @@ resource "aws_cloudfront_distribution" "main" {
     compress               = true
 
     min_ttl     = 0
-    default_ttl = 5 * 60
+    default_ttl = var.default_ttl
     max_ttl     = 60 * 60
 
     forwarded_values {
@@ -24,7 +24,7 @@ resource "aws_cloudfront_distribution" "main" {
   }
 
   origin {
-    domain_name = local.bucket.bucket_regional_domain_name
+    domain_name = local.bucket.domain_name
     origin_id   = local.bucket.bucket
 
     s3_origin_config {
@@ -39,7 +39,6 @@ resource "aws_cloudfront_distribution" "main" {
   }
 
   viewer_certificate {
-    # Huh? Another spoiler?
     acm_certificate_arn      = aws_acm_certificate_validation.main.certificate_arn
     ssl_support_method       = "sni-only"
     minimum_protocol_version = "TLSv1.2_2018"
