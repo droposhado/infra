@@ -74,6 +74,7 @@ resource "tfe_workspace" "storage" {
   trigger_patterns  = distinct(["terraform/storage/**", "terraform/storage/**/*"])
   remote_state_consumer_ids = [
     tfe_workspace.databases.id,
+    tfe_workspace.dns.id,
     tfe_workspace.secrets.id
   ]
   terraform_version = "1.5.4"
