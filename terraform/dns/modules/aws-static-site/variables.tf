@@ -19,3 +19,7 @@ variable "environment" {
   type        = string
   description = "Default environment to workspaces"
 }
+
+variable "tags" {
+  type = map(string)
+}

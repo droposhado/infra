@@ -1,10 +1,10 @@
 resource "aws_acm_certificate" "main" {
-  domain_name       = var.domain
+  provider = aws.acm_issuer
+
+  domain_name       = var.fqdn
   validation_method = "DNS"
 
-  # tags = {
-  #   Environment = "test"
-  # }
+  tags = var.tags
 
   lifecycle {
     create_before_destroy = true
