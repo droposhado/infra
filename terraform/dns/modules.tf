@@ -16,6 +16,17 @@ module "blog_static_site" {
   tags = local.tags
 }
 
+module "cdn_static_site" {
+  source      = "./modules/aws-static-site"
+  environment = var.environment
+  domain      = var.domain
+  fqdn        = "cdn.${var.domain}"
+  bucket_id   = data.terraform_remote_state.storage.outputs.cdn.id
+  default_ttl = var.default_ttl
+
+  tags = local.tags
+}
+
 # module "cloudflare" {
 #   source     = "./modules/cloudflare-general"
 #   account_id = var.account_id
