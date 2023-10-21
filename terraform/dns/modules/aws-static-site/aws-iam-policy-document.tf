@@ -2,8 +2,8 @@ data "aws_iam_policy_document" "main" {
   statement {
     actions = ["s3:GetObject"]
     resources = [
-      "${var.bucket.arn}/",
-      "${var.bucket.arn}/*"
+      "${local.bucket.arn}/",
+      "${local.bucket.arn}/*"
     ]
 
     principals {
@@ -14,7 +14,7 @@ data "aws_iam_policy_document" "main" {
 
   statement {
     actions   = ["s3:ListBucket"]
-    resources = [var.bucket.arn]
+    resources = [local.bucket.arn]
 
     principals {
       type        = "AWS"
