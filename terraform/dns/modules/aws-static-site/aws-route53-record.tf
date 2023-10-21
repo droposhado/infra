@@ -15,15 +15,14 @@ resource "aws_route53_record" "validation" {
   zone_id         = data.aws_route53_zone.main.zone_id
 }
 
+resource "aws_route53_record" "main" {
+  zone_id = data.aws_route53_zone.main.id
+  name    = var.fqdn
+  type    = "A"
 
-# resource "aws_route53_record" "main" {
-#   zone_id = data.aws_route53_zone.main.id
-#   name    = var.fqdn
-#   type    = "A"
-
-#   alias {
-#     name                   = replace(aws_cloudfront_distribution.main.domain_name, "/[.]$/", "")
-#     zone_id                = aws_cloudfront_distribution.main.hosted_zone_id
-#     evaluate_target_health = true
-#   }
-# }
+  alias {
+    name                   = replace(aws_cloudfront_distribution.main.domain_name, "/[.]$/", "")
+    zone_id                = aws_cloudfront_distribution.main.hosted_zone_id
+    evaluate_target_health = true
+  }
+}
