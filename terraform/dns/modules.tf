@@ -27,6 +27,28 @@ module "cdn_static_site" {
   tags = local.tags
 }
 
+module "maps_static_site" {
+  source      = "./modules/aws-static-site"
+  environment = var.environment
+  domain      = var.domain
+  fqdn        = "maps.${var.domain}"
+  bucket_id   = data.terraform_remote_state.storage.outputs.maps.id
+  default_ttl = var.default_ttl
+
+  tags = local.tags
+}
+
+module "wiki_static_site" {
+  source      = "./modules/aws-static-site"
+  environment = var.environment
+  domain      = var.domain
+  fqdn        = "wiki.${var.domain}"
+  bucket_id   = data.terraform_remote_state.storage.outputs.wiki.id
+  default_ttl = var.default_ttl
+
+  tags = local.tags
+}
+
 # module "cloudflare" {
 #   source     = "./modules/cloudflare-general"
 #   account_id = var.account_id
