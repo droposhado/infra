@@ -13,10 +13,12 @@ locals {
       ttl    = var.default_ttl
     },
     {
-      name   = "_dmarc"
-      values = ["v=DMARC1; p=quarantine; adkim=s; aspf=s; rua=mailto:dmarcreport@${var.domain}; ruf=mailto:dmarcreport@${var.domain}; pct=100; fo=0:1:d:s;"]
-      type   = "TXT"
-      ttl    = var.default_ttl
+      name = "_dmarc"
+      values = [
+        "v=DMARC1; p=quarantine; adkim=s; aspf=s; rua=mailto:dmarcreport@${var.domain}; ruf=mailto:dmarcreport@${var.domain}; pct=100; fo=0:1:d:s;"
+      ]
+      type = "TXT"
+      ttl  = var.default_ttl
     },
     {
       name = var.domain

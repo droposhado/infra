@@ -1,10 +1,5 @@
-variable "account_id" {
-  type = string
-}
-
-variable "aws_region_default" {
-  type        = string
-  description = "Default AWS region to create resources"
+variable "bucket" {
+  type = map(string)
 }
 
 variable "default_ttl" {
@@ -14,6 +9,10 @@ variable "default_ttl" {
 variable "domain" {
   type        = string
   description = "Default domain to use in another workspaces"
+}
+
+variable "fqdn" {
+  type = string
 }
 
 variable "environment" {
