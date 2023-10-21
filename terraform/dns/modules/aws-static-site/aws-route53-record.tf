@@ -18,7 +18,7 @@ resource "aws_route53_record" "validation" {
 
 # resource "aws_route53_record" "main" {
 #   zone_id = data.aws_route53_zone.main.id
-#   name    = var.domain
+#   name    = var.fqdn
 #   type    = "A"
 
 #   alias {
