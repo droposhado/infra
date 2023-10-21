@@ -24,7 +24,7 @@ resource "aws_cloudfront_distribution" "main" {
   }
 
   origin {
-    domain_name = local.bucket.domain_name
+    domain_name = local.bucket.bucket_domain_name
     origin_id   = local.bucket.bucket
 
     s3_origin_config {
