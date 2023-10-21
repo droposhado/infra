@@ -12,6 +12,10 @@ module "blog_static_site" {
   fqdn        = ""
   bucket_id   = data.terraform_remote_state.storage.outputs.blog.id
   default_ttl = var.default_ttl
+
+  depends_on = [
+    module.aws_route53
+  ]
 }
 
 # module "cloudflare" {
