@@ -1,5 +1,5 @@
-variable "bucket" {
-  type = map(string)
+variable "bucket_id" {
+  type = string
 }
 
 variable "default_ttl" {

@@ -10,7 +10,7 @@ module "blog_static_site" {
   environment = var.environment
   domain      = var.domain
   fqdn        = ""
-  bucket      = data.terraform_remote_state.storage.outputs.blog
+  bucket_id   = data.terraform_remote_state.storage.outputs.blog.id
   default_ttl = var.default_ttl
 }
 
