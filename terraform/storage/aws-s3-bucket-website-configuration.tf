@@ -10,18 +10,6 @@ resource "aws_s3_bucket_website_configuration" "cdn" {
   }
 }
 
-resource "aws_s3_bucket_website_configuration" "blog" {
-  bucket = aws_s3_bucket.blog.id
-
-  index_document {
-    suffix = "index.html"
-  }
-
-  error_document {
-    key = "404.html"
-  }
-}
-
 resource "aws_s3_bucket_website_configuration" "maps" {
   bucket = aws_s3_bucket.maps.id
 

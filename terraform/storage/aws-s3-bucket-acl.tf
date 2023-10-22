@@ -1,10 +1,3 @@
-resource "aws_s3_bucket_acl" "blog" {
-  depends_on = [aws_s3_bucket_ownership_controls.blog]
-
-  bucket = aws_s3_bucket.blog.id
-  acl    = "public-read"
-}
-
 resource "aws_s3_bucket_acl" "cdn" {
   depends_on = [aws_s3_bucket_ownership_controls.cdn]
 

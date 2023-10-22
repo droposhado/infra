@@ -1,5 +1,5 @@
 output "blog" {
-  value = aws_s3_bucket.blog
+  value = module.blog_static_site.bucket
 }
 
 output "cdn" {

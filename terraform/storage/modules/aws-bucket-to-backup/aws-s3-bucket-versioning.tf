@@ -1,3 +1,10 @@
+resource "aws_s3_bucket_versioning" "blog" {
+  bucket = aws_s3_bucket.blog.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
 resource "aws_s3_bucket_versioning" "cdn" {
   bucket = aws_s3_bucket.cdn.id
   versioning_configuration {
