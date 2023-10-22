@@ -17,7 +17,7 @@ module "cdn_static_site" {
   block_public_acls       = false
   block_public_policy     = false
   bucket_name             = local.cdn_name
-  enable_cors             = false
+  enable_cors             = true
   ignore_public_acls      = false
   restrict_public_buckets = false
   tags                    = local.tags
