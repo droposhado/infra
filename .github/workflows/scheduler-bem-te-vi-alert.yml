@@ -25,7 +25,7 @@ jobs:
           webdav_username: ${{ secrets.WEBDAV_USERNAME }}
           webdav_password: ${{ secrets.WEBDAV_PASSWORD }}
           webdav_addressbook: ${{ secrets.WEBDAV_ADRESSBOOK }}
-          webhook_url: ${{ secrets.WEBHOOK_URL }}
+          webhook_url: ${{ secrets.BEMTEVI_WEBHOOK_URL }}
           date_layout: ${{ secrets.DATE_LAYOUT }}
           bot_name: ${{ secrets.BOT_NAME }}
           icon_url: ${{ secrets.ICON_URL }}
