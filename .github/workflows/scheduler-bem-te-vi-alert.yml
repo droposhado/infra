@@ -21,6 +21,7 @@ jobs:
 
       - uses: droposhado/bem-te-vi-action@main
         with:
+          btv_debug: ${{ secrets.BTV_DEBUG }}
           webdav_server: ${{ secrets.WEBDAV_SERVER }}
           webdav_username: ${{ secrets.WEBDAV_USERNAME }}
           webdav_password: ${{ secrets.WEBDAV_PASSWORD }}
