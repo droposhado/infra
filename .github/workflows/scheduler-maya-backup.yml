@@ -1,0 +1,49 @@
+name: scheduler maya backup
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/scheduler-maya-backup.yml'
+
+  schedule:
+    - cron: "0 0 * * *"
+
+  workflow_dispatch:
+
+jobs:
+  pg_dump:
+    name: Build
+    runs-on: ubuntu-latest
+    env:
+        DB_USER: ${{ secrets.MAYA_DB_USER }}
+        DB_PASS: ${{ secrets.MAYA_DB_PASS }}
+        DB_HOST: ${{ secrets.MAYA_DB_HOST }}
+        DB_PORT: ${{ secrets.MAYA_DB_PORT }}
+        DB_NAME: ${{ secrets.MAYA_DB_NAME }}
+
+    steps:
+
+    - name: checkout
+      uses: actions/checkout@v3
+
+    - run: mkdir backup
+
+    - env:
+        PGPASSWORD: ${{ secrets.MAYA_DB_PASS }}
+      run: pg_dump -U $DB_USER -h $DB_HOST -p $DB_PORT $INPUT_ARGS $DB_NAME --no-owner --no-privileges | gzip -9 > backup/`date +%Y-%m-%d-%H-%M-%S`-$DB_NAME-${{ github.event_name }}.sql.gz
+
+    - run: ls -lh .
+
+    - name: Push backups to S3 Bucket
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --follow-symlinks
+      env:
+        AWS_S3_ENDPOINT: ${{ secrets.MAYA_BUCKET_ENDPOINT }}
+        AWS_S3_BUCKET: ${{ secrets.MAYA_BUCKET_NAME }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.MAYA_AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.MAYA_AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ secrets.MAYA_BUCKET_NAME }}
+        SOURCE_DIR: 'backup'

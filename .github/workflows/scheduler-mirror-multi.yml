@@ -27,11 +27,3 @@ jobs:
           GIT_SSH_PRIVATE_KEY: ${{ secrets.INFRA_MIRROR_SSH_KEY }}
           GIT_SSH_NO_VERIFY_HOST: "true"
           DEBUG: "true"
-
-      - name: push to kuma - success
-        if: ${{ success() }}
-        run: curl "${{ secrets.INFRA_UPTIME_PUSH_URL }}?status=up&msg=OK&ping="
-
-      - name: push to kuma - failure or cancelled
-        if: ${{ always() && (failure() || cancelled()) }}
-        run: curl "${{ secrets.INFRA_UPTIME_PUSH_URL }}?status=down&msg=OK&ping="
