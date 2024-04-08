@@ -8,7 +8,7 @@ module "aiven_pg_service_name" {
 }
 
 module "migadu_mail" {
-  source  = "../modules/cloudflare-migadu-mail"
+  source  = "../modules/cloudflare-migadu"
   domain  = var.domain
   zone_id = data.cloudflare_zone.main.id
 }
