@@ -27,3 +27,4 @@ jobs:
           GIT_SSH_PRIVATE_KEY: ${{ secrets.INFRA_MIRROR_SSH_KEY }}
           GIT_SSH_NO_VERIFY_HOST: "true"
           DEBUG: "true"
+
