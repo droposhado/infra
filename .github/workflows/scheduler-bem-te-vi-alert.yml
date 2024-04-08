@@ -29,11 +29,3 @@ jobs:
           date_layout: ${{ secrets.DATE_LAYOUT }}
           bot_name: ${{ secrets.BOT_NAME }}
           icon_url: ${{ secrets.ICON_URL }}
-
-      - name: push to kuma - success
-        if: success()
-        run: curl "${{ secrets.BEMTEVI_UPTIME_PUSH_URL }}?status=up&msg=OK&ping="
-
-      - name: push to kuma - failure
-        if: failure()
-        run: curl "${{ secrets.BEMTEVI_UPTIME_PUSH_URL }}?status=down&msg=OK&ping="

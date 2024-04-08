@@ -47,11 +47,3 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SABEDORIA_AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: ${{ secrets.SABEDORIA_BUCKET_NAME }}
         SOURCE_DIR: 'backup'
-
-    - name: push to kuma - success
-      if: ${{ success() }}
-      run: curl "${{ secrets.SABEDORIA_UPTIME_PUSH_URL }}?status=up&msg=OK&ping="
-
-    - name: push to kuma - failure or cancelled
-      if: ${{ always() && (failure() || cancelled()) }}
-      run: curl "${{ secrets.SABEDORIA_UPTIME_PUSH_URL }}?status=down&msg=OK&ping="
