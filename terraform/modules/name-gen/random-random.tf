@@ -1,9 +1,6 @@
-resource "random_uuid" "main" {
-  keepers = var.keepers
-}
-
 resource "random_string" "main" {
   keepers = var.keepers
-  length           = var.length
-  special          = false
+  length  = var.length
+  special = false
+  upper   = var.uppercase
 }
