@@ -1,14 +1,14 @@
-
 module "aiven_pg_service_name" {
-  source = "../modules/name-gen"
-  keepers = {
-    domain = var.domain
+  source    = "../modules/name-gen"
+  uppercase = false
+  keepers   = {
+    domain  = var.domain
     zone_id = data.cloudflare_zone.main.id
   }
 }
 
 module "migadu_mail" {
-  source  = "../modules/cloudflare-migadu"
+  source  = "../modules/cloudflare-migadu-mail"
   domain  = var.domain
   zone_id = data.cloudflare_zone.main.id
 }
