@@ -16,7 +16,7 @@ variable "aiven_maintenance_window_time" {
 
 variable "aiven_plan" {
   type    = string
-  default = "hobbyist"
+  default = "free-1-5gb"
 }
 
 variable "aiven_pg_version" {
@@ -30,7 +30,7 @@ variable "aiven_project_name" {
 
 variable "aiven_termination_protection" {
   type    = bool
-  default = true
+  default = false
 }
 
 
