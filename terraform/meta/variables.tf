@@ -1,7 +1,7 @@
 
 variable "aiven_cloud_name" {
   type    = string
-  default = "do"
+  default = "do-nyc"
 }
 
 variable "aiven_maintenance_window_dow" {
@@ -37,7 +37,7 @@ variable "aiven_termination_protection" {
 
 variable "cloudflare_account_id" {
   type        = string
-  description = "Acc ID for CF use"
+  description = "Acc ID"
 }
 
 variable "cloudflare_api_token" {
