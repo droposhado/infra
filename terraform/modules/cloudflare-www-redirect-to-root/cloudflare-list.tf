@@ -1,6 +1,6 @@
 resource "cloudflare_list" "www" {
   account_id  = var.account_id
-  name        = "${var.domain}_www_redirect"
+  name        = "${var.domain_slug}_www_redirect"
   description = "list to configure www redirect to apex"
   kind        = "redirect"
 }
