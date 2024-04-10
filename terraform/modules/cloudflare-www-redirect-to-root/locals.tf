@@ -1,3 +1,3 @@
 locals {
-  domain_slug = replace(var.domain, ".", "-")
+  domain_slug = replace(var.domain, ".", "_")
 }
