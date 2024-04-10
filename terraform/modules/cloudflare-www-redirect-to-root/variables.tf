@@ -6,6 +6,6 @@ variable "domain" {
   type = string
 }
 
-variable "environment" {
+variable "zone_id" {
   type = string
 }

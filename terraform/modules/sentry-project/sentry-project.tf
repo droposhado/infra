@@ -1,9 +1,9 @@
-resource "sentry_project" "maya" {
-  organization = sentry_organization.droposhado_org.slug
-  teams        = [sentry_team.main.slug]
+resource "sentry_project" "main" {
+  organization = var.org_slug
+  teams        = var.teams
 
-  name = data.terraform_remote_state.seeds.outputs.maya.name
-  slug = data.terraform_remote_state.seeds.outputs.maya.name
+  name = var.project_name
+  # slug = var.project_slug
 
-  platform = "python-flask"
+  platform = var.project_platform
 }

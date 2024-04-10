@@ -1,5 +1,5 @@
 resource "cloudflare_record" "www_a" {
-  zone_id = cloudflare_zone.main.id
+  zone_id = var.zone_id
   name    = "www"
   value   = "192.0.2.1"
   type    = "A"

@@ -12,11 +12,11 @@ resource "cloudflare_list_item" "www" {
   redirect {
     source_url            = "www.${var.domain}/"
     target_url            = "https://${var.domain}/"
-    include_subdomains    = "disabled"
-    subpath_matching      = "enabled"
+    include_subdomains    = false
+    subpath_matching      = true
     status_code           = 301
-    preserve_query_string = "enabled"
-    preserve_path_suffix  = "enabled"
+    preserve_query_string = true
+    preserve_path_suffix  = true
 
   }
 }

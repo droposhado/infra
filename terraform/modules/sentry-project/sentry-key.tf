@@ -1,6 +1,6 @@
-resource "sentry_key" "wooka" {
-  organization = sentry_organization.droposhado_org.slug
+resource "sentry_key" "main" {
+  organization = sentry_organization.main.slug
 
-  project = sentry_project.wooka.slug
-  name    = "k8s-${data.terraform_remote_state.seeds.outputs.wooka.name}"
+  project = sentry_project.main.slug
+  name    = "tf-managed-${var.project_slug}-${var.project_platform}"
 }
