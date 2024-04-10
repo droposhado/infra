@@ -21,7 +21,7 @@ module "aiven_pg_service_name" {
 
 module "cloudflare_www_redirect" {
   source     = "../modules/cloudflare-www-redirect-to-root"
-  account_id = data.cloudflare_user.me.id
+  account_id = data.cloudflare_zone.main.account_id
   domain     = var.domain
   zone_id    = data.cloudflare_zone.main.id
 }

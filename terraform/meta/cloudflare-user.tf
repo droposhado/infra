@@ -1,1 +1,0 @@
-data "cloudflare_user" "me" {}
