@@ -5,6 +5,10 @@ terraform {
       source  = "aiven/aiven"
       version = "4.15.0"
     }
+    b2 = {
+      source = "Backblaze/b2"
+      version = "0.8.9"
+    }
     cloudflare = {
       source  = "cloudflare/cloudflare"
       version = "4.29.0"
@@ -21,6 +25,8 @@ terraform {
 }
 
 provider "aiven" {}
+
+provider "b2" {}
 
 provider "github" {
   token = var.github_token
