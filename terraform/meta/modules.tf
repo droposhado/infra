@@ -31,7 +31,3 @@ module "migadu_mail" {
   domain  = var.domain
   zone_id = data.cloudflare_zone.main.id
 }
-
-
-
-

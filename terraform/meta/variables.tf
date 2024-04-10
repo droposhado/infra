@@ -1,4 +1,3 @@
-
 variable "aiven_cloud_name" {
   type    = string
   default = "do-nyc"
