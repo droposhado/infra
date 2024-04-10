@@ -33,8 +33,6 @@ variable "aiven_termination_protection" {
   default = false
 }
 
-
-
 variable "cloudflare_account_id" {
   type        = string
   description = "Acc ID"
@@ -88,6 +86,11 @@ variable "github_token" {
 variable "github_verification_secret" {
   type        = string
   description = "Secret used to verify webhooks"
+}
+
+variable "sentry_auth_token" {
+  type        = string
+  description = "Authentication token generated to Sentry"
 }
 
 variable "tfe_personal_token" {

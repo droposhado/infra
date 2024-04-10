@@ -1,4 +1,4 @@
-resource "cloudflare_pages_project" "droposhado_org" {
+resource "cloudflare_pages_project" "main" {
   account_id        = var.account_id
   name              = replace(var.domain, ".", "")
   production_branch = "main"

@@ -1,7 +1,7 @@
-resource "cloudflare_record" "root" {
-  zone_id = cloudflare_zone.main.id
-  name    = "@"
-  value   = cloudflare_pages_project.droposhado_org.subdomain
+resource "cloudflare_record" "main" {
+  zone_id = var.zone_id
+  name    = var.subdomain
+  value   = cloudflare_pages_project.main.subdomain
   type    = "CNAME"
   ttl     = 1
   proxied = true
