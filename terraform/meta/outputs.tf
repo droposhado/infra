@@ -1,10 +1,16 @@
-
 output "cloudflare" {
   sensitive = true
   value = {
     "zone_id" : data.cloudflare_zone.main.id,
     "account_id" : data.cloudflare_user.me.id,
     "domain" : var.domain
+  }
+}
+
+output "domain" {
+  value = {
+    "text" : var.domain,
+    "slug" : local.domain_slug
   }
 }
 
