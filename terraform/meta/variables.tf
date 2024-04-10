@@ -32,11 +32,6 @@ variable "aiven_termination_protection" {
   default = false
 }
 
-variable "cloudflare_account_id" {
-  type        = string
-  description = "Acc ID"
-}
-
 variable "cloudflare_api_token" {
   type        = string
   description = "Token with permissions defined in workspace to deploy dns, pages"
