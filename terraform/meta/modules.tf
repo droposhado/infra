@@ -31,3 +31,11 @@ module "migadu_mail" {
   domain  = var.domain
   zone_id = data.cloudflare_zone.main.id
 }
+
+module "state_uuid" {
+  source    = "../modules/uuid-gen"
+  keepers   = {
+    domain  = var.domain
+    zone_id = data.cloudflare_zone.main.id
+  }
+}
