@@ -32,6 +32,12 @@ variable "aiven_termination_protection" {
   default = false
 }
 
+variable "b2_default_region" {
+  type        = string
+  default     = "us-east-005"
+  description = "All bucket are created in this region"
+}
+
 variable "cloudflare_api_token" {
   type        = string
   description = "Token with permissions defined in workspace to deploy dns, pages"
