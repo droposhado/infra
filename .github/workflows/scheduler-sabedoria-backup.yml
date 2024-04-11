@@ -47,3 +47,4 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SABEDORIA_AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: ${{ secrets.SABEDORIA_BUCKET_NAME }}
         SOURCE_DIR: 'backup'
+        DEST_DIR: 'sabedoria'
