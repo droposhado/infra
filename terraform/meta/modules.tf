@@ -19,6 +19,14 @@ module "aiven_pg_service_name" {
   }
 }
 
+module "backup_uuid" {
+  source    = "../modules/uuid-gen"
+  keepers   = {
+    domain  = var.domain
+    zone_id = data.cloudflare_zone.main.id
+  }
+}
+
 module "cloudflare_www_redirect" {
   source     = "../modules/cloudflare-www-redirect-to-root"
   account_id = data.cloudflare_zone.main.account_id
