@@ -1,5 +1,5 @@
-resource "github_repository_webhook" "furgao" {
-  for_each = toset(data.github_repositories.droposhado.names)
+resource "github_repository_webhook" "zulip" {
+  for_each = toset(data.github_repositories.me.names)
 
   repository = each.value
   configuration {

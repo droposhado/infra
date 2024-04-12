@@ -1,3 +1,3 @@
-data "github_repositories" "droposhado" {
-  query = "user:droposhado is:private is:public archived:false"
+data "github_repositories" "me" {
+  query = "user:${var.github_user} is:private is:public archived:false"
 }

@@ -68,12 +68,18 @@ variable "github_app_installation_id" {
   description = "This ID not is the ID in URL is internal TFE ID, needs use data"
 }
 
+variable "github_blog_repo" {
+  type        = string
+  default     = "blog"
+  description = "Name of repostory with blog code"
+}
+
 variable "github_infra_repo" {
   type        = string
   description = "Name of repository that host project with Terraform files"
 }
 
-variable "github_infra_user" {
+variable "github_user" {
   type        = string
   description = "Username or organization slug"
 }
