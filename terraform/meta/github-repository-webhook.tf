@@ -9,7 +9,7 @@ resource "github_repository_webhook" "furgao" {
     secret       = var.github_verification_secret
   }
 
-  active = false
+  active = true
 
   events = ["*"]
 }
