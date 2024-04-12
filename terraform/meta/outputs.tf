@@ -2,8 +2,7 @@ output "cloudflare" {
   sensitive = true
   value = {
     "zone_id" : data.cloudflare_zone.main.id,
-    "account_id" : data.cloudflare_zone.main.account_id,
-    "domain" : var.domain
+    "account_id" : data.cloudflare_zone.main.account_id
   }
 }
 
@@ -12,6 +11,10 @@ output "domain" {
     "text" : var.domain,
     "slug" : local.domain_slug
   }
+}
+
+output "github_infra_repo" {
+  value = var.github_infra_repo
 }
 
 output "postgresql" {
