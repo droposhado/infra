@@ -1,8 +1,9 @@
 output "cloudflare" {
   sensitive = true
   value = {
-    "zone_id" : data.cloudflare_zone.main.id,
-    "account_id" : data.cloudflare_zone.main.account_id
+    "account_id" : data.cloudflare_zone.main.account_id,
+    "zone_id" : data.cloudflare_zone.main.id
+    
   }
 }
 
