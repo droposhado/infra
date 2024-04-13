@@ -57,7 +57,7 @@ jobs:
           # cli_config_credentials_token: ${{ secrets.tf_api_token }}
 
       - name: Terraform Init
-        run: terraform init
+        run: terraform init -backend-config="bucket=${AWS_S3_BUCKET}"
 
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12
@@ -119,7 +119,7 @@ jobs:
           # cli_config_credentials_token: ${{ secrets.tf_api_token }}
 
       - name: Terraform Init
-        run: terraform init
+        run: terraform init -backend-config="bucket=${AWS_S3_BUCKET}"
 
       - uses: terraform-linters/setup-tflint@v3
         name: Setup TFLint
@@ -196,7 +196,7 @@ jobs:
         run: terraform fmt -check
 
       - name: Terraform Init
-        run: terraform init
+        run: terraform init -backend-config="bucket=${AWS_S3_BUCKET}"
 
       - name: Terraform Validate
         run: terraform validate -no-color
