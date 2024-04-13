@@ -24,6 +24,6 @@ resource "github_actions_secret" "backup_aws_endpoint_url_s3" {
 
 resource "github_actions_secret" "backup_aws_s3_bucket" {
   repository      = var.github_infra_repo
-  secret_name     = "AWS_S3_BUCKET"
+  secret_name     = "BACKUP_AWS_S3_BUCKET"
   plaintext_value = b2_bucket.backup.bucket_name
 }
