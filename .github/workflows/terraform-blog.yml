@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - '.github/workflows/terraform-blog-push.yml'
+      - '.github/workflows/terraform-blog.yml'
       - 'terraform/blog/**'
 
   workflow_dispatch:
