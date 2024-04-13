@@ -63,6 +63,10 @@ variable "environment" {
   description = "Environment used in organization"
 }
 
+variable "gcp_project_id" {
+  type        = string
+}
+
 variable "github_app_installation_id" {
   type        = string
   description = "This ID not is the ID in URL is internal TFE ID, needs use data"

@@ -40,7 +40,9 @@ provider "github" {
   token = var.github_token
 }
 
-provider "google" {}
+provider "google" {
+  project = var.gcp_project_id
+}
 
 provider "sentry" {
   token = var.sentry_auth_token
