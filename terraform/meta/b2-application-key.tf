@@ -4,7 +4,8 @@ resource "b2_application_key" "backup" {
   capabilities = [
     "listFiles",
     "readFiles",
-    "writeFiles"
+    "writeFiles",
+    "deleteFiles"
   ]
 }
 
@@ -14,7 +15,8 @@ resource "b2_application_key" "state" {
   capabilities = [
     "listFiles",
     "readFiles",
-    "writeFiles"
+    "writeFiles",
+    "deleteFiles"
   ]
 }
 
