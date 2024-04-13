@@ -17,6 +17,10 @@ terraform {
       source  = "integrations/github"
       version = "5.33.0"
     }
+    google = {
+      source = "hashicorp/google"
+      version = "5.24.0"
+    }
     sentry = {
       source  = "jianyuan/sentry"
       version = "0.12.2"
@@ -28,13 +32,15 @@ provider "aiven" {}
 
 provider "b2" {}
 
+provider "cloudflare" {
+  api_token = var.cloudflare_api_token
+}
+
 provider "github" {
   token = var.github_token
 }
 
-provider "cloudflare" {
-  api_token = var.cloudflare_api_token
-}
+provider "google" {}
 
 provider "sentry" {
   token = var.sentry_auth_token
