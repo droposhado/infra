@@ -9,8 +9,10 @@ output "cloudflare" {
 
 output "domain" {
   value = {
-    "text" : var.domain,
-    "slug" : local.domain_slug
+    "default_ttl" : var.default_ttl,
+    "slug" : local.domain_slug,
+    "text" : var.domain
+    
   }
 }
 
