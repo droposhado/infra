@@ -40,6 +40,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.STATE_AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.STATE_AWS_SECRET_ACCESS_KEY }}
       AWS_ENDPOINT_URL_S3: ${{ secrets.STATE_AWS_ENDPOINT_URL_S3 }}
+      AWS_S3_ENDPOINT: ${{ secrets.STATE_AWS_ENDPOINT_URL_S3 }}
       AWS_S3_BUCKET: ${{ secrets.STATE_AWS_S3_BUCKET }}
       AWS_DEFAULT_REGION: ${{ secrets.STATE_AWS_DEFAULT_REGION }}
     defaults:
@@ -74,6 +75,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.STATE_AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.STATE_AWS_SECRET_ACCESS_KEY }}
       AWS_ENDPOINT_URL_S3: ${{ secrets.STATE_AWS_ENDPOINT_URL_S3 }}
+      AWS_S3_ENDPOINT: ${{ secrets.STATE_AWS_ENDPOINT_URL_S3 }}
       AWS_S3_BUCKET: ${{ secrets.STATE_AWS_S3_BUCKET }}
       AWS_DEFAULT_REGION: ${{ secrets.STATE_AWS_DEFAULT_REGION }}
     defaults:
@@ -96,6 +98,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.STATE_AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.STATE_AWS_SECRET_ACCESS_KEY }}
       AWS_ENDPOINT_URL_S3: ${{ secrets.STATE_AWS_ENDPOINT_URL_S3 }}
+      AWS_S3_ENDPOINT: ${{ secrets.STATE_AWS_ENDPOINT_URL_S3 }}
       AWS_S3_BUCKET: ${{ secrets.STATE_AWS_S3_BUCKET }}
       AWS_DEFAULT_REGION: ${{ secrets.STATE_AWS_DEFAULT_REGION }}
     defaults:
@@ -176,6 +179,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.STATE_AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.STATE_AWS_SECRET_ACCESS_KEY }}
       AWS_ENDPOINT_URL_S3: ${{ secrets.STATE_AWS_ENDPOINT_URL_S3 }}
+      AWS_S3_ENDPOINT: ${{ secrets.STATE_AWS_ENDPOINT_URL_S3 }}
       AWS_S3_BUCKET: ${{ secrets.STATE_AWS_S3_BUCKET }}
       AWS_DEFAULT_REGION: ${{ secrets.STATE_AWS_DEFAULT_REGION }}
     defaults:
