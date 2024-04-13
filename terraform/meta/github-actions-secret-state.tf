@@ -24,6 +24,6 @@ resource "github_actions_secret" "state_sabedoria_bucket_endpoint" {
 
 resource "github_actions_secret" "state_aws_s3_bucket" {
   repository      = var.github_infra_repo
-  secret_name     = "AWS_S3_BUCKET"
+  secret_name     = "STATE_AWS_S3_BUCKET"
   plaintext_value = b2_bucket.state.bucket_name
 }
