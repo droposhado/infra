@@ -15,9 +15,3 @@ resource "github_actions_secret" "cloudflare_project_name" {
   secret_name     = "CLOUDFLARE_PROJECT_NAME"
   plaintext_value = local.cloudflare_project_name
 }
-
-resource "github_actions_secret" "github_blog_repo" {
-  repository      = local.github_blog_repo
-  secret_name     = "OUTPUT"
-  plaintext_value = "public"
-}
