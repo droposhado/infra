@@ -7,13 +7,13 @@ resource "github_actions_secret" "backup_aws_default_region" {
 resource "github_actions_secret" "backup_aws_access_key_id" {
   repository      = var.github_infra_repo
   secret_name     = "BACKUP_AWS_ACCESS_KEY_ID"
-  plaintext_value = b2_application_key.state.application_key_id
+  plaintext_value = b2_application_key.backup.application_key_id
 }
 
 resource "github_actions_secret" "backup_aws_secret_access_key" {
   repository      = var.github_infra_repo
   secret_name     = "BACKUP_AWS_SECRET_ACCESS_KEY"
-  plaintext_value = b2_application_key.state.application_key
+  plaintext_value = b2_application_key.backup.application_key
 }
 
 resource "github_actions_secret" "backup_aws_endpoint_url_s3" {
