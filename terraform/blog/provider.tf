@@ -14,7 +14,7 @@ terraform {
 }
 
 provider "github" {
-  token = var.github_token
+  token = local.github_token
 }
 
 provider "cloudflare" {}
