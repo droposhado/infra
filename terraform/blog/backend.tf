@@ -1,5 +1,5 @@
 terraform {
   backend "gcs" {
-    key = "blog/terraform.tfstate"
+    prefix = "blog/terraform.tfstate"
   }
 }
