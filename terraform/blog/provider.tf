@@ -17,4 +17,6 @@ provider "github" {
   token = local.github_token
 }
 
-provider "cloudflare" {}
+provider "cloudflare" {
+  api_token = local.cloudflare_api_token
+}
