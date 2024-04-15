@@ -51,7 +51,7 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: '1.5.4'
-          # cli_config_credentials_token: ${{ secrets.tf_api_token }}
+          # cli_config_credentials_token: ${{ secrets.STATE_TF_API_TOKEN }}
 
       - name: Terraform Init
         run: terraform init -backend-config="bucket=${GCS_BUCKET}"
@@ -107,7 +107,7 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: '1.5.4'
-          # cli_config_credentials_token: ${{ secrets.tf_api_token }}
+          # cli_config_credentials_token: ${{ secrets.STATE_TF_API_TOKEN }}
 
       - name: Terraform Init
         run: terraform init -backend-config="bucket=${GCS_BUCKET}"
@@ -180,7 +180,7 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: '1.5.4'
-          # cli_config_credentials_token: ${{ secrets.tf_api_token }}
+          # cli_config_credentials_token: ${{ secrets.STATE_TF_API_TOKEN }}
 
       - name: Terraform Format
         run: terraform fmt -check

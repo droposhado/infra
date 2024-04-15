@@ -9,3 +9,12 @@ resource "github_actions_secret" "state_gcs_bucket" {
   secret_name     = "STATE_GCS_BUCKET"
   plaintext_value = google_storage_bucket.state.name
 }
+
+resource "github_actions_secret" "state_tf_api_token" {
+  repository      = var.github_infra_repo
+  secret_name     = "STATE_TF_API_TOKEN"
+  plaintext_value = var.tfe_personal_token
+}
+
+
+
