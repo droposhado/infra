@@ -1,4 +1,4 @@
-name: terraform blog
+name: push terraform blog
 
 on:
   push:
