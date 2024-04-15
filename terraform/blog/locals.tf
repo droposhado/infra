@@ -6,4 +6,5 @@ locals {
   domain                  = data.terraform_remote_state.meta.outputs.domain.text
   domain_default_ttl      = data.terraform_remote_state.meta.outputs.domain.default_ttl
   github_blog_repo        = data.terraform_remote_state.meta.outputs.github.blog
+  github_token            = data.terraform_remote_state.meta.outputs.github.token
 }
