@@ -22,6 +22,7 @@ output "github" {
     "token" : var.github_token,
     "blog" : var.github_blog_repo,
     "infra" : var.github_infra_repo,
+    "news" : var.github_news_repo,
     "username" : var.github_user
   }
 }

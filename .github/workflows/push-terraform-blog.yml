@@ -227,7 +227,7 @@ jobs:
         run: terraform validate -no-color
 
       - name: Terraform plan
-        run: TF_LOG=debug terraform plan
+        run: terraform plan
 
       - name: Terraform apply
         run: terraform apply -auto-approve
