@@ -19,6 +19,7 @@ output "domain" {
 
 output "github" {
   value = {
+    "token" : var.github_token,
     "blog" : var.github_blog_repo,
     "infra" : var.github_infra_repo,
     "username" : var.github_user
