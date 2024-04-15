@@ -64,7 +64,11 @@ variable "environment" {
 }
 
 variable "gcp_project_id" {
-  type        = string
+  type = string
+}
+
+variable "gcp_region" {
+  type = string
 }
 
 variable "github_app_installation_id" {
