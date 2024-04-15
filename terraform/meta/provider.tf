@@ -41,7 +41,9 @@ provider "github" {
 }
 
 provider "google" {
-  project = var.gcp_project_id
+  credentials = var.gcp_google_credentials
+  project     = var.gcp_project_id
+  region      = var.gcp_region
 }
 
 provider "sentry" {

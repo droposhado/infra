@@ -63,6 +63,10 @@ variable "environment" {
   description = "Environment used in organization"
 }
 
+variable "gcp_google_credentials" {
+  type = string
+}
+
 variable "gcp_project_id" {
   type = string
 }
