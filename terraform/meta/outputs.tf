@@ -2,6 +2,7 @@ output "cloudflare" {
   sensitive = true
   value = {
     "account_id" : data.cloudflare_zone.main.account_id,
+    "api_token" : var.cloudflare_api_token,
     "zone_id" : data.cloudflare_zone.main.id
     
   }
