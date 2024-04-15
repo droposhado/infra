@@ -39,6 +39,7 @@ jobs:
     env:
       GOOGLE_CREDENTIALS: ${{ secrets.STATE_GOOGLE_CREDENTIALS }}
       GCS_BUCKET: ${{ secrets.STATE_GCS_BUCKET }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     defaults:
       run:
         working-directory: terraform/blog
@@ -70,6 +71,7 @@ jobs:
     env:
       GOOGLE_CREDENTIALS: ${{ secrets.STATE_GOOGLE_CREDENTIALS }}
       GCS_BUCKET: ${{ secrets.STATE_GCS_BUCKET }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     defaults:
       run:
         working-directory: terraform/blog
@@ -89,6 +91,7 @@ jobs:
     env:
       GOOGLE_CREDENTIALS: ${{ secrets.STATE_GOOGLE_CREDENTIALS }}
       GCS_BUCKET: ${{ secrets.STATE_GCS_BUCKET }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     defaults:
       run:
         working-directory: terraform/blog
@@ -168,6 +171,7 @@ jobs:
     env:
       GOOGLE_CREDENTIALS: ${{ secrets.STATE_GOOGLE_CREDENTIALS }}
       GCS_BUCKET: ${{ secrets.STATE_GCS_BUCKET }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     defaults:
       run:
         working-directory: terraform/blog
