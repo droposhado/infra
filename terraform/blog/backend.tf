@@ -1,5 +1,7 @@
 terraform {
   backend "gcs" {
-    prefix = "blog/terraform.tfstate"
+
+    # only create a path
+    prefix = "blog"
   }
 }
