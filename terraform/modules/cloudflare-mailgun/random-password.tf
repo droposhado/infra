@@ -3,7 +3,7 @@ resource "random_password" "main" {
     fqdn   = local.fqdn
     region = var.mailgun_region
   }
-  length  = 256
+  length  = 32 # sad, mailgun limit
   numeric = true
   upper   = true
   lower   = true
