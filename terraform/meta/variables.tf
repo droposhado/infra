@@ -91,6 +91,18 @@ variable "github_infra_repo" {
   description = "Name of repository that host project with Terraform files"
 }
 
+variable "github_lp_repo" {
+  type        = string
+  default     = "lp"
+  description = "Name of repostory with landing pages and promotions"
+}
+
+variable "github_maps_repo" {
+  type        = string
+  default     = "maps"
+  description = "Name of repostory with maps frontend application"
+}
+
 variable "github_news_repo" {
   type        = string
   default     = "news"
