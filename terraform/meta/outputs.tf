@@ -4,7 +4,7 @@ output "cloudflare" {
     "account_id" : data.cloudflare_zone.main.account_id,
     "api_token" : var.cloudflare_api_token,
     "zone_id" : data.cloudflare_zone.main.id
-    
+
   }
 }
 
@@ -13,7 +13,7 @@ output "domain" {
     "default_ttl" : var.default_ttl,
     "slug" : local.domain_slug,
     "text" : var.domain
-    
+
   }
 }
 
@@ -26,6 +26,10 @@ output "github" {
     "username" : var.github_user
   }
 }
+
+# output "mailgun" {
+#   value = 
+# }
 
 output "postgresql" {
   sensitive = true

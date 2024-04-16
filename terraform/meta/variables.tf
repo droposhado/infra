@@ -24,7 +24,7 @@ variable "aiven_pg_version" {
 }
 
 variable "aiven_project_name" {
-  type    = string
+  type = string
 }
 
 variable "aiven_termination_protection" {
@@ -110,6 +110,11 @@ variable "github_token" {
 variable "github_verification_secret" {
   type        = string
   description = "Secret used to verify webhooks"
+}
+
+variable "mailgun_api_key" {
+  type        = string
+  description = "Authentication token generated to Mailgun"
 }
 
 variable "sentry_auth_token" {
