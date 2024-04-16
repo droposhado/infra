@@ -19,9 +19,9 @@ resource "cloudflare_record" "sending" {
 resource "cloudflare_record" "receiving" {
   for_each = {
     for record in mailgun_domain.main.receiving_records_set : record.id => {
-      type      = record.record_type
-      priority  = record.priority
-      value     = record.value
+      type     = record.record_type
+      priority = record.priority
+      value    = record.value
     }
   }
 
@@ -29,8 +29,8 @@ resource "cloudflare_record" "receiving" {
   name     = "${var.subdomain}.${var.domain}"
   value    = each.value.value
   priority = each.value.priority
-  zone_id = var.cloudflare_zone_id
-  proxied = false
+  zone_id  = var.cloudflare_zone_id
+  proxied  = false
 
   depends_on = [mailgun_domain.main]
 }
