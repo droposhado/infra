@@ -1,4 +1,4 @@
-resource "random_password" "gotify" {
+resource "random_password" "main" {
   keepers = {
     domain      = var.domain
     environment = var.environment

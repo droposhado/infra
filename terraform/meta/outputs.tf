@@ -18,6 +18,7 @@ output "domain" {
 }
 
 output "github" {
+  sensitive = true
   value = {
     "token" : var.github_token,
     "blog" : var.github_blog_repo,
