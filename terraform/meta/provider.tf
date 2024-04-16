@@ -6,7 +6,7 @@ terraform {
       version = "4.15.0"
     }
     b2 = {
-      source = "Backblaze/b2"
+      source  = "Backblaze/b2"
       version = "0.8.9"
     }
     cloudflare = {
@@ -18,8 +18,12 @@ terraform {
       version = "5.33.0"
     }
     google = {
-      source = "hashicorp/google"
+      source  = "hashicorp/google"
       version = "5.24.0"
+    }
+    mailgun = {
+      source  = "wgebis/mailgun"
+      version = "0.7.5"
     }
     sentry = {
       source  = "jianyuan/sentry"
@@ -44,6 +48,10 @@ provider "google" {
   credentials = var.gcp_google_credentials
   project     = var.gcp_project_id
   region      = var.gcp_region
+}
+
+provider "mailgun" {
+  api_key = var.mailgun_api_key
 }
 
 provider "sentry" {
