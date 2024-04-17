@@ -30,9 +30,15 @@ output "github" {
   }
 }
 
-# output "mailgun" {
-#   value = 
-# }
+output "mailgun" {
+  sensitive = true
+  value = {
+    "domain" : module.mailgun_mail.domain,
+    "username" : module.mailgun_mail.username,
+    "password" : module.mailgun_mail.password,
+    "region" : module.mailgun_mail.region
+  }
+}
 
 output "postgresql" {
   sensitive = true
