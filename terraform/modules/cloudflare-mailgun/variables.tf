@@ -20,6 +20,16 @@ variable "mailgun_region" {
   default = "us"
 }
 
+variable "mailgun_smtp_host" {
+  type    = string
+  default = "smtp.mailgun.org"
+}
+
+variable "mailgun_smtp_port" {
+  type    = number
+  default = 587
+}
+
 variable "mailgun_spam_action" {
   type    = string
   default = "disabled"
