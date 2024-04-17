@@ -36,7 +36,9 @@ output "mailgun" {
     "domain" : module.mailgun_mail.domain,
     "username" : module.mailgun_mail.username,
     "password" : module.mailgun_mail.password,
-    "region" : module.mailgun_mail.region
+    "region" : module.mailgun_mail.region,
+    "host" : module.mailgun_mail.host,
+    "port" : module.mailgun_mail.port
   }
 }
 
