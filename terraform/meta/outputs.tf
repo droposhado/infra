@@ -68,3 +68,14 @@ output "sentry" {
     }
   }
 }
+
+output "wooka" {
+  sensitive = true
+  value = {
+    "bot_admins" : var.wooka_bot_admins,
+    "bot_alt_prefixes" : var.wooka_bot_alt_prefixes,
+    "zulip_email" : var.wooka_zulip_email,
+    "zulip_key" : var.wooka_zulip_key,
+    "zulip_site" : var.wooka_zulip_site
+  }
+}
