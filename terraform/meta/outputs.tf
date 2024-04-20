@@ -30,6 +30,15 @@ output "github" {
   }
 }
 
+output "google" {
+  sensitive = true
+  value = {
+    "credentials" : var.gcp_google_credentials
+    "project" : var.gcp_project_id
+    "region" : var.gcp_region
+  }
+}
+
 output "mailgun" {
   sensitive = true
   value = {
@@ -57,6 +66,7 @@ output "postgresql" {
 output "sentry" {
   sensitive = true
   value = {
+    "token" : var.sentry_auth_token,
     "org" : {
       "id" : sentry_organization.main.id,
       "slug" : sentry_organization.main.slug
