@@ -34,6 +34,7 @@ output "google" {
   sensitive = true
   value = {
     "credentials" : var.gcp_google_credentials
+    "email" : var.gcp_email,
     "project" : var.gcp_project_id
     "region" : var.gcp_region
   }
