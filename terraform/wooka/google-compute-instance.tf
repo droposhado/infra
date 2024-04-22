@@ -2,6 +2,8 @@ resource "google_compute_instance" "main" {
   name         = module.instance_name.name
   machine_type = "e2-micro"
 
+  allow_stopping_for_update = true
+
   boot_disk {
     initialize_params {
       image = module.gce_vm_container.source_image
@@ -16,12 +18,9 @@ resource "google_compute_instance" "main" {
 
   metadata = {
     gce-container-declaration = module.gce_vm_container.metadata_value
-    google-logging-enabled    = "true"
-    google-monitoring-enabled = "true"
-  }
-
-  labels = {
-    container-vm = module.gce_vm_container.vm_container_label
+    google-logging-enabled    = true
+    google-monitoring-enabled = true
+    block-project-ssh-keys    = false
   }
 
   service_account {
@@ -29,5 +28,10 @@ resource "google_compute_instance" "main" {
     scopes = [
       "https://www.googleapis.com/auth/cloud-platform",
     ]
+  }
+
+  shielded_instance_config {
+    enable_secure_boot = true
+    enable_vtpm        = true
   }
 }
