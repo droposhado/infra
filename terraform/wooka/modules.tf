@@ -46,6 +46,12 @@ module "network_name" {
   keepers   = {}
 }
 
+module "network_firewall_name" {
+  source    = "../modules/name-gen"
+  uppercase = false
+  keepers   = {}
+}
+
 module "subnetwork_name" {
   source    = "../modules/name-gen"
   uppercase = false
