@@ -5,8 +5,12 @@ resource "google_compute_instance" "main" {
   allow_stopping_for_update = true
 
   boot_disk {
+    auto_delete       = true
+    kms_key_self_link = google_kms_crypto_key.main.self_link
     initialize_params {
       image = module.gce_vm_container.source_image
+      size  = 10
+      type  = "pd-standard"
     }
   }
 
