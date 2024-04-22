@@ -13,7 +13,9 @@ resource "google_compute_instance" "main" {
   network_interface {
     network    = google_compute_network.main.self_link
     subnetwork = google_compute_subnetwork.main.self_link
-    access_config {}
+    access_config {
+      network_tier = "STANDARD"
+    }
   }
 
   metadata = {
