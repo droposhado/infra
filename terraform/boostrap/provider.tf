@@ -36,24 +36,15 @@ provider "aiven" {}
 
 provider "b2" {}
 
-provider "cloudflare" {
-  api_token = var.cloudflare_api_token
-}
+provider "cloudflare" {}
 
-provider "github" {
-  token = var.github_token
-}
+provider "github" {}
 
 provider "google" {
-  credentials = var.gcp_google_credentials
   project     = var.gcp_project_id
   region      = var.gcp_region
 }
 
-provider "mailgun" {
-  api_key = var.mailgun_api_key
-}
+provider "mailgun" {}
 
-provider "sentry" {
-  token = var.sentry_auth_token
-}
+provider "sentry" {}
