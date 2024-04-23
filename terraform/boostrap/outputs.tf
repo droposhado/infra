@@ -1,5 +1,6 @@
 
 output "domain" {
+  description = "Defaults values related with domain"
   value = {
     "default_ttl" : var.default_ttl,
     "slug" : local.domain_slug,
@@ -9,6 +10,7 @@ output "domain" {
 }
 
 output "mailgun" {
+  description = "Information to connect and send emails"
   sensitive = true
   value = {
     "domain" : module.mailgun_mail.domain,
@@ -21,6 +23,7 @@ output "mailgun" {
 }
 
 output "postgresql" {
+  description = "Admin information about PostgreSQL instance"
   sensitive = true
   value = {
     "host" : module.aiven_pg.host,
@@ -33,6 +36,7 @@ output "postgresql" {
 }
 
 output "sentry" {
+  description = "Information about Sentry org"
   sensitive = true
   value = {
     "org" : {
