@@ -11,7 +11,7 @@ output "domain" {
 
 output "mailgun" {
   description = "Information to connect and send emails"
-  sensitive = true
+  sensitive   = true
   value = {
     "domain" : module.mailgun_mail.domain,
     "username" : module.mailgun_mail.username,
@@ -24,7 +24,7 @@ output "mailgun" {
 
 output "postgresql" {
   description = "Admin information about PostgreSQL instance"
-  sensitive = true
+  sensitive   = true
   value = {
     "host" : module.aiven_pg.host,
     "port" : module.aiven_pg.port,
@@ -37,7 +37,7 @@ output "postgresql" {
 
 output "sentry" {
   description = "Information about Sentry org"
-  sensitive = true
+  sensitive   = true
   value = {
     "org" : {
       "id" : sentry_organization.main.id,

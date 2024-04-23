@@ -1,41 +1,41 @@
 variable "aiven_cloud_name" {
-  type    = string
-  default = "do-nyc"
+  type        = string
+  default     = "do-nyc"
   description = "Cloud and region (<cloud>-<region>) to deploy service instance"
 }
 
 variable "aiven_maintenance_window_dow" {
-  type    = string
-  default = "tuesday"
+  type        = string
+  default     = "tuesday"
   description = "Day of week, to maintenance"
 }
 
 variable "aiven_maintenance_window_time" {
-  type    = string
-  default = "10:00:00"
+  type        = string
+  default     = "10:00:00"
   description = "Hour to maintenance in format HH:MM:SS"
 }
 
 variable "aiven_plan" {
-  type    = string
-  default = "free-1-5gb"
+  type        = string
+  default     = "free-1-5gb"
   description = "Default value is free plan, hobbyst is paid plan"
 }
 
 variable "aiven_pg_version" {
-  type    = number
-  default = 14
+  type        = number
+  default     = 14
   description = "PostgreSQL version to deploy instance, major number only"
 }
 
 variable "aiven_project_name" {
-  type = string
+  type        = string
   description = "Project name in Aiven"
 }
 
 variable "aiven_termination_protection" {
-  type    = bool
-  default = false
+  type        = bool
+  default     = false
   description = "Aiven platform protection"
 }
 
@@ -47,8 +47,8 @@ variable "aiven_termination_protection" {
 # }
 
 variable "default_ttl" {
-  type    = string
-  default = 3600
+  type        = string
+  default     = 3600
   description = "Time in seconds to update DNS configuration"
 }
 
@@ -58,12 +58,12 @@ variable "domain" {
 }
 
 variable "gcp_project_id" {
-  type = string
+  type        = string
   description = "Project name slug used in GCP"
 }
 
 variable "gcp_region" {
-  type = string
+  type        = string
   description = "GCP home region to use"
 }
 
