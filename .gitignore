@@ -1,6 +1,7 @@
 *.state
 *.state*
 docs/diagrams/*.png
+.infisical.json
 
 # Created by https://www.toptal.com/developers/gitignore/api/vim,helm,macos,linux,packer,python,windows,ansible,terraform,go
 # Edit at https://www.toptal.com/developers/gitignore?templates=vim,helm,macos,linux,packer,python,windows,ansible,terraform,go
