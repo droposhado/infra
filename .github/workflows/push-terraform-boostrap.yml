@@ -123,10 +123,10 @@ jobs:
           tflint_version: ${{ inputs.tflint_version }}
 
       - name: Show version
-        run: infisical run --env prod tflint --version
+        run: tflint --version
 
       - name: Init TFLint
-        run: infisical run --env prod tflint --init
+        run: infisical run --env prod -- tflint --init
         env:
           # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
           GITHUB_TOKEN: ${{ github.token }}
@@ -135,7 +135,7 @@ jobs:
 
       - name: Run TFLint
         # if: inputs.tflint_upload_sarif == 'false'
-        run: tflint -f compact
+        run: infisical run --env prod -- tflint -f compact
 
       # Upload scanning
 
@@ -197,7 +197,7 @@ jobs:
         run: infisical run --env prod --command 'terraform init -backend-config="bucket=${GCS_BUCKET}"'
 
       - name: Terraform Validate
-        run: infisical run --env prod terraform validate -no-color
+        run: infisical run --env prod -- terraform validate -no-color
 
   terraform-apply:
     needs:
@@ -230,10 +230,10 @@ jobs:
         run: infisical run --env prod --command 'terraform init -backend-config="bucket=${GCS_BUCKET}"'
 
       - name: Terraform Validate
-        run: infisical run --env prod terraform validate -no-color
+        run: infisical run --env prod -- terraform validate -no-color
 
       - name: Terraform plan
-        run: infisical run --env prod terraform plan
+        run: infisical run --env prod -- terraform plan
 
       - name: Terraform apply
-        run: infisical run --env prod terraform apply -auto-approve
+        run: infisical run --env prod -- terraform apply -auto-approve
