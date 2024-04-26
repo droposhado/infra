@@ -1,10 +1,7 @@
-data "terraform_remote_state" "meta" {
-  backend = "remote"
+data "terraform_remote_state" "bootstrap" {
+  backend = "gcs"
 
-  config = {
-    organization = "droposhado-org"
-    workspaces = {
-      name = "meta"
-    }
+  config {
+    prefix = "bootstrap"
   }
 }
