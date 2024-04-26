@@ -1,14 +1,5 @@
 resource "random_password" "main" {
-  keepers = {
-    domain      = var.domain
-    environment = var.environment
-  }
-
-  length           = 128
-  special          = true
-  override_special = "-_"
-
-  lifecycle {
-    prevent_destroy = true
-  }
+  keepers = var.keepers
+  length  = var.length
+  special = var.special
 }
