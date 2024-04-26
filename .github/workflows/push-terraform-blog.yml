@@ -37,9 +37,7 @@ jobs:
   checkov:
     runs-on: ubuntu-latest
     env:
-      GOOGLE_CREDENTIALS: ${{ secrets.STATE_GOOGLE_CREDENTIALS }}
-      GCS_BUCKET: ${{ secrets.STATE_GCS_BUCKET }}
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      INFISICAL_TOKEN: ${{ secrets.INFISICAL_TOKEN }}
     defaults:
       run:
         working-directory: terraform/blog
@@ -52,10 +50,14 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: '1.5.4'
-          cli_config_credentials_token: ${{ secrets.STATE_TF_API_TOKEN }}
+
+      - name: Install Infisical
+        run: |
+          curl -1sLf 'https://dl.cloudsmith.io/public/infisical/infisical-cli/setup.deb.sh' | sudo -E bash
+          sudo apt-get update && sudo apt-get install -y infisical
 
       - name: Terraform Init
-        run: terraform init -backend-config="bucket=${GCS_BUCKET}"
+        run: infisical run --env prod --command 'terraform init -backend-config="bucket=${GCS_BUCKET}"'
 
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12
@@ -69,9 +71,7 @@ jobs:
   tfsec:
     runs-on: ubuntu-latest
     env:
-      GOOGLE_CREDENTIALS: ${{ secrets.STATE_GOOGLE_CREDENTIALS }}
-      GCS_BUCKET: ${{ secrets.STATE_GCS_BUCKET }}
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      INFISICAL_TOKEN: ${{ secrets.INFISICAL_TOKEN }}
     defaults:
       run:
         working-directory: terraform/blog
@@ -89,9 +89,7 @@ jobs:
   tflint:
     runs-on: ubuntu-latest
     env:
-      GOOGLE_CREDENTIALS: ${{ secrets.STATE_GOOGLE_CREDENTIALS }}
-      GCS_BUCKET: ${{ secrets.STATE_GCS_BUCKET }}
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      INFISICAL_TOKEN: ${{ secrets.INFISICAL_TOKEN }}
     defaults:
       run:
         working-directory: terraform/blog
@@ -110,10 +108,14 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: '1.5.4'
-          cli_config_credentials_token: ${{ secrets.STATE_TF_API_TOKEN }}
+
+      - name: Install Infisical
+        run: |
+          curl -1sLf 'https://dl.cloudsmith.io/public/infisical/infisical-cli/setup.deb.sh' | sudo -E bash
+          sudo apt-get update && sudo apt-get install -y infisical
 
       - name: Terraform Init
-        run: terraform init -backend-config="bucket=${GCS_BUCKET}"
+        run: infisical run --env prod --command 'terraform init -backend-config="bucket=${GCS_BUCKET}"'
 
       - uses: terraform-linters/setup-tflint@v3
         name: Setup TFLint
@@ -124,7 +126,7 @@ jobs:
         run: tflint --version
 
       - name: Init TFLint
-        run: tflint --init
+        run: infisical run --env prod -- tflint --init
         env:
           # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
           GITHUB_TOKEN: ${{ github.token }}
@@ -133,7 +135,7 @@ jobs:
 
       - name: Run TFLint
         # if: inputs.tflint_upload_sarif == 'false'
-        run: tflint -f compact
+        run: infisical run --env prod -- tflint -f compact
 
       # Upload scanning
 
@@ -169,9 +171,7 @@ jobs:
       - tflint
     runs-on: ubuntu-latest
     env:
-      GOOGLE_CREDENTIALS: ${{ secrets.STATE_GOOGLE_CREDENTIALS }}
-      GCS_BUCKET: ${{ secrets.STATE_GCS_BUCKET }}
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      INFISICAL_TOKEN: ${{ secrets.INFISICAL_TOKEN }}
     defaults:
       run:
         working-directory: terraform/blog
@@ -184,25 +184,27 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: '1.5.4'
-          cli_config_credentials_token: ${{ secrets.STATE_TF_API_TOKEN }}
+
+      - name: Install Infisical
+        run: |
+          curl -1sLf 'https://dl.cloudsmith.io/public/infisical/infisical-cli/setup.deb.sh' | sudo -E bash
+          sudo apt-get update && sudo apt-get install -y infisical
 
       - name: Terraform Format
         run: terraform fmt -check
 
       - name: Terraform Init
-        run: terraform init -backend-config="bucket=${GCS_BUCKET}"
+        run: infisical run --env prod --command 'terraform init -backend-config="bucket=${GCS_BUCKET}"'
 
       - name: Terraform Validate
-        run: terraform validate -no-color
+        run: infisical run --env prod -- terraform validate -no-color
 
   terraform-apply:
     needs:
       - terraform-native-checks
     runs-on: ubuntu-latest
     env:
-      GOOGLE_CREDENTIALS: ${{ secrets.STATE_GOOGLE_CREDENTIALS }}
-      GCS_BUCKET: ${{ secrets.STATE_GCS_BUCKET }}
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      INFISICAL_TOKEN: ${{ secrets.INFISICAL_TOKEN }}
     defaults:
       run:
         working-directory: terraform/blog
@@ -215,19 +217,23 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: '1.5.4'
-          cli_config_credentials_token: ${{ secrets.STATE_TF_API_TOKEN }}
+
+      - name: Install Infisical
+        run: |
+          curl -1sLf 'https://dl.cloudsmith.io/public/infisical/infisical-cli/setup.deb.sh' | sudo -E bash
+          sudo apt-get update && sudo apt-get install -y infisical
 
       - name: Terraform Format
         run: terraform fmt -check
 
       - name: Terraform Init
-        run: terraform init -backend-config="bucket=${GCS_BUCKET}"
+        run: infisical run --env prod --command 'terraform init -backend-config="bucket=${GCS_BUCKET}"'
 
       - name: Terraform Validate
-        run: terraform validate -no-color
+        run: infisical run --env prod -- terraform validate -no-color
 
       - name: Terraform plan
-        run: terraform plan
+        run: infisical run --env prod -- terraform plan
 
       - name: Terraform apply
-        run: terraform apply -auto-approve
+        run: infisical run --env prod -- terraform apply -auto-approve
