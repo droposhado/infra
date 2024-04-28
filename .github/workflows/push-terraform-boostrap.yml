@@ -1,23 +1,22 @@
-name: push terraform boostrap
+name: push terraform bootstrap
 
 on:
   push:
     branches:
       - main
     paths:
-      - '.github/workflows/push-terraform-boostrap.yml'
-      - 'terraform/boostrap/**'
+      - ".github/workflows/push-terraform-bootstrap.yml"
+      - "terraform/bootstrap/**"
 
   workflow_dispatch:
 
 jobs:
-
   # terrascan:
   #   name: terrascan-action
   #   runs-on: ubuntu-latest
   #   defaults:
   #     run:
-  #       working-directory: terraform/boostrap
+  #       working-directory: terraform/bootstrap
   #   steps:
   #     - name: Checkout repository
   #       uses: actions/checkout@v3
@@ -30,7 +29,7 @@ jobs:
   #         iac_version: ${{ inputs.iac_version }}
   #         policy_type: ${{ inputs.policy_type }}
   #         verbose: ${{ inputs.verbose }}
-  #         iac_dir: terraform/boostrap
+  #         iac_dir: terraform/bootstrap
   #         policy_path: ${{ inputs.policy_path }}
   #         skip_rules: ${{ inputs.skip_rules }}
 
@@ -40,7 +39,7 @@ jobs:
       INFISICAL_TOKEN: ${{ secrets.INFISICAL_TOKEN }}
     defaults:
       run:
-        working-directory: terraform/boostrap
+        working-directory: terraform/bootstrap
 
     steps:
       - uses: actions/checkout@v3
@@ -49,7 +48,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: '1.5.4'
+          terraform_version: "1.5.4"
 
       - name: Install Infisical
         run: |
@@ -62,8 +61,8 @@ jobs:
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12
         with:
-          directory: terraform/boostrap
-          framework: terraform 
+          directory: terraform/bootstrap
+          framework: terraform
           output_format: cli
           output_file_path: console
           skip_check: CKV_TF_1
@@ -74,17 +73,16 @@ jobs:
       INFISICAL_TOKEN: ${{ secrets.INFISICAL_TOKEN }}
     defaults:
       run:
-        working-directory: terraform/boostrap
+        working-directory: terraform/bootstrap
 
     steps:
-
       - uses: actions/checkout@v3
         name: Checkout source code
 
       - name: tfsec
         uses: aquasecurity/tfsec-action@v1.0.0
         with:
-          working_directory: terraform/boostrap
+          working_directory: terraform/bootstrap
 
   tflint:
     runs-on: ubuntu-latest
@@ -92,7 +90,7 @@ jobs:
       INFISICAL_TOKEN: ${{ secrets.INFISICAL_TOKEN }}
     defaults:
       run:
-        working-directory: terraform/boostrap
+        working-directory: terraform/bootstrap
 
     steps:
       - uses: actions/checkout@v3
@@ -107,7 +105,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: '1.5.4'
+          terraform_version: "1.5.4"
 
       - name: Install Infisical
         run: |
@@ -174,7 +172,7 @@ jobs:
       INFISICAL_TOKEN: ${{ secrets.INFISICAL_TOKEN }}
     defaults:
       run:
-        working-directory: terraform/boostrap
+        working-directory: terraform/bootstrap
 
     steps:
       - name: Checkout
@@ -183,7 +181,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: '1.5.4'
+          terraform_version: "1.5.4"
 
       - name: Install Infisical
         run: |
@@ -207,7 +205,7 @@ jobs:
       INFISICAL_TOKEN: ${{ secrets.INFISICAL_TOKEN }}
     defaults:
       run:
-        working-directory: terraform/boostrap
+        working-directory: terraform/bootstrap
 
     steps:
       - name: Checkout
@@ -216,7 +214,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: '1.5.4'
+          terraform_version: "1.5.4"
 
       - name: Install Infisical
         run: |
