@@ -29,6 +29,10 @@ terraform {
       source  = "jianyuan/sentry"
       version = "0.12.2"
     }
+    tls = {
+      source  = "hashicorp/tls"
+      version = "4.0.5"
+    }
   }
 }
 
@@ -48,3 +52,5 @@ provider "google" {
 provider "mailgun" {}
 
 provider "sentry" {}
+
+provider "tls" {}
