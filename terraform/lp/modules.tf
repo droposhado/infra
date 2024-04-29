@@ -1,7 +1,11 @@
 module "lp_project" {
   source     = "../modules/cloudflare-pages-project"
-  account_id = local.cloudflare_account_id
   domain     = local.domain
   subdomain  = "lp"
-  zone_id    = local.cloudflare_zone_id
+}
+
+module "lp_deploy_token" {
+  source           = "../modules/cloudflare-pages-token"
+  domain           = local.domain
+  allowed_ip_range = data.github_ip_ranges.main.actions
 }
