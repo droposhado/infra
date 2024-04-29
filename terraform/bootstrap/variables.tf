@@ -67,6 +67,12 @@ variable "gcp_region" {
   description = "GCP home region to use"
 }
 
+variable "github_infra_public_repo" {
+  type        = string
+  description = "Name of repository that mirror infra project"
+  default     = "infra"
+}
+
 variable "github_infra_repo" {
   type        = string
   description = "Name of repository that host project with Terraform files"
