@@ -7,7 +7,7 @@ resource "github_actions_secret" "cloudflare_account_id" {
 resource "github_actions_secret" "cloudflare_api_token" {
   repository      = var.github_lp_repo
   secret_name     = "CLOUDFLARE_API_TOKEN"
-  plaintext_value = local.cloudflare_project_token
+  encrypted_value = base64encode(local.cloudflare_project_token)
 }
 
 resource "github_actions_secret" "cloudflare_project_name" {
