@@ -1,7 +1,7 @@
 module "lp_project" {
-  source     = "../modules/cloudflare-pages-project"
-  domain     = local.domain
-  subdomain  = "lp"
+  source    = "../modules/cloudflare-pages-project"
+  domain    = local.domain
+  subdomain = "lp"
 }
 
 module "lp_deploy_token" {
