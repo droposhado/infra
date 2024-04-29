@@ -1,6 +1,6 @@
 resource "sentry_key" "main" {
-  organization = sentry_organization.main.slug
+  organization = var.org_slug
 
   project = sentry_project.main.slug
-  name    = "tf-managed-${var.project_slug}-${var.project_platform}"
+  name    = "tf-managed-${sentry_project.main.slug}-${var.project_platform}"
 }
