@@ -5,14 +5,5 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "4.29.0"
     }
-    github = {
-      source  = "integrations/github"
-      version = "5.33.0"
-    }
-
   }
 }
-
-provider "github" {}
-
-provider "cloudflare" {}
