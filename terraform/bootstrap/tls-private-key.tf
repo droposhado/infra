@@ -1,3 +1,4 @@
 resource "tls_private_key" "mirror" {
-  algorithm = "ED25519"
+  algorithm = "RSA"
+  rsa_bits  = 4096
 }
