@@ -47,7 +47,7 @@ output "sentry" {
     "team" : {
       "id" : sentry_team.main.id,
       "internal_id" : sentry_team.main.internal_id,
-      "slug" : sentry_organization.main.slug
+      "slug" : sentry_team.main.slug
     }
   }
 }
