@@ -83,17 +83,6 @@ variable "github_verification_secret" {
   description = "Secret used to verify webhooks"
 }
 
-variable "infra_ssh_private" {
-  type        = string
-  description = "private ssh key in base64"
-}
-
-variable "infra_ssh_public" {
-  type        = string
-  description = "public ssh key"
-}
-
-
 variable "zulip_webhook_github" {
   type        = string
   description = "Webhook URL to Zulip integration"
