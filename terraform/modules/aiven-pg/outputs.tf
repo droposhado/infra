@@ -1,5 +1,5 @@
 output "dbname" {
-  value = aiven_pg.main.pg.dbname
+  value = aiven_pg.main.pg[0].dbname
 }
 
 output "host" {
