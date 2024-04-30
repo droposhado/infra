@@ -28,6 +28,7 @@ output "postgresql" {
   value = {
     "host" : module.aiven_pg.host,
     "port" : module.aiven_pg.port,
+    "dbname" : module.aiven_pg.dbname,
     "admin" : {
       "user" : module.aiven_pg.username,
       "password" : module.aiven_pg.password
