@@ -1,4 +1,4 @@
-resource "aiven_pg" "pg" {
+resource "aiven_pg" "main" {
   project                 = data.aiven_project.main.project
   cloud_name              = var.cloud_name
   plan                    = var.plan

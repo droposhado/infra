@@ -1,23 +1,23 @@
 output "dbname" {
-  value = aiven_pg.pg.dbname
+  value = aiven_pg.main.pg.dbname
 }
 
 output "host" {
-  value = aiven_pg.pg.service_host
+  value = aiven_pg.main.service_host
 }
 
 output "password" {
-  value = aiven_pg.pg.service_password
+  value = aiven_pg.main.service_password
 }
 
 output "port" {
-  value = aiven_pg.pg.service_port
+  value = aiven_pg.main.service_port
 }
 
 output "state" {
-  value = aiven_pg.pg.state
+  value = aiven_pg.main.state
 }
 
 output "username" {
-  value = aiven_pg.pg.service_username
+  value = aiven_pg.main.service_username
 }
