@@ -1,3 +1,7 @@
+output "dbname" {
+  value = aiven_pg.pg.dbname
+}
+
 output "host" {
   value = aiven_pg.pg.service_host
 }
