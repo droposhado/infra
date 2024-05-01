@@ -117,7 +117,7 @@ jobs:
       - name: Terraform Init
         run: infisical run --env prod --command 'terraform init -backend-config="bucket=${GCS_BUCKET}"'
 
-      - uses: terraform-linters/setup-tflint@v3
+      - uses: terraform-linters/setup-tflint@v4
         name: Setup TFLint
         with:
           tflint_version: ${{ inputs.tflint_version }}
