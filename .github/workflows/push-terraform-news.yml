@@ -82,7 +82,7 @@ jobs:
         name: Checkout source code
 
       - name: tfsec
-        uses: aquasecurity/tfsec-action@v1.0.0
+        uses: aquasecurity/tfsec-action@v1.0.3
         with:
           working_directory: terraform/news
 
