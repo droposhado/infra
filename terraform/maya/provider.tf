@@ -3,7 +3,7 @@ terraform {
   required_providers {
     postgresql = {
       source  = "cyrilgdn/postgresql"
-      version = "1.20.0"
+      version = "1.22.0"
     }
     sentry = {
       source  = "jianyuan/sentry"
