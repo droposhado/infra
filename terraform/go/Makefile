@@ -9,7 +9,12 @@ console:
 	infisical run --env prod -- terraform console
 
 init:
+	tflint --init
 	infisical run --env prod -- terraform init -backend-config="bucket=${GCS_BUCKET}"
+
+lint:
+	terraform fmt
+	tflint
 
 secrets:
 	infisical secrets --env prod
