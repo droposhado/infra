@@ -7,7 +7,7 @@ on:
         required: false
         default: .
         type: string
-      infiscal_token:
+      infisical_token:
         required: true
         type: string
       terraform_version:
@@ -50,7 +50,7 @@ jobs:
   checkov:
     runs-on: ubuntu-latest
     env:
-      INFISICAL_TOKEN: ${{ secrets.infiscal_token }}
+      INFISICAL_TOKEN: ${{ secrets.infisical_token }}
     defaults:
       run:
         working-directory: ${{ inputs.path }}
@@ -84,7 +84,7 @@ jobs:
   tfsec:
     runs-on: ubuntu-latest
     env:
-      INFISICAL_TOKEN: ${{ secrets.infiscal_token }}
+      INFISICAL_TOKEN: ${{ secrets.infisical_token }}
     defaults:
       run:
         working-directory: ${{ inputs.path }}
@@ -102,7 +102,7 @@ jobs:
   tflint:
     runs-on: ubuntu-latest
     env:
-      INFISICAL_TOKEN: ${{ secrets.infiscal_token }}
+      INFISICAL_TOKEN: ${{ secrets.infisical_token }}
     defaults:
       run:
         working-directory: ${{ inputs.path }}
@@ -184,7 +184,7 @@ jobs:
       - tflint
     runs-on: ubuntu-latest
     env:
-      INFISICAL_TOKEN: ${{ secrets.infiscal_token }}
+      INFISICAL_TOKEN: ${{ secrets.infisical_token }}
     defaults:
       run:
         working-directory: ${{ inputs.path }}
@@ -217,7 +217,7 @@ jobs:
       - terraform-native-checks
     runs-on: ubuntu-latest
     env:
-      INFISICAL_TOKEN: ${{ secrets.infiscal_token }}
+      INFISICAL_TOKEN: ${{ secrets.infisical_token }}
     defaults:
       run:
         working-directory: ${{ inputs.path }}
