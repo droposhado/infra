@@ -14,7 +14,10 @@ on:
         required: false
         default: '1.5.4'
         type: string
-
+      tflint_version:
+        required: false
+        default: 'v0.44.1'
+        type: string
 
     secrets:
       insifical_token:
@@ -59,7 +62,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: ${{ inputs.terraform }}
+          terraform_version: ${{ inputs.terraform_version }}
 
       - name: Install Infisical
         run: |
@@ -193,7 +196,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: ${{ inputs.terraform }}
+          terraform_version: ${{ inputs.terraform_version }}
 
       - name: Install Infisical
         run: |
@@ -226,7 +229,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: ${{ inputs.terraform }}
+          terraform_version: ${{ inputs.terraform_version }}
 
       - name: Install Infisical
         run: |

@@ -16,6 +16,5 @@ jobs:
     uses: ./.github/workflows/terraform-workflow.yml
     with:
       path: 'terraform/wooka'
-      terraform_version: '1.5.4'
     secrets:
       insifical_token: ${{ secrets.INFISICAL_TOKEN }}
