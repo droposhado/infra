@@ -1,0 +1,20 @@
+name: push terraform maya
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/terraform-workflow.yml'
+      - '.github/workflows/push-terraform-maya.yml'
+      - 'terraform/maya/**'
+
+  workflow_dispatch:
+
+jobs:
+  terraform-maya:
+    uses: ./.github/workflows/terraform-workflow.yml
+    with:
+      path: 'terraform/maya'
+    secrets:
+      infisical_token: ${{ secrets.INFISICAL_TOKEN }}

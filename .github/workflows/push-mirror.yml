@@ -1,4 +1,4 @@
-name: scheduler mirror multi
+name: push mirror
 
 on:
   push:
