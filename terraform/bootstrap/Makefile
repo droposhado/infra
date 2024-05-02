@@ -19,3 +19,6 @@ state:
 
 validate:
 	infisical run --env prod -- terraform validate
+
+upgrade:
+	infisical run --env prod -- terraform init -upgrade -backend-config="bucket=${GCS_BUCKET}"
