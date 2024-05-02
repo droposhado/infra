@@ -7,9 +7,6 @@ on:
         required: false
         default: .
         type: string
-      infisical_token:
-        required: true
-        type: string
       terraform_version:
         required: false
         default: '1.5.4'
@@ -20,7 +17,7 @@ on:
         type: string
 
     secrets:
-      insifical_token:
+      infisical_token:
         required: true
 
 jobs:
