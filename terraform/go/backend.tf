@@ -1,9 +1,7 @@
 terraform {
-  cloud {
-    organization = "droposhado-org"
+  backend "gcs" {
 
-    workspaces {
-      name = "go"
-    }
+    # only create a path
+    prefix = "go"
   }
 }

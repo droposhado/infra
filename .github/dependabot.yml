@@ -9,6 +9,7 @@ updates:
     directories:
       - "/terraform/blog"
       - "/terraform/bootstrap"
+      - "/terraform/go"
       - "/terraform/lp"
       - "/terraform/maya"
       - "/terraform/news"
