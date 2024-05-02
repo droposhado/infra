@@ -16,3 +16,8 @@ updates:
       - "/terraform/wooka"
     schedule:
       interval: "daily"
+    groups:
+      update-dependencies:
+        applies-to: version-updates
+        patterns:
+          - "*"
