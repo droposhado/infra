@@ -6,36 +6,13 @@ updates:
       interval: "weekly"
 
   - package-ecosystem: "terraform"
-    directory: "/terraform/blog"
-    schedule:
-      interval: "weekly"
-
-  - package-ecosystem: "terraform"
-    directory: "/terraform/bootstrap"
-    schedule:
-      interval: "weekly"
-
-  - package-ecosystem: "terraform"
-    directory: "/terraform/lp"
-    schedule:
-      interval: "weekly"
-
-  - package-ecosystem: "terraform"
-    directory: "/terraform/maya"
-    schedule:
-      interval: "weekly"
-
-  - package-ecosystem: "terraform"
-    directory: "/terraform/news"
-    schedule:
-      interval: "weekly"
-
-  - package-ecosystem: "terraform"
-    directory: "/terraform/sabedoria"
-    schedule:
-      interval: "weekly"
-
-  - package-ecosystem: "terraform"
-    directory: "/terraform/wooka"
+    directories:
+      - "/terraform/blog"
+      - "/terraform/bootstrap"
+      - "/terraform/lp"
+      - "/terraform/maya"
+      - "/terraform/news"
+      - "/terraform/sabedoria"
+      - "/terraform/wooka"
     schedule:
       interval: "weekly"
