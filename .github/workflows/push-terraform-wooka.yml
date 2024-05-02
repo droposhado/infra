@@ -17,4 +17,4 @@ jobs:
     with:
       path: 'terraform/wooka'
     secrets:
-      insifical_token: ${{ secrets.INFISICAL_TOKEN }}
+      infisical_token: ${{ secrets.INFISICAL_TOKEN }}
