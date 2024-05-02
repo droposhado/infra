@@ -7,17 +7,14 @@ terraform {
     }
     sentry = {
       source  = "jianyuan/sentry"
-      version = "0.12.3"
+      version = "0.12.2"
     }
   }
 }
 
 provider "google" {
-  credentials = local.gcp_google_credentials
-  project     = local.gcp_project_id
-  region      = local.gcp_region
+  project = var.gcp_project_id
+  region  = var.gcp_region
 }
 
-provider "sentry" {
-  token = local.sentry_auth_token
-}
+provider "sentry" {}

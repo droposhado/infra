@@ -1,5 +1,7 @@
 terraform {
-  backend "s3" {
-    key    = "sabedoria/terraform.tfstate"
+  backend "gcs" {
+
+    # only create a path
+    prefix = "sabedoria"
   }
 }
