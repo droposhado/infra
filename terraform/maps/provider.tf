@@ -3,20 +3,16 @@ terraform {
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "4.29.0"
+      version = "4.30.0"
     }
     github = {
       source  = "integrations/github"
-      version = "5.33.0"
+      version = "6.2.1"
     }
 
   }
 }
 
-provider "github" {
-  token = local.github_token
-}
+provider "github" {}
 
-provider "cloudflare" {
-  api_token = local.cloudflare_api_token
-}
+provider "cloudflare" {}
