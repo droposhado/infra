@@ -30,12 +30,6 @@ variable "port" {
   description = "default port to use service"
 }
 
-variable "sentry_project_platform" {
-  type        = string
-  default     = "python-flask"
-  description = "Platform like language, framework"
-}
-
 variable "subdomain" {
   type        = string
   default     = "go"
