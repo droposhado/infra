@@ -12,6 +12,7 @@ updates:
       - "/terraform/go"
       - "/terraform/lp"
       - "/terraform/maya"
+      - "/terraform/maps"
       - "/terraform/news"
       - "/terraform/sabedoria"
       - "/terraform/wooka"
