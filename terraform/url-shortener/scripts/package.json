@@ -1,0 +1,15 @@
+{
+  "name": "url-shortener",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "npx esbuild --minify --bundle src/index.ts --format=esm --outfile=dist/index.js "
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@hono/sentry": "^1.1.0",
+    "hono": "^4.3.1"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240405.0"
+  }
+}
