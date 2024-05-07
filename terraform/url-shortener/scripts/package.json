@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "npx esbuild --minify --bundle src/index.ts --format=esm --outfile=dist/index.js "
+    "build": "npx esbuild --minify --bundle src/index.ts --format=esm --outfile=dist/index.js",
+    "test": "npx jest --verbose"
   },
   "license": "MIT",
   "dependencies": {
