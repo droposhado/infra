@@ -15,6 +15,7 @@ updates:
       - "/terraform/maya"
       - "/terraform/news"
       - "/terraform/sabedoria"
+      - "/terraform/url-shortener"
       - "/terraform/wooka"
     schedule:
       interval: "daily"
@@ -23,3 +24,8 @@ updates:
         applies-to: version-updates
         patterns:
           - "*"
+
+  - package-ecosystem: "npm"
+    directory: "/terraform/url-shortener/scripts"
+    schedule:
+      interval: "weekly"
