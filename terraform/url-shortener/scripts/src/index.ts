@@ -1,68 +1,91 @@
 import { Hono } from 'hono'
 import { bearerAuth } from 'hono/bearer-auth'
+import { secureHeaders } from 'hono/secure-headers'
 import { sentry } from '@hono/sentry'
 
+import { Bindings, chars, charsRegex, Link, redirectCode } from './config'
 
-// https://sentry.io/answers/generate-random-string-characters-in-javascript/
-function createRandomString(length: number): string {
-  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  let result = "";
-  for (let i = 0; i < length; i++) {
-    result += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return result;
-}
-
-type Bindings = {
-  DB: D1Database
-  DOMAIN: string
-  SLUG_SIZE: number
-  TOKEN: string
-}
-
-type Link = {
-  slug: string
-  id: string
-  link: string
-}
+import { Backpack } from './backpack'
 
 const app = new Hono<{ Bindings: Bindings }>()
 
 app.use('*', sentry())
+app.use(secureHeaders())
 app.use('/link/*', async (c, next) => {
   const token = c.env.TOKEN
   const auth = bearerAuth({ token })
   return await auth(c, next)
 })
 
-app.get('/', (c) => c.redirect('https://' + c.env.DOMAIN, 301))
+app.get('/', (c) => c.redirect('https://' + c.env.DOMAIN, redirectCode))
 
 app.get('/:slug', async (c) => {
   const slug = c.req.param('slug')
+
+  if (slug.length > c.env.SLUG_SIZE) {
+    return c.redirect('https://' + c.env.DOMAIN + '/404', redirectCode)
+  }
+
+  if (!charsRegex.test(slug)) {
+    return c.redirect('https://' + c.env.DOMAIN + '/404', redirectCode)
+  }
 
   try {
     let { results } = await c.env.DB.prepare("SELECT * FROM links WHERE slug = ?").bind(slug).all<Link>()
 
     if (results.length < 1) {
-      return c.redirect('https://' + c.env.DOMAIN + '/404', 301)
+      return c.redirect('https://' + c.env.DOMAIN + '/404', redirectCode)
     }
 
-    return c.redirect(results[0].link, 301)
+    return c.redirect(results[0].link, redirectCode)
   } catch (e) {
-    c.redirect('https://' + c.env.DOMAIN + '/404', 301)
+    c.redirect('https://' + c.env.DOMAIN + '/404', redirectCode)
   }
 })
 
 app.post('/link', async (c) => {
+  const contentTypeHeader = c.req.header('Content-Type')
+  if (contentTypeHeader != "application/json") {
+    return c.json({
+      error: 'Need Content-Type header with application/json payload'
+    }, 400)
+  }
+
   const slug_size = c.env.SLUG_SIZE
-  const slug = createRandomString(slug_size)
+  const backpack = new Backpack
+  const slug = backpack.createRandomString(chars, slug_size)
   const body = await c.req.json()
 
-  let { results } = await c.env.DB.prepare("INSERT INTO links (link, slug) VALUES (?, ?)").bind(body.url, slug).all()
+  if (body.url && !backpack.isValidURL(body.url)) {
+    return c.json({
+      error: 'Malformed payload, need valid url to shorten'
+    }, 400)
+  }
 
-  // TODO: check generated
+  let { success, error } = await c.env.DB.prepare("INSERT INTO links (link, slug) VALUES (?, ?) returning id").bind(body.url, slug).run()
 
-  return c.text('https://l.' + c.env.DOMAIN + '/' + slug)
+  // TODO: better status code
+  if (!success) {
+    return c.json({
+      error: error
+    }, 500)
+  }
+
+  try {
+    let { results } = await c.env.DB.prepare("SELECT * FROM links WHERE slug = ?").bind(slug).all<Link>()
+
+    if (results.length < 1) {
+      return c.redirect('https://' + c.env.DOMAIN + '/404', redirectCode)
+    }
+
+    return c.json({
+      id: results[0].id,
+      url: results[0].link,
+      slug: results[0].slug
+    }, 200)
+  } catch (e) {
+    c.redirect('https://' + c.env.DOMAIN + '/404', redirectCode)
+  }
 })
 
 export default app
