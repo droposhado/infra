@@ -20,7 +20,7 @@ variable "gcs_bucket" {
 
 variable "image" {
   type        = string
-  default     = "droposhado/go:latest"
+  default     = "droposhado/go@sha256:36baa976288647a455ebf248119c54b77acd0e1a783f421fb81b21f2185a34b5"
   description = "go builded image to deploy with custom sally.yml"
 }
 
