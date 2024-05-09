@@ -1,6 +1,7 @@
 terraform {
-  backend "s3" {
-    key    = "cdn/terraform.tfstate"
+  backend "gcs" {
+
+    # only create a path
+    prefix = "cdn"
   }
 }
-
