@@ -1,0 +1,20 @@
+name: push terraform cdn
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/terraform-workflow.yml'
+      - '.github/workflows/push-terraform-cdn.yml'
+      - 'terraform/cdn/**'
+
+  workflow_dispatch:
+
+jobs:
+  terraform-cdn:
+    uses: ./.github/workflows/terraform-workflow.yml
+    with:
+      path: 'terraform/cdn'
+    secrets:
+      infisical_token: ${{ secrets.INFISICAL_TOKEN }}

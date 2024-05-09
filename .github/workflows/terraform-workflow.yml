@@ -1,4 +1,4 @@
-name: Terraform best practices
+name: terraform workflow
 
 on:
   workflow_call:
@@ -67,7 +67,7 @@ jobs:
           sudo apt-get update && sudo apt-get install -y infisical
 
       - name: Terraform Init
-        run: infisical run --env prod --command 'terraform init -backend-config="bucket=${GCS_BUCKET}"'
+        run: make init
 
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12
@@ -124,9 +124,6 @@ jobs:
           curl -1sLf 'https://dl.cloudsmith.io/public/infisical/infisical-cli/setup.deb.sh' | sudo -E bash
           sudo apt-get update && sudo apt-get install -y infisical
 
-      - name: Terraform Init
-        run: infisical run --env prod --command 'terraform init -backend-config="bucket=${GCS_BUCKET}"'
-
       - uses: terraform-linters/setup-tflint@v4
         name: Setup TFLint
         with:
@@ -135,11 +132,8 @@ jobs:
       - name: Show version
         run: tflint --version
 
-      - name: Init TFLint
-        run: infisical run --env prod -- tflint --init
-        env:
-          # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
-          GITHUB_TOKEN: ${{ github.token }}
+      - name: Terraform Init
+        run: make init
 
       # Skip upload scanning
 
@@ -204,10 +198,10 @@ jobs:
         run: terraform fmt -check
 
       - name: Terraform Init
-        run: infisical run --env prod --command 'terraform init -backend-config="bucket=${GCS_BUCKET}"'
+        run: make init
 
       - name: Terraform Validate
-        run: infisical run --env prod -- terraform validate -no-color
+        run: make validate
 
   terraform-apply:
     needs:
@@ -237,13 +231,13 @@ jobs:
         run: terraform fmt -check
 
       - name: Terraform Init
-        run: infisical run --env prod --command 'terraform init -backend-config="bucket=${GCS_BUCKET}"'
+        run: make init
 
       - name: Terraform Validate
-        run: infisical run --env prod -- terraform validate -no-color
+        run: make validate
 
       - name: Terraform plan
-        run: infisical run --env prod -- terraform plan
+        run: make plan
 
       - name: Terraform apply
-        run: infisical run --env prod -- terraform apply -auto-approve
+        run: make apply
