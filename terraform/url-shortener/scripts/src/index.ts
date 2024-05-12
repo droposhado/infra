@@ -4,15 +4,11 @@ import { logger } from 'hono/logger'
 import { secureHeaders } from 'hono/secure-headers'
 import { sentry } from '@hono/sentry'
 
-import { PrismaClient } from '@prisma/client'
-import { PrismaD1 } from '@prisma/adapter-d1'
-
 import { Bindings, chars, charsRegex, Link, redirectCode } from './config'
 
 import { Backpack } from './backpack'
 
 const app = new Hono<{ Bindings: Bindings }>()
-
 
 app.use('*', sentry())
 app.use(secureHeaders())
@@ -36,19 +32,17 @@ app.get('/:slug', async (c) => {
     return c.redirect('https://' + c.env.DOMAIN + '/404', redirectCode)
   }
 
-  const adapter = new PrismaD1(c.env.DB)
-  const prisma = new PrismaClient({ adapter })
+  try {
+    let { results } = await c.env.DB.prepare("SELECT * FROM links WHERE slug = ?").bind(slug).all<Link>()
 
-  const result = await prisma.link.findUnique({
-    where: {
-      slug: slug,
-    },
-  })
+    if (results.length < 1) {
+      return c.redirect('https://' + c.env.DOMAIN + '/404', redirectCode)
+    }
 
-  if (!result) {
-    return c.redirect('https://' + c.env.DOMAIN + '/404', redirectCode)
+    return c.redirect(results[0].link, redirectCode)
+  } catch (e) {
+    c.redirect('https://' + c.env.DOMAIN + '/404', redirectCode)
   }
-  return c.redirect(result.url, redirectCode)
 })
 
 app.post('/link', async (c) => {
@@ -70,26 +64,30 @@ app.post('/link', async (c) => {
     }, 400)
   }
 
-  const adapter = new PrismaD1(c.env.DB)
-  const prisma = new PrismaClient({ adapter })
+  let { success, error } = await c.env.DB.prepare("INSERT INTO links (link, slug) VALUES (?, ?) returning id").bind(body.url, slug).run()
 
-  const data = {
-    slug: slug,
-    url: body.url
-  }
-
-  const result = await prisma.link.create({ data: data })
-
-  if (!result) {
+  // TODO: better status code
+  if (!success) {
     return c.json({
-      error: "error"
+      error: error
     }, 500)
   }
 
-  return c.json({
-    result
-  }, 200)
+  try {
+    let { results } = await c.env.DB.prepare("SELECT * FROM links WHERE slug = ?").bind(slug).all<Link>()
 
+    if (results.length < 1) {
+      return c.redirect('https://' + c.env.DOMAIN + '/404', redirectCode)
+    }
+
+    return c.json({
+      id: results[0].id,
+      url: results[0].link,
+      slug: results[0].slug
+    }, 200)
+  } catch (e) {
+    c.redirect('https://' + c.env.DOMAIN + '/404', redirectCode)
+  }
 })
 
 export default app
