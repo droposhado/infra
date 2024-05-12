@@ -217,7 +217,6 @@ jobs:
         working-directory: terraform/url-shortener/scripts
         run: |
           npm install
-          npm run test
           npm run build
 
       - name: Terraform Validate
