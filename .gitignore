@@ -2,6 +2,7 @@
 *.state*
 docs/diagrams/*.png
 .infisical.json
+*.zip
 
 # Created by https://www.toptal.com/developers/gitignore/api/go,vim,helm,linux,macos,packer,python,ansible,windows,terraform,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=go,vim,helm,linux,macos,packer,python,ansible,windows,terraform,node
