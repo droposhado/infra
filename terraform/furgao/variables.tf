@@ -28,6 +28,6 @@ variable "regions" {
 
 # variable "subdomain" {
 #   type        = string
-#   default     = "notification"
+#   default     = "furgao"
 #   description = "subdomain used to host service"
 # }
