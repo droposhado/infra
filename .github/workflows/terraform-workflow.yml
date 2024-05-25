@@ -4,7 +4,7 @@ on:
   workflow_call:
     inputs:
       path:
-        required: false
+        required: true
         type: string
       terraform_version:
         required: false
@@ -16,6 +16,8 @@ on:
         type: string
 
     secrets:
+      gcs_bucket:
+        required: true
       infisical_token:
         required: true
 
@@ -46,7 +48,8 @@ jobs:
   checkov:
     runs-on: ubuntu-latest
     env:
-      INFISICAL_TOKEN: ${{ secrets.infisical_token }}
+      GCS_BUCKET: ${{ secrets.GCS_BUCKET }}
+      INFISICAL_TOKEN: ${{ secrets.INFISICAL_TOKEN }}
     defaults:
       run:
         working-directory: ${{ inputs.path }}
@@ -80,7 +83,8 @@ jobs:
   tfsec:
     runs-on: ubuntu-latest
     env:
-      INFISICAL_TOKEN: ${{ secrets.infisical_token }}
+      GCS_BUCKET: ${{ secrets.GCS_BUCKET }}
+      INFISICAL_TOKEN: ${{ secrets.INFISICAL_TOKEN }}
     defaults:
       run:
         working-directory: ${{ inputs.path }}
@@ -98,7 +102,8 @@ jobs:
   tflint:
     runs-on: ubuntu-latest
     env:
-      INFISICAL_TOKEN: ${{ secrets.infisical_token }}
+      GCS_BUCKET: ${{ secrets.GCS_BUCKET }}
+      INFISICAL_TOKEN: ${{ secrets.INFISICAL_TOKEN }}
     defaults:
       run:
         working-directory: ${{ inputs.path }}
@@ -174,7 +179,8 @@ jobs:
       - tflint
     runs-on: ubuntu-latest
     env:
-      INFISICAL_TOKEN: ${{ secrets.infisical_token }}
+      GCS_BUCKET: ${{ secrets.GCS_BUCKET }}
+      INFISICAL_TOKEN: ${{ secrets.INFISICAL_TOKEN }}
     defaults:
       run:
         working-directory: ${{ inputs.path }}
@@ -187,6 +193,11 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: ${{ inputs.terraform_version }}
+
+      - uses: terraform-linters/setup-tflint@v4
+        name: Setup TFLint
+        with:
+          tflint_version: ${{ inputs.tflint_version }}
 
       - name: Install Infisical
         run: |
@@ -207,7 +218,8 @@ jobs:
       - terraform-native-checks
     runs-on: ubuntu-latest
     env:
-      INFISICAL_TOKEN: ${{ secrets.infisical_token }}
+      GCS_BUCKET: ${{ secrets.GCS_BUCKET }}
+      INFISICAL_TOKEN: ${{ secrets.INFISICAL_TOKEN }}
     defaults:
       run:
         working-directory: ${{ inputs.path }}
@@ -220,6 +232,11 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: ${{ inputs.terraform_version }}
+
+      - uses: terraform-linters/setup-tflint@v4
+        name: Setup TFLint
+        with:
+          tflint_version: ${{ inputs.tflint_version }}
 
       - name: Install Infisical
         run: |
