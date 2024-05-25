@@ -1,18 +1,19 @@
 module "cloud_run_service_name" {
-  source  = "../modules/name-gen"
-  length  = 8
-  special = false
+  source    = "../modules/name-gen"
+  length    = 8
+  uppercase = false
   keepers = {
-    pg_data = local.postgresql
+    bucket = var.gcs_bucket
   }
 }
 
 module "maya_pg_name" {
-  source  = "../modules/name-gen"
-  length  = 48
-  special = false
+  source = "../modules/name-gen"
+  length = 48
   keepers = {
-    pg_data = local.postgresql
+    host  = local.postgresql.host
+    port  = local.postgresql.port
+    admin = local.postgresql.admin.user
   }
 }
 
@@ -21,7 +22,9 @@ module "maya_pg_password" {
   length  = 98
   special = false
   keepers = {
-    pg_data = local.postgresql
+    host  = local.postgresql.host
+    port  = local.postgresql.port
+    admin = local.postgresql.admin.user
   }
 }
 
@@ -34,11 +37,10 @@ module "sentry_project" {
 }
 
 module "sentry_project_name" {
-  source  = "../modules/name-gen"
-  length  = 8
-  special = false
+  source = "../modules/name-gen"
+  length = 8
   keepers = {
-    pg_data = local.postgresql
+    bucket = var.gcs_bucket
   }
 }
 
@@ -46,5 +48,7 @@ module "maya_token" {
   source  = "../modules/password-gen"
   length  = 256
   special = false
-  keepers = {}
+  keepers = {
+    bucket = var.gcs_bucket
+  }
 }
