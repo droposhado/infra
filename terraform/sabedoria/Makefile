@@ -8,6 +8,9 @@ apply:
 console:
 	infisical run --env prod -- terraform console
 
+destroy:
+	infisical run --env prod -- terraform destroy
+
 init:
 	tflint --init
 	infisical run --env prod -- terraform init -backend-config="bucket=${GCS_BUCKET}"
@@ -16,13 +19,16 @@ lint:
 	terraform fmt
 	tflint
 
+refresh:
+	infisical run --env prod -- terraform refresh
+
 secrets:
 	infisical secrets --env prod
 
 state:
 	infisical run --env prod -- terraform state list
 
-validate:
+validate: lint
 	infisical run --env prod -- terraform validate
 
 upgrade:

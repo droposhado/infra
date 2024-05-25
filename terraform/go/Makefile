@@ -28,7 +28,7 @@ secrets:
 state:
 	infisical run --env prod -- terraform state list
 
-validate:
+validate: lint
 	infisical run --env prod -- terraform validate
 
 upgrade:
