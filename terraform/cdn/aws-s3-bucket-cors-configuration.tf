@@ -4,6 +4,6 @@ resource "aws_s3_bucket_cors_configuration" "main" {
 
   cors_rule {
     allowed_methods = ["GET"]
-    allowed_origins = ["*"]
+    allowed_origins = ["https://*.droposhado.org"]
   }
 }
