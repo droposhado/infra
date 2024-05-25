@@ -5,7 +5,6 @@ on:
     inputs:
       path:
         required: false
-        default: .
         type: string
       terraform_version:
         required: false
