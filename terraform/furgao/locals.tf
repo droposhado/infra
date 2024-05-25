@@ -1,5 +1,4 @@
 locals {
-  database_url = "postgresql://${postgresql_role.main.name}:${postgresql_role.main.password}@${local.postgresql.host}:${local.postgresql.port}/${postgresql_database.main.name}"
   # domain = "${var.subdomain}.${var.domain}"
   envs = [
     {
