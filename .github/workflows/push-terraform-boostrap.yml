@@ -17,4 +17,8 @@ jobs:
     with:
       path: 'terraform/bootstrap'
     secrets:
+      gcs_bucket: ${{ secrets.GCS_BUCKET }}
       infisical_token: ${{ secrets.INFISICAL_TOKEN }}
+
+
+
