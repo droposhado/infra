@@ -32,6 +32,6 @@ variable "port" {
 
 variable "subdomain" {
   type        = string
-  default     = "go"
+  default     = "go.pkg"
   description = "subdomain used to host service"
 }
