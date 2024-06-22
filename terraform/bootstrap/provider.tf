@@ -19,7 +19,7 @@ terraform {
     }
     google = {
       source  = "hashicorp/google"
-      version = "5.27.0"
+      version = "5.34.0"
     }
     mailgun = {
       source  = "wgebis/mailgun"
