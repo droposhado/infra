@@ -3,15 +3,15 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "5.34.0"
+      version = "6.2.0"
     }
     postgresql = {
       source  = "cyrilgdn/postgresql"
-      version = "1.22.0"
+      version = "1.23.0"
     }
     sentry = {
       source  = "jianyuan/sentry"
-      version = "0.13.1"
+      version = "0.13.2"
 
     }
   }
