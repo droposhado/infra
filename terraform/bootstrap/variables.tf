@@ -25,7 +25,7 @@ variable "aiven_plan" {
 
 variable "aiven_pg_version" {
   type        = number
-  default     = 14
+  default     = 16
   description = "PostgreSQL version to deploy instance, major number only"
 }
 
