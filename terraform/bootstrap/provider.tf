@@ -3,7 +3,7 @@ terraform {
   required_providers {
     aiven = {
       source  = "aiven/aiven"
-      version = "4.17.0"
+      version = "4.19.1"
     }
     b2 = {
       source  = "Backblaze/b2"
@@ -11,15 +11,15 @@ terraform {
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "4.33.0"
+      version = "4.35.0"
     }
     github = {
       source  = "integrations/github"
-      version = "6.2.1"
+      version = "6.2.2"
     }
     google = {
       source  = "hashicorp/google"
-      version = "5.27.0"
+      version = "5.34.0"
     }
     mailgun = {
       source  = "wgebis/mailgun"
