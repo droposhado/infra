@@ -1,6 +1,7 @@
 variable "aiven_cloud_name" {
   type        = string
-  default     = "do-nyc"
+  # default     = "do-nyc"
+  default     = "aws-us-west-2"
   description = "Cloud and region (<cloud>-<region>) to deploy service instance"
 }
 
