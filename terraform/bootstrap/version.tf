@@ -5,10 +5,6 @@ terraform {
       source  = "aiven/aiven"
       version = "4.19.1"
     }
-    b2 = {
-      source  = "Backblaze/b2"
-      version = "0.8.9"
-    }
     cloudflare = {
       source  = "cloudflare/cloudflare"
       version = "4.35.0"
@@ -25,6 +21,10 @@ terraform {
       source  = "wgebis/mailgun"
       version = "0.7.6"
     }
+    mongodbatlas = {
+      source = "mongodb/mongodbatlas"
+      version = "1.21.1"
+    }
     sentry = {
       source  = "jianyuan/sentry"
       version = "0.12.3"
@@ -38,8 +38,6 @@ terraform {
 
 provider "aiven" {}
 
-provider "b2" {}
-
 provider "cloudflare" {}
 
 provider "github" {}
@@ -50,6 +48,8 @@ provider "google" {
 }
 
 provider "mailgun" {}
+
+provider "mongodbatlas" {}
 
 provider "sentry" {}
 
