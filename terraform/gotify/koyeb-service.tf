@@ -29,8 +29,4 @@ resource "koyeb_service" "main" {
       image = var.gotify_image
     }
   }
-
-  depends_on = [
-    koyeb_app.main
-  ]
 }

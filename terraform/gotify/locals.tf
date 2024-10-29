@@ -1,5 +1,5 @@
 locals {
-  # domain = "${var.subdomain}.${var.domain}"
+  domain = "${var.subdomain}.${var.domain}"
   envs = [
     {
       key   = "GOTIFY_SERVER_PORT"

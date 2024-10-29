@@ -1,3 +1,9 @@
+variable "default_ttl" {
+  type        = string
+  default     = 3600
+  description = "Time in seconds to update DNS configuration"
+}
+
 variable "domain" {
   type        = string
   description = "Default domain to use in another workspaces"
@@ -28,6 +34,6 @@ variable "gotify_regions" {
 
 variable "subdomain" {
   type        = string
-  default     = "notification"
+  default     = "gotify"
   description = "subdomain used to host service"
 }
