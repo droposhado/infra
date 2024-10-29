@@ -49,6 +49,26 @@ module "migadu_mail" {
   zone_id = data.cloudflare_zone.main.id
 }
 
+module "mongodb_cluster_name" {
+  source    = "../modules/name-gen"
+  length    = 24
+  uppercase = false
+  keepers = {
+    domain  = var.domain
+    zone_id = data.cloudflare_zone.main.id
+  }
+}
+
+module "mongodb_project_name" {
+  source    = "../modules/name-gen"
+  length    = 24
+  uppercase = false
+  keepers = {
+    domain  = var.domain
+    zone_id = data.cloudflare_zone.main.id
+  }
+}
+
 module "state_uuid" {
   source = "../modules/uuid-gen"
   keepers = {
