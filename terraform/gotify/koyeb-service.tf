@@ -6,7 +6,7 @@ resource "koyeb_service" "main" {
       type = "free"
     }
     ports {
-      port     = tostring(var.port)
+      port     = tostring(var.gotify_port)
       protocol = "http"
     }
     scalings {
@@ -22,16 +22,13 @@ resource "koyeb_service" "main" {
     }
     routes {
       path = "/"
-      port = tostring(var.port)
+      port = tostring(var.gotify_port)
     }
-    regions = var.regions
+    regions = var.gotify_regions
     docker {
-      image = var.image
+      image = var.gotify_image
     }
   }
-
-
-
 
   depends_on = [
     koyeb_app.main

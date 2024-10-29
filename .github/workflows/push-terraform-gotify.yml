@@ -1,4 +1,4 @@
-name: push terraform furgao
+name: push terraform gotify
 
 on:
   push:
@@ -6,16 +6,16 @@ on:
       - main
     paths:
       - '.github/workflows/terraform-workflow.yml'
-      - '.github/workflows/push-terraform-furgao.yml'
-      - 'terraform/furgao/**'
+      - '.github/workflows/push-terraform-gotify.yml'
+      - 'terraform/gotify/**'
 
   workflow_dispatch:
 
 jobs:
-  terraform-furgao:
+  terraform-gotify:
     uses: ./.github/workflows/terraform-workflow.yml
     with:
-      path: 'terraform/furgao'
+      path: 'terraform/gotify'
     secrets:
       gcs_bucket: ${{ secrets.GCS_BUCKET }}
       infisical_token: ${{ secrets.INFISICAL_TOKEN }}

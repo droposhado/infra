@@ -3,7 +3,7 @@ locals {
   envs = [
     {
       key   = "GOTIFY_SERVER_PORT"
-      value = var.port
+      value = var.gotify_port
     },
     {
       key   = "GOTIFY_SERVER_SSL_REDIRECTTOHTTPS"
