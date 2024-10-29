@@ -1,0 +1,44 @@
+export BWS_VER
+BWS_VER="1.0.0"
+
+plan:
+	bws run -- terraform plan
+
+apply:
+	bws run -- terraform apply -auto-approve
+
+console:
+	bws run -- terraform console
+
+destroy:
+	bws run -- terraform destroy
+
+pre:
+	sudo apt-get update && apt-get install -y curl git jq unzip
+
+	curl -LO \
+		"https://github.com/bitwarden/sdk/releases/download/bws-v$BWS_VER/bws-x86_64-unknown-linux-gnu-$BWS_VER.zip"
+	unzip -o bws-x86_64-unknown-linux-gnu-$BWS_VER.zip -d /usr/local/bin
+
+init:
+	tflint --init
+	bws run -- terraform init -backend-config="bucket=${GCS_BUCKET}"
+
+lint:
+	terraform fmt
+	tflint
+
+refresh:
+	bws run -- terraform refresh
+
+secrets:
+	bws secrets --env prod
+
+state:
+	bws run -- terraform state list
+
+validate: lint
+	bws run -- terraform validate
+
+upgrade:
+	bws run -- terraform init -upgrade -backend-config="bucket=${GCS_BUCKET}"
