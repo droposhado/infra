@@ -84,7 +84,6 @@ variable "github_verification_secret" {
   description = "Secret used to verify webhooks"
 }
 
-variable "zulip_webhook_github" {
-  type        = string
-  description = "Webhook URL to Zulip integration"
+variable "migadu_hosted_email_verify" {
+  type = string
 }
