@@ -44,9 +44,10 @@ module "mailgun_mail" {
 }
 
 module "migadu_mail" {
-  source  = "../modules/cloudflare-migadu-mail"
-  domain  = var.domain
-  zone_id = data.cloudflare_zone.main.id
+  source              = "../modules/cloudflare-migadu-mail"
+  domain              = var.domain
+  zone_id             = data.cloudflare_zone.main.id
+  hosted_email_verify = var.migadu_hosted_email_verify
 }
 
 module "mongodb_cluster_name" {

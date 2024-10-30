@@ -5,9 +5,6 @@ resource "cloudflare_record" "autodiscover" {
   type    = "SRV"
 
   data {
-    service  = "_autodiscover"
-    proto    = "_tcp"
-    name     = "autodiscover.${var.domain}"
     priority = 0
     weight   = 1
     port     = 443
@@ -22,9 +19,6 @@ resource "cloudflare_record" "submissions" {
   type    = "SRV"
 
   data {
-    service  = "_submissions"
-    proto    = "_tcp"
-    name     = "submissions.${var.domain}"
     priority = 0
     weight   = 1
     port     = 465
@@ -39,9 +33,6 @@ resource "cloudflare_record" "imaps" {
   type    = "SRV"
 
   data {
-    service  = "_imaps"
-    proto    = "_tcp"
-    name     = "imaps.${var.domain}"
     priority = 0
     weight   = 1
     port     = 993
@@ -56,9 +47,6 @@ resource "cloudflare_record" "pop3s" {
   type    = "SRV"
 
   data {
-    service  = "_pop3s"
-    proto    = "_tcp"
-    name     = "pop3s.${var.domain}"
     priority = 0
     weight   = 1
     port     = 995
