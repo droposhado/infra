@@ -1,8 +1,21 @@
 resource "cloudflare_worker_script" "root" {
   account_id = data.cloudflare_zone.main.account_id
   name       = local.fqdn_slug
-  content    = file("scripts/dist/index.js")
-  module     = true
+  content    = <<EOF
+export default {
+    async fetch(request, env, ctx) {
+        return new Response("", {
+            headers: {
+                "content-type": "text/plain",
+            },
+        });
+    },
+};
+EOF
+
+  compatibility_date  = "2024-10-10"
+  compatibility_flags = []
+  module              = true
 
   plain_text_binding {
     name = "DOMAIN"
@@ -29,5 +42,12 @@ resource "cloudflare_worker_script" "root" {
   d1_database_binding {
     database_id = cloudflare_d1_database.main.id
     name        = "DB"
+  }
+
+  # deployment is via CI
+  lifecycle {
+    ignore_changes = [
+      content,
+    ]
   }
 }
