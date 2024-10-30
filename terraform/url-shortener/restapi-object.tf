@@ -3,7 +3,14 @@ resource "restapi_object" "links" {
   object_id = "links_tables_db_obj_id"
   data = jsonencode({
     "params" = [],
-    "sql"    = file("sql/links.sql")
+    "sql"    = <<EOF
+CREATE TABLE IF NOT EXISTS links (
+  id INTEGER PRIMARY KEY,
+  link TEXT NOT NULL,
+  slug TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+EOF
   })
 }
 
@@ -12,7 +19,15 @@ resource "restapi_object" "comments" {
   object_id = "comments_tables_db_obj_id"
   data = jsonencode({
     "params" = [],
-    "sql"    = file("sql/comments.sql")
+    "sql"    = <<EOF
+CREATE TABLE IF NOT EXISTS comments (
+  id INTEGER PRIMARY KEY,
+  content TEXT,
+  link_id INTEGER,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY(link_id) REFERENCES links(id) ON DELETE CASCADE
+);
+EOF
   })
 
   depends_on = [restapi_object.links]
