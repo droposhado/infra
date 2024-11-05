@@ -1,4 +1,4 @@
-resource "cloudflare_worker_script" "root" {
+resource "cloudflare_worker_script" "main" {
   account_id = data.cloudflare_zone.main.account_id
   name       = local.fqdn_slug
   content    = <<EOF
