@@ -3,37 +3,49 @@ variable "domain" {
   description = "Default domain to use in another workspaces"
 }
 
-variable "gcp_project_id" {
-  type        = string
-  description = "Project name slug used in GCP"
-}
-
-variable "gcp_region" {
-  type        = string
-  description = "GCP home region to use"
-}
-
 variable "gcs_bucket" {
   type        = string
   description = "Bucket used to store states"
+}
+
+variable "image_url" {
+  type    = string
+  default = "droposhado/wooka"
+}
+
+variable "image_tag" {
+  type    = string
+  default = "latest"
+}
+
+variable "render_plan" {
+  type    = string
+  default = "starter"
+}
+
+variable "render_region" {
+  type    = string
+  default = "oregon"
+}
+
+variable "sentry_project_platform" {
+  type        = string
+  default     = "python"
+  description = "Platform like language, framework"
 }
 
 variable "wooka_bot_admins" {
   type = string
 }
 
-variable "wooka_bot_alt_prefixes" {
+variable "wooka_chatroom_presence" {
   type = string
 }
 
-variable "wooka_zulip_email" {
+variable "wooka_xmpp_username" {
   type = string
 }
 
-variable "wooka_zulip_key" {
-  type = string
-}
-
-variable "wooka_zulip_site" {
+variable "wooka_xmpp_password" {
   type = string
 }
