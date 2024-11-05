@@ -1,59 +1,24 @@
-# module "gce_vm_container" {
-#   source  = "terraform-google-modules/container-vm/google"
-#   version = "~> 3.0"
-
-#   cos_image_name = "cos-stable-109-17800-147-60"
-
-#   container = {
-#     image = "docker.io/droposhado/wooka:latest"
-
-#     env = [
-#       {
-#         name  = "BOT_ADMINS"
-#         value = var.wooka_bot_admins
-#       },
-#       {
-#         name  = "BOT_ALT_PREFIXES"
-#         value = var.wooka_bot_alt_prefixes
-#       },
-#       {
-#         name  = "ZULIP_EMAIL"
-#         value = var.wooka_zulip_email
-#       },
-#       {
-#         name  = "ZULIP_KEY"
-#         value = var.wooka_zulip_key
-#       },
-#       {
-#         name  = "ZULIP_SITE"
-#         value = var.wooka_zulip_site
-#       }
-#     ]
-#   }
-
-#   restart_policy = "Always"
-# }
-
-module "instance_name" {
+module "render_service_name" {
   source    = "../modules/name-gen"
+  length    = 8
   uppercase = false
-  keepers   = {}
+  keepers = {
+    bucket = var.gcs_bucket
+  }
 }
 
-module "network_name" {
-  source    = "../modules/name-gen"
-  uppercase = false
-  keepers   = {}
+module "sentry_project" {
+  source           = "../modules/sentry-project"
+  project_name     = module.sentry_project_name.name
+  project_platform = var.sentry_project_platform
+  org_slug         = local.sentry.org.slug
+  teams            = [local.sentry.team.slug]
 }
 
-module "network_firewall_name" {
-  source    = "../modules/name-gen"
-  uppercase = false
-  keepers   = {}
-}
-
-module "subnetwork_name" {
-  source    = "../modules/name-gen"
-  uppercase = false
-  keepers   = {}
+module "sentry_project_name" {
+  source = "../modules/name-gen"
+  length = 8
+  keepers = {
+    bucket = var.gcs_bucket
+  }
 }
