@@ -11,7 +11,7 @@ console:
 	bws run -- terraform console
 
 destroy:
-	bws run -- terraform destroy
+	bws run -- terraform destroy -auto-approve
 
 pre:
 	sudo apt-get update && apt-get install -y curl git jq unzip
@@ -32,7 +32,7 @@ refresh:
 	bws run -- terraform refresh
 
 secrets:
-	bws secrets --env prod
+	bws secrets
 
 state:
 	bws run -- terraform state list
