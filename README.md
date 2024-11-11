@@ -2,6 +2,23 @@
 
 This repository is a mirror of the original project that is in a closed repository to preserve access to the keys
 
+- bootstrap
+  - bem-te-vi
+  - blog
+  - cdn
+  - go
+  - gotify
+  - hightower
+  - lp
+  - maps
+  - maya
+  - modules
+  - news
+  - observability
+  - sabedoria
+  - url-shortener
+  - wooka
+
 ## Inspiration
 
 - [BeryJu/infrastructure](https://github.com/BeryJu/infrastructure)
