@@ -1,6 +1,6 @@
 resource "cloudflare_worker_script" "main" {
   account_id = data.cloudflare_zone.main.account_id
-  name       = "bemtevi-${module.worker_name.name}"
+  name       = local.fqdn_slug
   content    = <<EOF
 export default {
     async scheduled(request, env, ctx) {
