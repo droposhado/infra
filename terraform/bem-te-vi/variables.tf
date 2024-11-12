@@ -38,3 +38,9 @@ variable "sentry_project_platform" {
   default     = "javascript"
   description = "Platform like language, framework"
 }
+
+variable "subdomain" {
+  type        = string
+  default     = "bemtevi"
+  description = "subdomain used to host service"
+}
