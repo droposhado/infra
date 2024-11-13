@@ -1,12 +1,3 @@
-module "cloud_run_service_name" {
-  source    = "../modules/name-gen"
-  length    = 8
-  uppercase = false
-  keepers = {
-    bucket = var.gcs_bucket
-  }
-}
-
 module "maya_pg_name" {
   source = "../modules/name-gen"
   length = 48
@@ -44,11 +35,10 @@ module "sentry_project_name" {
   }
 }
 
-module "maya_token" {
-  source  = "../modules/password-gen"
-  length  = 256
-  special = false
+module "worker_name" {
+  source    = "../modules/name-gen"
+  uppercase = false
   keepers = {
-    bucket = var.gcs_bucket
+    fqdn = local.fqdn
   }
 }
