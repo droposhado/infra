@@ -1,9 +1,9 @@
 terraform {
   required_version = "1.5.4"
   required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = "5.34.0"
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "4.30.0"
     }
     postgresql = {
       source  = "cyrilgdn/postgresql"
@@ -17,10 +17,7 @@ terraform {
   }
 }
 
-provider "google" {
-  project = var.gcp_project_id
-  region  = var.gcp_region
-}
+provider "cloudflare" {}
 
 provider "postgresql" {
   host            = local.postgresql.host
