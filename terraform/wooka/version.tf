@@ -1,9 +1,9 @@
 terraform {
   required_version = "1.5.4"
   required_providers {
-    render = {
-      source  = "render-oss/render"
-      version = "1.3.2"
+    doppler = {
+      source  = "DopplerHQ/doppler"
+      version = "1.12.0"
     }
     sentry = {
       source  = "jianyuan/sentry"
@@ -12,6 +12,6 @@ terraform {
   }
 }
 
-provider "render" {}
+provider "doppler" {}
 
 provider "sentry" {}

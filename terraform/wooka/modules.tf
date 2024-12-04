@@ -1,4 +1,4 @@
-module "render_service_name" {
+module "doppler_project_name" {
   source    = "../modules/name-gen"
   length    = 8
   uppercase = false
