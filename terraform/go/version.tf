@@ -3,16 +3,16 @@ terraform {
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "4.30.0"
+      version = "4.45.0"
     }
-    google = {
-      source  = "hashicorp/google"
-      version = "5.26.0"
+    github = {
+      source  = "integrations/github"
+      version = "6.2.1"
     }
+
   }
 }
 
-provider "google" {
-  project = var.gcp_project_id
-  region  = var.gcp_region
-}
+provider "github" {}
+
+provider "cloudflare" {}
