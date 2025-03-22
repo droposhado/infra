@@ -41,6 +41,11 @@ variable "wooka_chatroom_presence" {
   description = "URI of XMPP room (username@host.org/roomname), comma separated password if exists"
 }
 
+variable "wooka_chatroom_password" {
+  type        = string
+  description = "password to protected room"
+}
+
 variable "wooka_xmpp_username" {
   type        = string
   description = "XMPP username"

@@ -50,6 +50,13 @@ resource "doppler_secret" "wooka_chatroom_presence" {
   value   = var.wooka_chatroom_presence
 }
 
+resource "doppler_secret" "wooka_chatroom_password" {
+  project = doppler_project.main.name
+  config  = doppler_config.main.name
+  name    = "CHATROOM_PASSWORD"
+  value   = var.wooka_chatroom_password
+}
+
 resource "doppler_secret" "wooka_xmpp_username" {
   project = doppler_project.main.name
   config  = doppler_config.main.name
