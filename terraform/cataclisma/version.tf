@@ -3,16 +3,15 @@ terraform {
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "4.30.0"
+      version = "4.45.0"
     }
     github = {
       source  = "integrations/github"
       version = "6.2.1"
     }
-
   }
 }
 
-provider "github" {}
-
 provider "cloudflare" {}
+
+provider "github" {}
