@@ -3,6 +3,20 @@ resource "cloudflare_list" "www" {
   name        = "${local.domain_slug}_www_redirect"
   description = "list to configure www redirect to apex"
   kind        = "redirect"
+
+  item {
+    value {
+      redirect {
+        include_subdomains    = "disabled"
+        preserve_path_suffix  = "enabled"
+        preserve_query_string = "enabled"
+        source_url            = "www.${var.domain}/"
+        status_code           = 301
+        subpath_matching      = "enabled"
+        target_url            = "https://${var.domain}/"
+      }
+    }
+  }
 }
 
 resource "cloudflare_list_item" "www" {
@@ -17,6 +31,5 @@ resource "cloudflare_list_item" "www" {
     status_code           = 301
     preserve_query_string = true
     preserve_path_suffix  = true
-
   }
 }

@@ -1,15 +1,15 @@
 resource "cloudflare_record" "sending" {
   for_each = {
     for record in mailgun_domain.main.sending_records_set : record.id => {
-      type  = record.record_type
-      name  = record.name
-      value = record.value
+      type    = record.record_type
+      name    = record.name
+      content = record.value
     }
   }
 
   type    = each.value.type
   name    = each.value.name
-  value   = each.value.value
+  content = each.value.content
   zone_id = var.cloudflare_zone_id
   proxied = false
 
@@ -21,13 +21,13 @@ resource "cloudflare_record" "receiving" {
     for record in mailgun_domain.main.receiving_records_set : record.id => {
       type     = record.record_type
       priority = record.priority
-      value    = record.value
+      content  = record.value
     }
   }
 
   type     = each.value.type
   name     = "${var.subdomain}.${var.domain}"
-  value    = each.value.value
+  content  = each.value.content
   priority = each.value.priority
   zone_id  = var.cloudflare_zone_id
   proxied  = false
