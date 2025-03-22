@@ -1,3 +1,4 @@
 locals {
-  cloudflare_project_token = module.hightower_deploy_token.token
+  allowed_ip_range = data.github_ip_ranges.main.actions
+  cloudflare_token = cloudflare_api_token.main.value
 }
