@@ -3,7 +3,7 @@
 Launch new instance
 
 ```
-$ fly launch
+$ fly launch --no-public-ips
 ```
 
 Disable High Avaliability, because HA execute 2 times same command
