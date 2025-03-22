@@ -1,7 +1,8 @@
 variable "aiven_cloud_name" {
-  type = string
+  type    = string
+  default = "do-sfo"
   # default     = "do-nyc"
-  default     = "aws-us-west-2"
+  # default     = "aws-us-west-2"
   description = "Cloud and region (<cloud>-<region>) to deploy service instance"
 }
 
@@ -15,6 +16,12 @@ variable "aiven_maintenance_window_time" {
   type        = string
   default     = "10:00:00"
   description = "Hour to maintenance in format HH:MM:SS"
+}
+
+variable "aiven_mysql_version" {
+  type        = number
+  default     = 8
+  description = "MySQL version to deploy instance, major number only"
 }
 
 variable "aiven_plan" {
@@ -82,6 +89,11 @@ variable "github_infra_repo" {
 variable "github_verification_secret" {
   type        = string
   description = "Secret used to verify webhooks"
+}
+
+variable "github_webhook" {
+  type        = string
+  description = "URL to receive webhooks"
 }
 
 variable "migadu_hosted_email_verify" {

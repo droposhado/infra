@@ -1,9 +1,9 @@
-resource "github_repository_webhook" "zulip" {
+resource "github_repository_webhook" "main" {
   for_each = toset(data.github_repositories.me.names)
 
   repository = each.value
   configuration {
-    url          = var.zulip_webhook_github
+    url          = var.github_webhook
     content_type = "json"
     insecure_ssl = false
     secret       = var.github_verification_secret

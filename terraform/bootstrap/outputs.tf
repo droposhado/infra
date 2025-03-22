@@ -22,6 +22,20 @@ output "mailgun" {
   }
 }
 
+output "mysql" {
+  description = "Admin information about MySQL instance"
+  sensitive   = true
+  value = {
+    "host" : module.aiven_mysql.host,
+    "port" : module.aiven_mysql.port,
+    "dbname" : module.aiven_mysql.dbname,
+    "admin" : {
+      "user" : module.aiven_mysql.username,
+      "password" : module.aiven_mysql.password
+    },
+  }
+}
+
 output "postgresql" {
   description = "Admin information about PostgreSQL instance"
   sensitive   = true

@@ -5,9 +5,13 @@ terraform {
       source  = "aiven/aiven"
       version = "4.19.1"
     }
+    auth0 = {
+      source  = "auth0/auth0"
+      version = "1.8.0"
+    }
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "4.35.0"
+      version = "4.45.0"
     }
     github = {
       source  = "integrations/github"
@@ -20,10 +24,6 @@ terraform {
     mailgun = {
       source  = "wgebis/mailgun"
       version = "0.7.6"
-    }
-    mongodbatlas = {
-      source = "mongodb/mongodbatlas"
-      version = "1.21.1"
     }
     sentry = {
       source  = "jianyuan/sentry"
@@ -38,6 +38,8 @@ terraform {
 
 provider "aiven" {}
 
+provider "auth0" {}
+
 provider "cloudflare" {}
 
 provider "github" {}
@@ -48,8 +50,6 @@ provider "google" {
 }
 
 provider "mailgun" {}
-
-provider "mongodbatlas" {}
 
 provider "sentry" {}
 

@@ -1,3 +1,24 @@
+module "aiven_mysql" {
+  source                  = "../modules/aiven-mysql"
+  cloud_name              = var.aiven_cloud_name
+  maintenance_window_dow  = var.aiven_maintenance_window_dow
+  maintenance_window_time = var.aiven_maintenance_window_time
+  plan                    = var.aiven_plan
+  mysql_version           = var.aiven_mysql_version
+  project_name            = var.aiven_project_name
+  service_name            = local.aiven_mysql_service_name
+  termination_protection  = var.aiven_termination_protection
+}
+
+module "aiven_mysql_service_name" {
+  source    = "../modules/name-gen"
+  uppercase = false
+  keepers = {
+    domain  = var.domain
+    zone_id = data.cloudflare_zone.main.id
+  }
+}
+
 module "aiven_pg" {
   source                  = "../modules/aiven-pg"
   cloud_name              = var.aiven_cloud_name
@@ -6,7 +27,7 @@ module "aiven_pg" {
   plan                    = var.aiven_plan
   pg_version              = var.aiven_pg_version
   project_name            = var.aiven_project_name
-  service_name            = local.aiven_service_name
+  service_name            = local.aiven_pg_service_name
   termination_protection  = var.aiven_termination_protection
 }
 
@@ -48,26 +69,6 @@ module "migadu_mail" {
   domain              = var.domain
   zone_id             = data.cloudflare_zone.main.id
   hosted_email_verify = var.migadu_hosted_email_verify
-}
-
-module "mongodb_cluster_name" {
-  source    = "../modules/name-gen"
-  length    = 24
-  uppercase = false
-  keepers = {
-    domain  = var.domain
-    zone_id = data.cloudflare_zone.main.id
-  }
-}
-
-module "mongodb_project_name" {
-  source    = "../modules/name-gen"
-  length    = 24
-  uppercase = false
-  keepers = {
-    domain  = var.domain
-    zone_id = data.cloudflare_zone.main.id
-  }
 }
 
 module "state_uuid" {
