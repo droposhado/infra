@@ -3,7 +3,7 @@ module "doppler_project_name" {
   length    = 8
   uppercase = false
   keepers = {
-    bucket = var.gcs_bucket
+    main = var.keepers
   }
 }
 
@@ -19,6 +19,6 @@ module "sentry_project_name" {
   source = "../modules/name-gen"
   length = 8
   keepers = {
-    bucket = var.gcs_bucket
+    main = var.keepers
   }
 }

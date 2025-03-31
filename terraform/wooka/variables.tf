@@ -14,6 +14,11 @@ variable "gcs_bucket" {
   description = "Bucket used to store states"
 }
 
+variable "keepers" {
+  type        = string
+  description = "Base lock"
+}
+
 variable "sentry_project_platform" {
   type        = string
   default     = "python"
