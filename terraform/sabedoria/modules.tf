@@ -1,10 +1,23 @@
+module "dotroot" {
+  source    = "../modules/dotroot"
+  domain    = var.domain
+  subdomain = var.subdomain
+}
+
+module "sabedoria_token" {
+  source  = "../modules/password-gen"
+  length  = 98
+  special = false
+  keepers = {
+    main = var.keepers
+  }
+}
+
 module "sabedoria_pg_name" {
   source = "../modules/name-gen"
   length = 48
   keepers = {
-    host  = local.postgresql.host
-    port  = local.postgresql.port
-    admin = local.postgresql.admin.user
+    main = var.keepers
   }
 }
 
@@ -13,9 +26,7 @@ module "sabedoria_pg_password" {
   length  = 98
   special = false
   keepers = {
-    host  = local.postgresql.host
-    port  = local.postgresql.port
-    admin = local.postgresql.admin.user
+    main = var.keepers
   }
 }
 
@@ -31,7 +42,7 @@ module "sentry_project_name" {
   source = "../modules/name-gen"
   length = 8
   keepers = {
-    bucket = var.gcs_bucket
+    main = var.keepers
   }
 }
 
@@ -39,6 +50,15 @@ module "worker_name" {
   source    = "../modules/name-gen"
   uppercase = false
   keepers = {
-    fqdn = local.fqdn
+    main = var.keepers
   }
+}
+
+module "workers_script" {
+  source                    = "../modules/cloudflare-workers-application"
+  name                      = module.dotroot.fqdn_slug
+  environment               = "production"
+  cloudflare_worker_secrets = local.workers_secrets
+  fqdn                      = module.dotroot.fqdn
+  domain                    = var.domain
 }
