@@ -1,13 +1,17 @@
 terraform {
-  required_version = "1.5.4"
+  required_version = "~> 1.11.1"
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "4.30.0"
+      version = "4.45.0"
+    }
+    onepassword = {
+      source  = "1Password/onepassword"
+      version = "2.1.2"
     }
     postgresql = {
       source  = "cyrilgdn/postgresql"
-      version = "1.22.0"
+      version = "1.25.0"
     }
     sentry = {
       source  = "jianyuan/sentry"
@@ -18,6 +22,8 @@ terraform {
 }
 
 provider "cloudflare" {}
+
+provider "onepassword" {}
 
 provider "postgresql" {
   host            = local.postgresql.host

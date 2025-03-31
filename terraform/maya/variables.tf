@@ -8,6 +8,16 @@ variable "gcs_bucket" {
   description = "Bucket used to store states"
 }
 
+variable "keepers" {
+  type        = string
+  description = "Base lock"
+}
+
+variable "onepassword_vault_uuid" {
+  type        = string
+  description = "1password uuid of vault used to store secrets"
+}
+
 variable "sentry_project_platform" {
   type        = string
   default     = "javascript"
@@ -16,6 +26,6 @@ variable "sentry_project_platform" {
 
 variable "subdomain" {
   type        = string
-  default     = "health"
+  default     = "how.i.am"
   description = "subdomain used to host service"
 }
