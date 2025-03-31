@@ -1,5 +1,5 @@
 terraform {
-  required_version = "1.5.4"
+  required_version = "~> 1.11.1"
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
@@ -9,9 +9,10 @@ terraform {
       source  = "integrations/github"
       version = "6.2.1"
     }
+
   }
 }
 
-provider "cloudflare" {}
-
 provider "github" {}
+
+provider "cloudflare" {}

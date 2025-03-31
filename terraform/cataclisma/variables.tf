@@ -3,13 +3,8 @@ variable "domain" {
   description = "Default domain to use in another workspaces"
 }
 
-variable "gcs_bucket" {
+variable "subdomain" {
   type        = string
-  description = "Bucket used to store states"
-}
-
-variable "github_repo" {
-  type        = string
-  default     = "blog"
-  description = "Name of repository that host project with blog files"
+  default     = "@"
+  description = "subdomain used to host service"
 }
