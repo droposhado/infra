@@ -29,6 +29,9 @@ lint:
 	terraform fmt
 	tflint
 
+reconfigure:
+	bws run -- terraform init -reconfigure -backend-config="bucket=${GCS_BUCKET}" 
+
 refresh:
 	bws run -- terraform refresh
 
