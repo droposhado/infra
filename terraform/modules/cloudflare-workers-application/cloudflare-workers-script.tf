@@ -1,6 +1,6 @@
-resource "cloudflare_worker_script" "main" {
+resource "cloudflare_workers_script" "main" {
   account_id = data.cloudflare_zone.main.account_id
-  name       = local.fqdn_slug
+  name       = var.name
   content    = var.cloudflare_worker_script_content
 
   compatibility_date  = var.cloudflare_worker_compatibility_date
@@ -8,10 +8,10 @@ resource "cloudflare_worker_script" "main" {
   module              = var.cloudflare_worker_module
 
   dynamic "secret_text_binding" {
-    for_each = var.cloudflare_worker_secrets # merge com o dsn que é gerado
+    for_each = var.cloudflare_worker_secrets
     content {
-      name = secret_text_binding.name
-      text = secret_text_binding.text
+      name = secret_text_binding.key
+      text = secret_text_binding.value
     }
   }
 

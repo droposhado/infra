@@ -4,7 +4,7 @@ variable "cloudflare_worker_compatibility_date" {
 }
 
 variable "cloudflare_worker_compatibility_flags" {
-  type    = array(string)
+  type    = list(string)
   default = []
 }
 
@@ -29,7 +29,7 @@ EOF
 }
 
 variable "cloudflare_worker_secrets" {
-  type    = map(string)
+  type = map(string)
 }
 
 variable "domain" {
@@ -42,25 +42,11 @@ variable "environment" {
   description = "production"
 }
 
+variable "fqdn" {
+  type        = string
+  description = "full name domain"
+}
+
 variable "name" {
   type = string
-}
-
-variable "sentry_org_slug" {
-  type        = string
-}
-
-variable "sentry_project_platform" {
-  type        = string
-  description = "Platform like language, framework"
-}
-
-variable "sentry_team_slugs" {
-  type        = array(string)
-}
-
-
-variable "subdomain" {
-  type        = string
-  description = "subdomain used to host service"
 }
