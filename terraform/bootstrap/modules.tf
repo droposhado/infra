@@ -14,8 +14,7 @@ module "aiven_mysql_service_name" {
   source    = "../modules/name-gen"
   uppercase = false
   keepers = {
-    domain  = var.domain
-    zone_id = data.cloudflare_zone.main.id
+    main = var.keepers
   }
 }
 
@@ -35,16 +34,14 @@ module "aiven_pg_service_name" {
   source    = "../modules/name-gen"
   uppercase = false
   keepers = {
-    domain  = var.domain
-    zone_id = data.cloudflare_zone.main.id
+    main = var.keepers
   }
 }
 
 module "backup_uuid" {
   source = "../modules/uuid-gen"
   keepers = {
-    domain  = var.domain
-    zone_id = data.cloudflare_zone.main.id
+    main = var.keepers
   }
 }
 
@@ -74,7 +71,6 @@ module "migadu_mail" {
 module "state_uuid" {
   source = "../modules/uuid-gen"
   keepers = {
-    domain  = var.domain
-    zone_id = data.cloudflare_zone.main.id
+    main = var.keepers
   }
 }

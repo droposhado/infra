@@ -1,4 +1,4 @@
 resource "auth0_custom_domain" "main" {
-  domain = "id.droposhado.org"
+  domain = "id.${var.domain}"
   type   = "auth0_managed_certs"
 }

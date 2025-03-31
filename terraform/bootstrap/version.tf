@@ -1,5 +1,5 @@
 terraform {
-  required_version = "1.5.4"
+  required_version = "~> 1.11.1"
   required_providers {
     aiven = {
       source  = "aiven/aiven"
@@ -24,6 +24,10 @@ terraform {
     mailgun = {
       source  = "wgebis/mailgun"
       version = "0.7.6"
+    }
+    onepassword = {
+      source  = "1Password/onepassword"
+      version = "2.1.2"
     }
     sentry = {
       source  = "jianyuan/sentry"

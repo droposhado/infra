@@ -96,6 +96,17 @@ variable "github_webhook" {
   description = "URL to receive webhooks"
 }
 
+variable "keepers" {
+  type        = string
+  description = "Base lock"
+}
+
 variable "migadu_hosted_email_verify" {
-  type = string
+  type        = string
+  description = "value"
+}
+
+variable "onepassword_vault_uuid" {
+  type        = string
+  description = "1password uuid of vault used to store secrets"
 }
