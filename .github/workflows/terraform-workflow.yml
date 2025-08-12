@@ -31,7 +31,7 @@ jobs:
   #       working-directory: ${{ inputs.path }}
   #   steps:
   #     - name: Checkout repository
-  #       uses: actions/checkout@v4
+  #       uses: actions/checkout@v5
 
   #     - name: Run Terrascan
   #       id: terrascan
@@ -55,7 +55,7 @@ jobs:
         working-directory: ${{ inputs.path }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         name: Checkout source code
 
       - uses: actions/cache@v4
@@ -102,7 +102,7 @@ jobs:
 
     steps:
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         name: Checkout source code
 
       - name: tfsec
@@ -120,7 +120,7 @@ jobs:
         working-directory: ${{ inputs.path }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         name: Checkout source code
 
       - uses: actions/cache@v4
@@ -198,7 +198,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -237,7 +237,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
